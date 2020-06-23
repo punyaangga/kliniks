@@ -283,7 +283,8 @@
 						<div class="collapse " id="menuTim">
 							<ul class="nav">
 								<li id="li-user">
-									<a href="<?php echo base_url('user/'); ?>">
+									<a href="<?php echo base_url('userAngga/'); ?>">
+									<!-- <a href="<?php //echo base_url('user/'); ?>"> -->
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>User</p>
 									</a>
