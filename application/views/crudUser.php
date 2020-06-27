@@ -97,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <h4 id="formTitle" class="card-title"> Edit Data Pengguna</h4>
               </div>
               <div class="card-body">
-                <form class="needs-validation" action="<?php echo base_url('UserAngga/updateDataPengguna'); ?>" method="POST">
+                <form class="needs-validation" action="<?php echo base_url('User/updateDataPengguna'); ?>" method="POST">
                 	<div class="row">
                     <?php foreach ($query->result() as $baris) { ?>
                 		<div class="col-md-6">
@@ -148,7 +148,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <button class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
                     </div>
                     <div class="col-md-2">
-                      <a href="<?php echo base_url('index.php/UserAngga');?>" class="btn btn-danger btn-block" ><i class="fa fa-times"></i> Cancel</a>
+                      <a href="<?php echo base_url('index.php/User');?>" class="btn btn-danger btn-block" ><i class="fa fa-times"></i> Cancel</a>
                     </div>
                   </div>
                 </form>

@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
 
+
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -21,6 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="<?php echo base_url('assets/demo/demo.css'); ?>" rel="stylesheet" />
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/DataTables/datatables.min.css'); ?>"/>
+  
+  
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/select2/css/select2.min.css'); ?>"/>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/select2/css/select2-bootstrap4.css'); ?>"/>
   <script type="text/javascript">
@@ -108,7 +111,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table id="tableUser" class="table table-striped table-hover">
+                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                     <thead class="text-primary">
                       <th>No.</th>
                       <th>NIK</th>
@@ -118,6 +121,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <th>Aksi</th>
                     </thead>
                     <tbody>
+                      <?php
+                          $no=1;
+                          foreach ($query->result() as $baris) {
+                      ?>
+                      <tr>
+                        <td><?php echo $no++;?></td>
+                        <td><?php echo $baris->nik;?></td>
+                        <td><?php echo $baris->name;?></td>
+                        <td><?php echo $baris->email;?></td>
+                        <td><?php echo $baris->type;?></td>
+                        <td>
+                          <center>
+                            <!-- button hapus -->
+                             <?php echo anchor('User/tampilPengguna/'.$baris->id,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); ?>
+                             <!-- button edit -->
+                           <?php echo anchor('User/hapusDataPengguna/'.$baris->id,
+                           '<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
+                            </button>'); ?>
+                          </center>
+                        </td>
+                      </tr>
+                      <?php
+                        }
+                      ?>
+                      
+                      
                     </tbody>
                   </table>
                 </div>
@@ -203,8 +232,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="<?php echo base_url('assets/demo/demo.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/admina.user.js'); ?>" type="text/javascript"></script>
+
+  <!-- hapus sementara -->
   <script type="text/javascript" src="<?php echo base_url('assets/DataTables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/select2/js/select2.min.js'); ?>"></script>
+
+  <!-- js untuk table by angga-->
+    <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable();
+            });
+    </script>
+  <!-- js untuk table by Angga -->
 </body>
 
 </html>

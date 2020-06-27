@@ -1,7 +1,7 @@
 			<div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li id="li-dashboard">
-            <a href="<?php echo base_url('dashboard/'); ?>">
+            <a href="<?php echo base_url('dashboardAngga/'); ?>">
               <i class="fas fa-home"></i>
               <p>Dashboard</p>
             </a>
@@ -12,61 +12,61 @@
               <p>Kunjungan</p>
             </a>
 					</li>
-					<li id="li-apotek">
-            <a href="<?php echo base_url('apotek/'); ?>">
+					<!-- <li id="li-apotek">
+            <a href="<?php //echo base_url('apotek/'); ?>">
               <i class="fas fa-clinic-medical"></i>
               <p>Apotek</p>
             </a>
-					</li>
+					</li> -->
 					<li id="li-pasien">
             <a href="<?php echo base_url('pasien/'); ?>">
               <i class="fas fa-procedures"></i>
               <p>Pasien</p>
             </a>
 					</li>
-					<li id="li-rekam-medis">
-            <a href="<?php echo base_url('rekam-medis/'); ?>">
+					<!-- <li id="li-rekam-medis">
+            <a href="<?php //echo base_url('rekam-medis/'); ?>">
               <i class="fas fa-file-medical-alt"></i>
               <p>Rekam Medis</p>
             </a>
-					</li>
-					<li id="li-laporan">
-            <a href="<?php echo base_url('laporan/'); ?>">
+					</li> -->
+					<!-- <li id="li-laporan">
+            <a href="<?php //echo base_url('laporan/'); ?>">
               <i class="fas fa-file-medical"></i>
               <p>Laporan</p>
             </a>
-					</li>
-					<li id="li-obat">
-            <a href="<?php echo base_url('obat/'); ?>">
+					</li> -->
+					<!-- <li id="li-obat">
+            <a href="<?php //echo base_url('obat/'); ?>">
               <i class="fas fa-pills"></i>
               <p>Obat</p>
             </a>
-					</li>
-					<li id="li-pembelian">
-            <a href="<?php echo base_url('pembelian/'); ?>">
+					</li> -->
+					<!-- <li id="li-pembelian">
+            <a href="<?php //echo base_url('pembelian/'); ?>">
               <i class="fas fa-cart-arrow-down"></i>
               <p>Pembelian</p>
             </a>
-					</li>
+					</li> -->
 					<!-- <li id="li-pembayaran">
-            <a href="<?php echo base_url('pembayaran/'); ?>">
+            <a href="<?php //echo base_url('pembayaran/'); ?>">
               <i class="fas fa-money-bill-wave"></i>
               <p>Pembayaran</p>
             </a>
 					</li>
 					<li id="li-penjualan">
-            <a href="<?php echo base_url('penjualan/'); ?>">
+            <a href="<?php //echo base_url('penjualan/'); ?>">
               <i class="fas fa-store"></i>
               <p>Penjualan</p>
             </a>
 					</li> -->
-					<li id="li-supplier">
-            <a href="<?php echo base_url('supplier/'); ?>">
+					<!-- <li id="li-supplier">
+            <a href="<?php //echo base_url('supplier/'); ?>">
               <i class="fas fa-store-alt"></i>
               <p>Supplier</p>
             </a>
-					</li>
-					<li>
+					</li> -->
+					<!-- <li>
 						<a data-toggle="collapse" href="#menuSurat" >
 							<i class="fas fa-envelope"></i>
 							<p>
@@ -76,37 +76,37 @@
 						<div class="collapse " id="menuSurat">
 							<ul class="nav">
 								<li id="li-surat-sakit">
-									<a href="<?php echo base_url('surat-sakit/'); ?>">
+									<a href="<?php //echo base_url('surat-sakit/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Surat Sakit</p>
 									</a>
 								</li>
 								<li id="li-surat-lahir">
-									<a href="<?php echo base_url('surat-lahir/'); ?>">
+									<a href="<?php //echo base_url('surat-lahir/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Surat Keterangan Lahir</p>
 									</a>
 								</li>
 								<li id="li-surat-postpartum">
-									<a href="<?php echo base_url('surat-postpartum/'); ?>">
+									<a href="<?php //echo base_url('surat-postpartum/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Surat Keterangan Kontrol</p>
 									</a>
 								</li>
 								<li id="li-surat-hamil">
-									<a href="<?php echo base_url('surat-hamil/'); ?>">
+									<a href="<?php //echo base_url('surat-hamil/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Surat Hamil</p>
 									</a>
 								</li>
 								<li id="li-surat-keterangan-hamil">
-									<a href="<?php echo base_url('surat-keterangan-hamil/'); ?>">
+									<a href="<?php //echo base_url('surat-keterangan-hamil/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Surat Keterangan Hamil</p>
 									</a>
 								</li>
 								<li id="li-surat-rujukan">
-                  <a href="<?php echo base_url('surat-rujukan/'); ?>">
+                  <a href="<?php //echo base_url('surat-rujukan/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Surat Rujukan</p>
 									</a>
@@ -114,7 +114,7 @@
 							</ul>
 							<hr>
 						</div>
-					</li>
+					</li> -->
 					<!-- <li>
 						<a data-toggle="collapse" href="#menuLaporan" >
 							<i class="now-ui-icons files_single-copy-04"></i>
@@ -170,7 +170,7 @@
 							<hr>
 						</div>
 					</li> -->
-					<li>
+					<!-- <li>
 						<a data-toggle="collapse" href="#menuMaster" >
 							<i class="fas fa-box"></i>
 							<p>
@@ -180,91 +180,91 @@
 						<div class="collapse " id="menuMaster">
 							<ul class="nav">
                 <li id="li-penyakit">
-									<a href="<?php echo base_url('penyakit/'); ?>">
+									<a href="<?php// echo base_url('penyakit/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Penyakit</p>
 									</a>
 								</li>
 								<li id="li-asuransi">
-									<a href="<?php echo base_url('asuransi/'); ?>">
+									<a href="<?php //echo base_url('asuransi/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Asuransi</p>
 									</a>
 								</li>
 								<li id="li-kelas-asuransi">
-									<a href="<?php echo base_url('kelas-asuransi/'); ?>">
+									<a href="<?php //echo base_url('kelas-asuransi/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Kelas Asuransi</p>
 									</a>
 								</li>
 								<li id="li-biaya-medis">
-									<a href="<?php echo base_url('biaya-medis/'); ?>">
+									<a href="<?php //echo base_url('biaya-medis/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Biaya Medis</p>
 									</a>
 								</li>
 								<li id="li-data-icd">
-									<a href="<?php echo base_url('data-icd/'); ?>">
+									<a href="<?php //echo base_url('data-icd/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Data ICD</p>
 									</a>
 								</li>
 								<li id="li-desa">
-									<a href="<?php echo base_url('desa/'); ?>">
+									<a href="<?php //echo base_url('desa/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Desa</p>
 									</a>
 								</li>
 								<li id="li-dokter">
-									<a href="<?php echo base_url('dokter/'); ?>">
+									<a href="<?php// echo base_url('dokter/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Dokter</p>
 									</a>
 								</li>
 								<li id="li-karyawan">
-									<a href="<?php echo base_url('karyawan/'); ?>">
+									<a href="<?php //echo base_url('karyawan/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Karyawan</p>
 									</a>
 								</li>
 								<li id="li-hari-praktek">
-									<a href="<?php echo base_url('hari-praktek/'); ?>">
+									<a href="<?php //echo base_url('hari-praktek/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Hari Praktek</p>
 									</a>
 								</li>
 								<li id="li-jenis-pelayanan">
-									<a href="<?php echo base_url('jenis-pelayanan/'); ?>">
+									<a href="<?php //echo base_url('jenis-pelayanan/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Jenis Pelayanan</p>
 									</a>
 								</li>
 								<li id="li-kota">
-									<a href="<?php echo base_url('kota/'); ?>">
+									<a href="<?php //echo base_url('kota/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Kota</p>
 									</a>
 								</li>
 								<li id="li-kategori">
-									<a href="<?php echo base_url('kategori/'); ?>">
+									<a href="<?php //echo base_url('kategori/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Kategori</p>
 									</a>
 								</li>
 								<li id="li-obat">
-									<a href="<?php echo base_url('obat/'); ?>">
+									<a href="<?php //echo base_url('obat/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Obat</p>
 									</a>
 								</li>
 								<li id="li-pekerjaan">
-									<a href="<?php echo base_url('pekerjaan/'); ?>">
+									<a href="<?php //echo base_url('pekerjaan/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Pekerjaan</p>
 									</a>
 								</li>
 								<li id="li-satuan">
-									<a href="<?php echo base_url('satuan/'); ?>">
+									<a href="<?php //echo base_url('satuan/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Satuan</p>
 									</a>
@@ -272,7 +272,9 @@
 							</ul>
 							<hr>
 						</div>
-					</li>
+					</li> -->
+
+
 					<li>
 						<a data-toggle="collapse" href="#menuTim" >
 							<i class="fas fa-user-friends"></i>
@@ -283,7 +285,7 @@
 						<div class="collapse " id="menuTim">
 							<ul class="nav">
 								<li id="li-user">
-									<a href="<?php echo base_url('userAngga/'); ?>">
+									<a href="<?php echo base_url('user/'); ?>">
 									<!-- <a href="<?php //echo base_url('user/'); ?>"> -->
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>User</p>
