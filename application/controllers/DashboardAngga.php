@@ -32,6 +32,11 @@ class DashboardAngga extends CI_Controller {
 		$data['harusDilayani'] = $this->DashboardAngga_model->tampilPasienHarusDilayani();
 		$data['sedangDilayani'] = $this->DashboardAngga_model->tampilPasienSedangDilayani();
 		$data['hitungPengunjung'] = $this->DashboardAngga_model->counterKunjungan();
+		$data['penyakit'] = $this->DashboardAngga_model->getJenisPenyakit();
+		$data['rUmur'] = $this->DashboardAngga_model->getRentangUmur();
+		$data['tindakan'] = $this->DashboardAngga_model->getTindakan();
+		$data['satuanUsia'] = $this->DashboardAngga_model->getSatuanUsia();
+		$data['alatKontra'] = $this->DashboardAngga_model->getAlatKontrasepsi();
 		// start komen sementara
 		// $data['jenisPelayanan'] =$this->DashboardAngga_model->infoPelayanan();
 		// $data['namaDokter'] =$this->DashboardAngga_model->infoDokter();
@@ -56,6 +61,70 @@ class DashboardAngga extends CI_Controller {
 			}
 
     }
+
+    public function simpanPemeriksaanUmum(){
+	    $data = array('id_antrian'=>$this->input->post('idAntrian'),
+	    		'jenis_kelamin'=>$this->input->post('jenisKelamin'),
+	    		'id_penyakit'=>$this->input->post('idPenyakit'),
+	    		'id_rentang_umur'=>$this->input->post('idRentangUmur'),
+	    		'id_macam_tindakan_imunisasi'=>$this->input->post('idTindakan'),
+	    		'catatan'=>$this->input->post('catatanDokter'));
+		$proses=$this->DashboardAngga_model->simpanPemeriksaanUmum($data);
+			if (!$proses) {
+				// header('Location: index');
+				echo "<script>alert('Data Berhasil Disimpan');window.location='index#pasienSedangDilayani'</script>";
+			} else {
+				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+			}
+    }
+
+    public function simpanPemeriksaanKb(){
+    	$satu = $this->input->post('jmlAnakLaki');
+    	$dua =  $this->input->post('jmlAnakPerempuan');
+    	$hitung = $satu + $dua;
+    	$data = array('id_antrian'=>$this->input->post('idAntrian'),
+    			'umur'=>$hitung,
+    			'nama_suami'=>$this->input->post('namaSuami'),
+    			'alamat'=>$this->input->post('alamatPasien'),
+    			'jml_anak_laki'=>$this->input->post('jmlAnakLaki'),
+    			'jml_anak_perempuan'=>$this->input->post('jmlAnakPerempuan'),
+    			'jml_anak'=>$this->input->post('jmlAnak'),
+    			'usia_anak_terkecil'=>$this->input->post('usiaAnakTerkecil'),
+    			'id_satuan_usia'=>$this->input->post('idSatuanUsia'),
+    			'pasang_baru'=>$this->input->post('pasangBaru'),
+    			'pasang_cabut'=>$this->input->post('pasangCabut'),
+    			'id_alat_kontrasepsi'=>$this->input->post('idAlatKontra'),
+    			'akli'=>$this->input->post('akli'),
+    			't_4'=>$this->input->post('t4'),
+    			'ganti_cara'=>$this->input->post('gantiCara'),
+    			'catatan'=>$this->input->post('catatan'));
+    	$proses=$this->DashboardAngga_model->simpanPemeriksaanKb($data);
+    		if (!$proses) {
+				// header('Location: index');
+				echo "<script>alert('Data Berhasil Disimpan');window.location='index#pasienSedangDilayani'</script>";
+			} else {
+				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+			}
+    }
+
+    public function simpanDataProgramIspa(){
+    	$data=array('id_antrian'=>$this->input->post('idAntrian'),
+    		'nama_anak'=>$this->input->post('namaAnak'),
+    		'jenis_kelamin'=>$this->input->post('jk'),
+    		'umur_tahun'=>$this->input->post('umurTahun'),
+    		'umur_bulan'=>$this->input->post('umurBulan'),
+    		'tb_pb'=>$this->input->post('tbPb'),
+    		'bb'=>$this->input->post('bb'),
+    		'catatan'=>$this->input->post('catatan'));
+    	$proses=$this->DashboardAngga_model->simpanDataProgramIspa($data);
+    		if (!$proses) {
+				// header('Location: index');
+				echo "<script>alert('Data Berhasil Disimpan');window.location='index#pasienSedangDilayani'</script>";
+			} else {
+				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+			}
+    }
+
     public function updateDataAntrian(){
     	// $id = $this->input->post('id');
     	$id = $this->uri->segment(3);
@@ -73,6 +142,7 @@ class DashboardAngga extends CI_Controller {
 			}
 		
     }
+
 
    
 

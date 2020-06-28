@@ -10,6 +10,15 @@ class DashboardAngga_model extends CI_Model {
     public function simpanDataPasien($data){
         $this->db->insert('pasiens',$data);
     }
+    public function simpanPemeriksaanUmum($data){
+         $this->db->insert('detail_pemeriksaan_umum',$data);
+    }
+    public function simpanPemeriksaanKb($data){
+        $this->db->insert('detail_pemeriksaan_kb',$data);
+    }
+    public function simpanDataProgramIspa($data){
+        $this->db->insert('detail_program_ispa',$data);
+    }
     public function tampilPasienDilayani(){
         // $query = $this->db->get('users');
         // return $query;
@@ -51,7 +60,26 @@ class DashboardAngga_model extends CI_Model {
                             where SUBSTRING(tgl_antrian,1,10)='$tanggalSekarang'");
         return $hitungPengunjung;
     }
-    
+    public function getJenisPenyakit(){
+        $penyakit= $this->db->get('jenis_penyakit');
+        return $penyakit;
+    }
+    public function getRentangUmur(){
+        $rUmur = $this->db->get('rentang_umur');
+        return $rUmur;
+    }
+    public function getTindakan(){
+        $tindakan = $this->db->get('macam_tindakan_imunisasi');
+        return $tindakan;
+    }
+    public function getSatuanUsia(){
+        $satuanUsia = $this->db->get('satuan_usia');
+        return $satuanUsia;
+    }
+    public function getAlatKontrasepsi(){
+        $alatKontra= $this->db->get('alat_kontrasepsi');
+        return $alatKontra;
+    }
     // start komentar sementara
     // public function infoPelayanan(){
     //     $jenisPelayanan =  $this->db->get("jenis_pelayanans");
