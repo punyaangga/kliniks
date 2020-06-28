@@ -15,7 +15,11 @@ class DashboardAngga_model extends CI_Model {
         // return $query;
         $tanggalSekarang = date('Y-m-d');
 
-         $query = $this->db->query("SELECT SUBSTRING(a.tgl_antrian,1,10) ,a.*, b.`nama_dokter`, c.`nama_pasien`, d.`nama_pelayanan` FROM `antrians` a LEFT JOIN `dokters` b ON a.`id_dokter` = b.`id` LEFT JOIN `pasiens` c ON a.`id_pasien` = c.`id` LEFT JOIN `jenis_pelayanans` d ON a.`id_jenis_pelayanan` = d.`id` where status_antrian='selesai' && SUBSTRING(a.tgl_antrian,1,10)='$tanggalSekarang'");
+         $query = $this->db->query("SELECT SUBSTRING(a.tgl_antrian,1,10) ,a.*, b.`nama_dokter`, c.`nama_pasien`, d.`nama_pelayanan` 
+            FROM `antrians` a LEFT JOIN `dokters` b ON a.`id_dokter` = b.`id` 
+            LEFT JOIN `pasiens` c ON a.`id_pasien` = c.`id` 
+            LEFT JOIN `jenis_pelayanans` d ON a.`id_jenis_pelayanan` = d.`id` 
+            where status_antrian='selesai' && SUBSTRING(a.tgl_antrian,1,10)='$tanggalSekarang'");
           // $query = $this->db->query("SELECT a.*, b.`nama_dokter`, c.`nama_pasien`, d.`nama_pelayanan` FROM `antrians` a LEFT JOIN `dokters` b ON a.`id_dokter` = b.`id` LEFT JOIN `pasiens` c ON a.`id_pasien` = c.`id` LEFT JOIN `jenis_pelayanans` d ON a.`id_jenis_pelayanan` = d.`id` where status_antrian='selesai' ");
         return $query;
     }
@@ -29,7 +33,7 @@ class DashboardAngga_model extends CI_Model {
         return $harusDilayani;
     }
     public function tampilPasienSedangDilayani(){
-        $sedangDilayani = $this->db->query("SELECT a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter, p.nama_pasien, j.nama_pelayanan 
+        $sedangDilayani = $this->db->query("SELECT p.nama_suami,p.alamat_istri,p.tgl_lahir,p.jk_pasien,a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter,p.nik, p.nama_pasien, j.nama_pelayanan 
                                             FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
                                             JOIN pasiens AS p ON a.id_pasien = p.id 
                                             JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 
@@ -40,6 +44,12 @@ class DashboardAngga_model extends CI_Model {
     
     public function updateAntrian($id,$data){
         $this->db->update('antrians',$data,array('id'=>$id));
+    }
+    public function counterKunjungan(){
+        $tanggalSekarang = date('yy-m-d');
+        $hitungPengunjung = $this->db->query("SELECT COUNT( SUBSTRING(tgl_antrian,1,10) ) as kunjungan FROM antrians 
+                            where SUBSTRING(tgl_antrian,1,10)='$tanggalSekarang'");
+        return $hitungPengunjung;
     }
     
     // start komentar sementara

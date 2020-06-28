@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="sidebar" data-color="blue">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-    	-->
+      -->
       <div class="logo">
         <a href="<?php echo base_url(); ?>" class="simple-text logo-mini">
           <i class="now-ui-icons media-2_sound-wave"></i>
@@ -74,15 +74,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="menuProfile">
                   <a class="dropdown-item" href="#">
-										<i class="now-ui-icons users_single-02"></i>
-										<p>Profile</p>
-									</a>
-									<a class="dropdown-item" href="<?php echo base_url('dashboard/logout/'); ?>">
-										<i class="now-ui-icons media-1_button-power"></i>
-										<p>Logout</p>
-									</a>
+                    <i class="now-ui-icons users_single-02"></i>
+                    <p>Profile</p>
+                  </a>
+                  <a class="dropdown-item" href="<?php echo base_url('dashboard/logout/'); ?>">
+                    <i class="now-ui-icons media-1_button-power"></i>
+                    <p>Logout</p>
+                  </a>
                 </div>
-							</li>
+              </li>
             </ul>
           </div>
         </div>
@@ -95,7 +95,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header card-antrian">
-                <div class="card-category d-flex justify-content-center">0</div>
+
+                <?php foreach ($hitungPengunjung->result() as $hitung) {
+                     echo "<center style='font-size:33px;'>".$hitung->kunjungan."</center>";
+                  }?>
                 <div class="card-title d-flex justify-content-center">Kunjungan Angga</div>
               </div>
               <div class="card-body d-flex justify-content-center">
@@ -122,44 +125,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
         </div>       
 
-        <!-- coba modals -->
-          <!-- Tombol untuk menampilkan modal-->
-          <?php foreach ($harusDilayani->result() as $cob) {
-            
-          ?>
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal<?php echo $cob->nama_pasien;?>">Buka Modal</button>
-           <?php } ?>
-            <!-- Modal -->
-            <div id="myModal<?php echo $cob->nama_pasien;?>" class="modal fade" role="dialog">
-              <div class="modal-dialog">
-                <!-- konten modal-->
-                <div class="modal-content">
-                  <!-- heading modal -->
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Bagian heading modal</h4>
-                  </div>
-                  <!-- body modal -->
-                  <div class="modal-body">
-                    <p>bagian body modal.</p>
-                  </div>
-                  <!-- footer modal -->
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Tutup Modal</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-        <!-- coba modals -->
-        
         <div class="row">
           <div id="table" class="col-md-12">
-            <div class="card">
+            <div class="card" id="pasienharusdilayani">
               <div class="card-header">
                 <div class="row">
-                	<div class="col-6">
-                		<h4 class="card-title"> Pasien yang harus dilayani: </h4>
-                	</div>
+                  <div class="col-6">
+                    <h4 class="card-title"> Pasien yang harus dilayani: </h4>
+                  </div>
                 </div>
               </div>
               <div class="card-body">
@@ -186,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><?php echo $hd->status_antrian;?></td>
                         <td><?php echo $hd->tgl_antrian;?></td>
                         <td>
-                          <?php echo anchor('DashboardAngga/updateDataAntrian/'.$hd->id,'<button class="btn btn-info btn-sm" title="Layani Pasien"><i class="fa fa-check"></i>Layani</button>'); ?> 
+                          <?php echo anchor('DashboardAngga/updateDataAntrian/'.$hd->id,'<button class="btn btn-info btn-sm" title="Layani Pasien" style="width:85px;"><i class="fa fa-check"></i>Layani</button>'); ?> 
                         </td>
 
                         
@@ -234,14 +207,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><?php echo $sd->tgl_antrian;?></td> 
                         <td>
                           <?php 
+                              //kirim nilai ke modal
+                              // $kirimId= $sd->id;
+                              //namaIdModal
                               $text = $sd->nama_pelayanan;
                               $whitespace = str_replace(' ', '', $text);
                               $kalimat = "#".$whitespace; ?> 
-                          <button class="btn btn-success btn-sm" data-toggle="modal" data-target="<?php echo $kalimat;?>" ><i class="fa fa-check"></i>Selesai</button></td>
+                          <button style="width:85px" class="btn btn-success btn-sm" data-toggle="modal" data-target="<?php echo $kalimat.$sd->id;?>" ><i class="fa fa-check"></i>Selesai</button></td>
                       </tr>
+                      <!-- tadinya disini -->
                       <?php } ?>
                     </tbody>
                   </table>
+
                 </div>
               </div>
             </div>
@@ -504,6 +482,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
                       </div>
                     </div>
+                     <div class="col-md-12">
+                      <label>Jenis Kelamin : </label>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jk_pasien" value="Laki-Laki" checked>
+                        <label>Laki-Laki</label> 
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="jk_pasien" value="Perempuan"> 
+                        <label>Perempuan</label>
+                      </div>
+                    </div>
+
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Pendidikan Pasien</label>
@@ -575,6 +569,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <input type="date" name="tgl_lahir_suami" class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
                       </div>
                     </div>
+
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Pendidikan</label>
@@ -697,8 +692,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
-
-        <div class="modal fade" id="PemeriksaanUmum" role="dialog" aria-labelledby="pemeriksaanUmumLabel" aria-hidden="true">
+        <?php
+          foreach ($sedangDilayani->result() as $sd) {
+        ?>
+        <div class="modal fade" id="PemeriksaanUmum<?php echo $sd->id;?>" role="dialog" aria-labelledby="pemeriksaanUmumLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -713,20 +710,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <input type="text" name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
+                        <input type="text" value="<?php echo $sd->no_antrian;?>"name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
+                        <input type="text" value="<?php echo $sd->nama_pasien;?>"name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <input type="hidden" name="id_jenis_pelayanan">
-                        <input type="text" name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
+                        <input type="text" name="nama_pelayanan" value="<?php echo $sd->nama_pelayanan;?>" class="form-control" placeholder="Jenis Pelayanan" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -735,10 +732,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jenis Kelamin</label>
-                        <select name="jenis_kelamin" class="form-control">
-                          <option value="L" selected>Laki-laki</option>
-                          <option value="P">Perempuan</option>
-                        </select>
+                          <input type="text" name="jenis_kelamin" value="<?php echo $sd->jk_pasien;?>" disabled class="form-control">
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -775,9 +769,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
+        <?php } ?>
 
         <!-- pop up program ispa -->
-        <div class="modal fade" id="ProgramISPA" role="dialog" aria-labelledby="programIspaLabel" aria-hidden="true">
+        <?php
+          foreach ($sedangDilayani->result() as $sd) {
+        ?>
+        <div class="modal fade" id="ProgramISPA<?php echo $sd->id;?>" role="dialog" aria-labelledby="programIspaLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -792,20 +790,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <input type="text" name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
+                        <input type="text" name="no_antrian" class="form-control" value="<?php echo $sd->no_antrian;?>"placeholder="No. Antrian" readonly>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
+                        <input type="text" name="nama_pasien" class="form-control" value="<?php echo $sd->nama_pasien;?>"placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <input type="hidden" name="id_jenis_pelayanan">
-                        <input type="text" name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
+                        <input type="text" name="nama_pelayanan" value="<?php echo $sd->nama_pelayanan;?>" class="form-control" placeholder="Jenis Pelayanan" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -814,28 +812,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Nama Anak</label>
-                        <input type="text" name="nama_anak" class="form-control" placeholder="Nama Anak" required>
+                        <input type="text" name="nama_anak" class="form-control" placeholder="Nama Anak" value="<?php echo $sd->nama_pasien;?>"required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jenis Kelamin</label>
-                        <select name="jenis_kelamin" class="form-control">
-                          <option value="L" selected>Laki-laki</option>
-                          <option value="P">Perempuan</option>
-                        </select>
+                        <input type="text" name="jk_pasien" class="form-control" value="<?php echo $sd->jk_pasien; ?>" disabled>
+                        
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Umur (tahun)</label>
-                        <input type="number" name="umur_tahun" class="form-control" placeholder="Umur (tahun)">
+                        <?php
+                        //waktu sekarang
+                        $tglSekarang = date('yy-m-d');
+                        $waktuSekarang = explode('-', $tglSekarang);
+                        //tgl lahir pasien
+                        $tglPasien= $sd->tgl_lahir;
+                        $waktuPasien = explode('-',$tglPasien);
+                        //hitung umur
+                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+                        //hasil umur
+                        $umurPasienTahun=abs($getTahun); 
+                        $umurPasienBulan=abs($getBulan);
+                        ?>
+
+                        <input type="number" name="umur_tahun" value="<?php echo $umurPasienTahun;?>" class="form-control" placeholder="Umur (tahun)">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Umur (bulan)</label>
-                        <input type="number" name="umur_bulan" class="form-control" placeholder="Umur (bulan)">
+                        <input type="number" name="umur_bulan" value="<?php echo $umurPasienBulan;?>" class="form-control" placeholder="Umur (bulan)">
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -866,10 +878,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
+        <?php } ?>
         <!-- end pop up program ispa -->
 
         <!-- pop up imunisasi label -->
-        <div class="modal fade" id="Imunisasi" role="dialog" aria-labelledby="imunisasiLabel" aria-hidden="true">
+        <?php
+          foreach ($sedangDilayani->result() as $sd) {
+        ?>
+        <div class="modal fade" id="Imunisasi<?php echo $sd->id;?>" role="dialog" aria-labelledby="imunisasiLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -884,20 +900,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <input type="text" name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
+                        <input type="text" name="no_antrian" value="<?php echo $sd->no_antrian;?>"class="form-control" placeholder="No. Antrian" readonly>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
+                        <input type="text" name="nama_pasien" class="form-control" value="<?php echo $sd->nama_pasien;?>"placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <input type="hidden" name="id_jenis_pelayanan">
-                        <input type="text" name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
+                        <input type="text" name="nama_pelayanan" class="form-control" value="<?php echo $sd->nama_pelayanan;?>" placeholder="Jenis Pelayanan" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -906,7 +922,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Nama Anak</label>
-                        <input type="text" name="nama_anak" class="form-control" placeholder="Nama Anak" required>
+                        <input type="text" name="nama_anak" value="<?php echo $sd->nama_pasien;?>" class="form-control" placeholder="Nama Anak" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -918,13 +934,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Alamat</label>
-                        <textarea name="alamat" class="form-control" placeholder="Alamat"></textarea>
+                        <textarea name="alamat" class="form-control" placeholder="Alamat"><?php echo $sd->alamat_istri;?></textarea>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
+                        <input type="date" value="<?php echo $sd->tgl_lahir;?>" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1087,11 +1103,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
+        <?php } ?>
         <!-- end pop up imunisasi  -->
 
 
         <!-- pop up persalinan/pertus -->
-        <div class="modal fade" id="Persalinan" role="dialog" aria-labelledby="persalinanLabel" aria-hidden="true">
+        <?php
+          foreach ($sedangDilayani->result() as $sd) {
+        ?>
+        <div class="modal fade" id="Persalinan<?php echo $sd->id;?>" role="dialog" aria-labelledby="persalinanLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -1106,21 +1126,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <input type="text" name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
+                        <input type="text" name="no_antrian" value="<?php echo $sd->no_antrian;?>" class="form-control" placeholder="No. Antrian" readonly>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
                         <input type="hidden" name="id_pasien" class="form-control">
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
+                        <input type="text" name="nama_pasien" value="<?php echo $sd->nama_pasien;?>"class="form-control" placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <input type="hidden" name="id_jenis_pelayanan">
-                        <input type="text" name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
+                        <input type="text" name="nama_pelayanan" class="form-control" value="<?php echo $sd->nama_pelayanan;?>"placeholder="Jenis Pelayanan" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -1129,13 +1149,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Umur</label>
-                        <input type="number" name="umur" class="form-control" placeholder="Umur" required>
+                        <?php
+                        //waktu sekarang
+                        $tglSekarang = date('yy-m-d');
+                        $waktuSekarang = explode('-', $tglSekarang);
+                        //tgl lahir pasien
+                        $tglPasien= $sd->tgl_lahir;
+                        $waktuPasien = explode('-',$tglPasien);
+                        //hitung umur
+                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+                        //hasil umur
+                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("getHari")." Hari"; 
+                        ?>
+                        <input type="text" value="<?php echo $umurPasien;?>" name="umur" class="form-control" placeholder="Umur" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Alamat</label>
-                        <textarea name="alamat" class="form-control" placeholder="Alamat"></textarea>
+                        <textarea name="alamat" class="form-control" placeholder="Alamat"><?php echo  $sd->alamat_istri; ?></textarea>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1220,11 +1254,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
+        <?php
+          }
+        ?>
         <!-- end pop up persalinan -->
 
-
+        <?php
+          foreach ($sedangDilayani->result() as $sd) {
+        ?>
         <!-- pop up pemeriksaan kehamilan -->
-        <div class="modal fade" id="PemeriksaanKehamilan" role="dialog" aria-labelledby="pemeriksaanKehamilanLabel" aria-hidden="true">
+        <div class="modal fade" id="PemeriksaanKehamilan<?php echo $sd->id; ?>" role="dialog" aria-labelledby="pemeriksaanKehamilanLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -1239,21 +1278,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <input type="text" name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
+                        <input type="text" value="<?php echo $sd->no_antrian;?>"name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
                         <input type="hidden" name="id_pasien" class="form-control">
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
+                        <input type="text" value="<?php echo $sd->nama_pasien;?>"name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <input type="hidden" name="id_jenis_pelayanan">
-                        <input type="text" name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
+                        <input type="text" value="<?php echo $sd->nama_pelayanan?>" name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -1262,25 +1301,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir">
+                        <input type="date" value="<?php echo $sd->tgl_lahir;?><"name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>NIK</label>
-                        <input type="text" name="nik" class="form-control" placeholder="NIK" >
+                        <input type="text" name="nik" class="form-control" value="<?php echo $sd->nik;?>" placeholder="NIK" >
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Umur</label>
-                        <input type="number" name="umur" class="form-control" placeholder="Umur" required>
+                        <?php
+                        //waktu sekarang
+                        $tglSekarang = date('yy-m-d');
+                        $waktuSekarang = explode('-', $tglSekarang);
+                        //tgl lahir pasien
+                        $tglPasien= $sd->tgl_lahir;
+                        $waktuPasien = explode('-',$tglPasien);
+                        //hitung umur
+                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+                        //hasil umur
+                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("getHari")." Hari"; 
+                        ?>
+                        <input type="text" value="<?php echo $umurPasien;?>" name="umur" class="form-control" placeholder="Umur" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Nama Suami</label>
-                        <input type="text" name="nama_suami" class="form-control" placeholder="Nama Suami" required>
+                        <input type="text" name="nama_suami" value="<?php echo $sd->nama_suami;?>"class="form-control" placeholder="Nama Suami" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1420,11 +1473,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
+        <?php } ?>
         <!-- end pop up pemeriksaan kehamilah -->
 
-
+        <?php
+          foreach ($sedangDilayani->result() as $sd) {
+        ?>
         <!-- pop up pemerikasaan KB -->
-        <div class="modal fade" id="KB" role="dialog" aria-labelledby="pemeriksaanKBLabel" aria-hidden="true">
+        <div class="modal fade" id="KB<?php echo $sd->id;?>" role="dialog" aria-labelledby="pemeriksaanKBLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -1439,21 +1495,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-4">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <input type="text" name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
+                        <input type="text" value="<?php echo $sd->no_antrian;?>"name="no_antrian" class="form-control" placeholder="No. Antrian" readonly>
                       </div>
                     </div>
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
                         <input type="hidden" name="id_pasien" class="form-control">
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
+                        <input type="text" value="<?php echo $sd->nama_pasien;?>"name="nama_pasien" class="form-control" placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <input type="hidden" name="id_jenis_pelayanan">
-                        <input type="text" name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
+                        <input type="text" value="<?php echo $sd->nama_pelayanan;?>"name="nama_pelayanan" class="form-control" placeholder="Jenis Pelayanan" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">
@@ -1462,19 +1518,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Umur</label>
-                        <input type="number" name="umur" class="form-control" placeholder="Umur" required>
+                        <?php
+                        //waktu sekarang
+                        $tglSekarang = date('yy-m-d');
+                        $waktuSekarang = explode('-', $tglSekarang);
+                        //tgl lahir pasien
+                        $tglPasien= $sd->tgl_lahir;
+                        $waktuPasien = explode('-',$tglPasien);
+                        //hitung umur
+                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+                        //hasil umur
+                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("getHari")." Hari"; 
+                        ?>
+                        <input disabled type="text" name="umur" value="<?php echo $umurPasien; ?>" class="form-control" placeholder="Umur" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Nama Suami</label>
-                        <input type="text" name="nama_suami" class="form-control" placeholder="Nama Suami">
+                        <input type="text" value="<?php echo $sd->nama_suami;?>"name="nama_suami" class="form-control" placeholder="Nama Suami">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Alamat</label>
-                        <textarea name="alamat" class="form-control" placeholder="Alamat"></textarea>
+                        <textarea name="alamat" class="form-control" placeholder="Alamat"><?php echo $sd->alamat_istri; ?></textarea>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1568,6 +1638,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
+        <?php } ?>
         <!-- end pop up pemeriksaan kb -->
 
       </div>
