@@ -75,4 +75,20 @@ class User extends CI_Controller {
 		}
 	
 	}
+
+	public function simpanDataPengguna(){
+		$data = array('nik'=>$this->input->post('nik'),
+				'name'=>$this->input->post('name'),
+				'email'=>$this->input->post('email'),
+				'password'=>md5($this->input->post('password')),
+				'type'=>$this->input->post('type'));
+
+		$proses = $this->User_model->simpanDataPengguna($data);
+		if (!$proses) {
+			echo "<script>alert('Data Berhasil Di Simpan');history.go(-1)</script>";
+		} else {
+			echo "<script>alert('Data Gagal Di Di Simpan');history.go(-1)</script>";
+		}
+	
+	}
 }

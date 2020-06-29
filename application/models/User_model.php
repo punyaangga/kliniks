@@ -27,5 +27,8 @@ class User_model extends CI_Model {
     public function updateDataPengguna($id,$data){
     	$this->db->update('users',$data, array('id' => $id));
     }
+    public function simpanDataPengguna($data){
+        $this->db->insert('users',$data);
+    }
 
 }

@@ -160,12 +160,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <h4 id="formTitle" class="card-title"> Tambah Data</h4>
               </div>
               <div class="card-body">
-                <form id="formData">
+                <form action="<?php echo base_url('User/simpanDataPengguna');?>" method="post">
                 	<div class="row">
                 		<div class="col-md-6">
                 			<div class="form-group">
                 				<label>NIK</label>
-                				<input type="text" name="nik" class="form-control" placeholder="NIK" required>
+                				<input type="number" name="nik" class="form-control" placeholder="NIK" required>
                 			</div>
                 		</div>
                     <div class="col-md-6">
@@ -183,13 +183,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Password</label>
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        <input type="password" name="password" id="pw1" class="form-control" placeholder="Password" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Re-type Password</label>
-                        <input type="password" name="retype_password" class="form-control" placeholder="Re-type Password" required>
+                        <input type="password" name="retype_password" id="pw2" class="form-control" placeholder="Re-type Password" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -202,16 +202,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     </div>
                 	</div>
+                  <div class="card-footer row">
+                    <div class="col-md-2">
+                      <button class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
+                    </div>
+                    <div class="col-md-2">
+                      <!-- <button name="btn_cancel" class="btn btn-danger btn-block"><i class="fa fa-times"></i> Cancel</button> -->
+                    </div>
+                  </div>
                 </form>
               </div>
-              <div class="card-footer row">
-              	<div class="col-md-2">
-            			<button id="0" name="btn_save" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
-            		</div>
-            		<div class="col-md-2">
-            			<button name="btn_cancel" class="btn btn-danger btn-block"><i class="fa fa-times"></i> Cancel</button>
-            		</div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -244,6 +245,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             });
     </script>
   <!-- js untuk table by Angga -->
+
+  <!-- js untuk validasi password by angga -->
+   <script type="text/javascript">
+            window.onload = function () {
+                document.getElementById("pw1").onchange = validatePassword;
+                document.getElementById("pw2").onchange = validatePassword;
+            }
+            function validatePassword(){
+                var pass2=document.getElementById("pw2").value;
+                var pass1=document.getElementById("pw1").value;
+                if(pass1!=pass2)
+                    document.getElementById("pw2").setCustomValidity("Passwords Tidak Sama, Coba Lagi");
+                else
+                    document.getElementById("pw2").setCustomValidity('');
+            }
+  </script>
+  <!-- js untuk validasi password by angga -->
 </body>
 
 </html>
