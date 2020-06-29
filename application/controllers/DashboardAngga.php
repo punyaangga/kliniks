@@ -37,7 +37,9 @@ class DashboardAngga extends CI_Controller {
 		$data['tindakan'] = $this->DashboardAngga_model->getTindakan();
 		$data['satuanUsia'] = $this->DashboardAngga_model->getSatuanUsia();
 		$data['alatKontra'] = $this->DashboardAngga_model->getAlatKontrasepsi();
+		
 		// start komen sementara
+		// $data['bbLahir'] = $this->DashboardAngga_model->getBbLahir();
 		// $data['jenisPelayanan'] =$this->DashboardAngga_model->infoPelayanan();
 		// $data['namaDokter'] =$this->DashboardAngga_model->infoDokter();
 		// $data['namaPasien'] =$this->DashboardAngga_model->infoPasien();
@@ -124,6 +126,97 @@ class DashboardAngga extends CI_Controller {
 				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
 			}
     }
+    public function simpanDataImunisasi(){
+    	$data=array('id_antrian'=>$this->input->post('idAntrian'),
+    		 'nama_anak'=>$this->input->post('namaAnak'),
+    		 'no_kk'=>$this->input->post('noKk'),
+    		 'alamat'=>$this->input->post('alamat'),
+    		 'tgl_lahir'=>$this->input->post('tglLahir'),
+    		 'bb_lahir'=>$this->input->post('bbLahir'),
+    		 'bb'=>$this->input->post('bb'),
+    		 'pb'=>$this->input->post('pb'),
+    		 'catatan'=>$this->input->post('catatan'),
+    		 'hb0'=>$this->input->post('hb0'),
+    		 'bcg'=>$this->input->post('bcg'),
+    		 'polio1'=>$this->input->post('polio1'),
+    		 'polio2'=>$this->input->post('polio2'),
+    		 'polio3'=>$this->input->post('polio3'),
+    		 'polio4'=>$this->input->post('polio4'),
+    		 'pentabio1'=>$this->input->post('pentabio1'),
+    		 'pentabio2'=>$this->input->post('pentabio2'),
+    		 'pentabio3'=>$this->input->post('pentabio3'),
+    		 'campak'=>$this->input->post('campak'),
+    		 'tt'=>$this->input->post('tt'),
+    		 'pentabio_ulang'=>$this->input->post('pentabioUlang'),
+    		 'campak_ulang'=>$this->input->post('campakUlang'),
+    		 'id_macam_tindakan_imunisasi'=>$this->input->post('idMacamTindakanImunisasi'));
+    
+			$proses=$this->DashboardAngga_model->simpanDataImunisasi($data);
+    		if (!$proses) {
+				// header('Location: index');
+				echo "<script>alert('Data Berhasil Disimpan');window.location='index#pasienSedangDilayani'</script>";
+			} else {
+				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+			}
+    }
+    public function simpanDataPemeriksaanKehamilan(){
+    	$data = array('id_antrian'=>$this->input->post('idAntrian'),
+    			'id_pasien'=>$this->input->post('idPasien'),
+    			'tgl_lahir'=>$this->input->post('tglLahir'),
+    			'nik'=>$this->input->post('nik'),
+    			'umur'=>$this->input->post('umur'),
+    			'nama_suami'=>$this->input->post('namaSuami'),
+    			'no_kk'=>$this->input->post('noKk'),
+    			'buku_kia'=>$this->input->post('bukuKia'),
+    			'alamat'=>$this->input->post('alamat'),
+    			'hpht'=>$this->input->post('hpht'),
+    			'tp'=>$this->input->post('tp'),
+    			'bb'=>$this->input->post('bb'),
+    			'tb'=>$this->input->post('tb'),
+    			'usia_kehamilan'=>$this->input->post('usiaKehamilan'),
+    			'gpa'=>$this->input->post('gpa'),
+    			'k1'=>$this->input->post('k1'),
+    			'k4'=>$this->input->post('k4'),
+    			'tt'=>$this->input->post('tt'),
+    			'lila'=>$this->input->post('lila'),
+    			'hb'=>$this->input->post('hb'),
+    			'resiko'=>$this->input->post('resiko'),
+    			'keterangan'=>$this->input->post('keterangan'),
+    			'baru_lama'=>$this->input->post('baruLama'),
+    			'catatan'=>$this->input->post('catatan'));
+		$proses=$this->DashboardAngga_model->simpanDataPemeriksaanKehamilan($data);
+    		if (!$proses) {
+				// header('Location: index');
+				echo "<script>alert('Data Berhasil Disimpan');window.location='index#pasienSedangDilayani'</script>";
+			} else {
+				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+			}
+    }
+    public function simpanDataPersalinan(){
+    	$data = array('id_antrian'=>$this->input->post('idAntrian'),
+    			'id_pasien'=>$this->input->post('idPasien'),
+    			'umur'=>$this->input->post('umur'),
+    			'alamat'=>$this->input->post('alamat'),
+    			'anak_ke'=>$this->input->post('anakKe'),
+    			'bb'=>$this->input->post('bb'),
+    			'pb'=>$this->input->post('pb'),
+    			'tgl_lahir'=>$this->input->post('tglLahir'),
+    			'jam_lahir'=>$this->input->post('jamLahir'),
+    			'jenis_kelamin'=>$this->input->post('jenisKelamin'),
+    			'imd'=>$this->input->post('imd'),
+    			'lingkar_kepala'=>$this->input->post('lingkarKepala'),
+    			'resiko'=>$this->input->post('resiko'),
+    			'keterangan'=>$this->input->post('keterangan'),
+    			'catatan'=>$this->input->post('catatan'));
+   		$proses=$this->DashboardAngga_model->simpanDataPersalinan($data);
+    		if (!$proses) {
+				// header('Location: index');
+				echo "<script>alert('Data Berhasil Disimpan');window.location='index#pasienSedangDilayani'</script>";
+			} else {
+				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+			}
+    }
+
 
     public function updateDataAntrian(){
     	// $id = $this->input->post('id');

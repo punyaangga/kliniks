@@ -19,9 +19,17 @@ class DashboardAngga_model extends CI_Model {
     public function simpanDataProgramIspa($data){
         $this->db->insert('detail_program_ispa',$data);
     }
+    public function simpanDataImunisasi($data){
+        $this->db->insert('detail_imunisasi',$data);
+    }
+    public function simpanDataPemeriksaanKehamilan($data){
+        $this->db->insert('detail_pemeriksaan_kehamilan',$data);
+    }
+    public function simpanDataPersalinan($data){
+        $this->db->insert('detail_persalinan',$data);
+    }
+    
     public function tampilPasienDilayani(){
-        // $query = $this->db->get('users');
-        // return $query;
         $tanggalSekarang = date('Y-m-d');
 
          $query = $this->db->query("SELECT SUBSTRING(a.tgl_antrian,1,10) ,a.*, b.`nama_dokter`, c.`nama_pasien`, d.`nama_pelayanan` 
@@ -42,7 +50,7 @@ class DashboardAngga_model extends CI_Model {
         return $harusDilayani;
     }
     public function tampilPasienSedangDilayani(){
-        $sedangDilayani = $this->db->query("SELECT p.nama_suami,p.alamat_istri,p.tgl_lahir,p.jk_pasien,a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter,p.nik, p.nama_pasien, j.nama_pelayanan 
+        $sedangDilayani = $this->db->query("SELECT p.id as id_pasien,p.nama_suami,p.alamat_istri,p.tgl_lahir,p.jk_pasien,a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter,p.nik, p.nama_pasien, j.nama_pelayanan 
                                             FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
                                             JOIN pasiens AS p ON a.id_pasien = p.id 
                                             JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 
@@ -80,6 +88,12 @@ class DashboardAngga_model extends CI_Model {
         $alatKontra= $this->db->get('alat_kontrasepsi');
         return $alatKontra;
     }
+    // public function getBbLahir(){
+    //     $bbLahir=$this->db->get('detail_imunisasi');
+    //     return $bbLahir;
+    // }
+
+
     // start komentar sementara
     // public function infoPelayanan(){
     //     $jenisPelayanan =  $this->db->get("jenis_pelayanans");
