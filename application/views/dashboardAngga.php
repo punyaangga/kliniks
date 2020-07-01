@@ -92,6 +92,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       <div class="content">
         <div class="row">
+         
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header card-antrian">
@@ -99,7 +100,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <?php foreach ($hitungPengunjung->result() as $hitung) {
                      echo "<center style='font-size:33px;'>".$hitung->kunjungan."</center>";
                   }?>
-                <div class="card-title d-flex justify-content-center">Kunjungan Angga</div>
+                <div class="card-title d-flex justify-content-center">Kunjungan Angga
+               
+                </div>
               </div>
               <div class="card-body d-flex justify-content-center">
                 <i class="fa fa-users fa-10x"></i>
@@ -207,9 +210,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><?php echo $sd->tgl_antrian;?></td> 
                         <td>
                           <?php 
-                              //kirim nilai ke modal
-                              // $kirimId= $sd->id;
-                              //namaIdModal
                               $text = $sd->nama_pelayanan;
                               $whitespace = str_replace(' ', '', $text);
                               $kalimat = "#".$whitespace; ?> 
@@ -270,22 +270,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </table>
                 </div>
               </div>
-              <!-- <div class="card-body">
-                <div class="table-responsive">
-                  <table id="tableTerlayani" class="table table-striped table-hover table-success">
-                    <thead class="text-primary">
-                      <th>No. Antrian</th>
-                      <th>Nama Pasien</th>
-                      <th>Jenis Pelayanan</th>
-                      <th>Dokter</th>
-                      <th>Status</th>
-                      <th>Tanggal</th>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                  </table>
-                </div>
-              </div> -->
+              
             </div>
           </div>
         </div>
@@ -692,7 +677,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
-       
+
         <?php
           foreach ($sedangDilayani->result() as $sd) {
         ?>
@@ -733,7 +718,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jenis Kelamin</label>
-                          <input type="text" name="jenisKelamin" value="<?php echo $sd->jk_pasien;?>" class="form-control">
+                          <input type="text" name="jenisKelamin" value="<?php echo $sd->jk_pasien;?>" class="form-control" readonly >
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -917,6 +902,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
+                <!-- untuk get data id pasien -->
+                <?php
+                  $kirimIdPasien=$sd->id_pasien;
+                  $this->controller->getBbLahir($kirimIdPasien);
+                ?>
+                <?php
+                  // var_dump($this->controller->getBbLahir($kirimIdPasien));
+                  // foreach ($this->controller->getBbLahir($kirimIdPasien) as $bbL) {
+                  //   echo $bbL->bb_lahir;
+                  // }
+                 ?>
+                <!-- untuk get data id pasien -->
                 <h5 class="modal-title" id="imunisasiLabel">Imunisasi</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
@@ -935,6 +932,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
+                        <input type="text" name="idPasien" value="<?php echo $sd->id_pasien;?>" hidden>
                         <input type="text" class="form-control" value="<?php echo $sd->nama_pasien;?>"placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
@@ -953,34 +951,64 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <input type="text" name="namaAnak" value="<?php echo $sd->nama_pasien;?>" class="form-control" placeholder="Nama Anak" required>
                       </div>
                     </div>
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>No. KK Ortu</label>
-                        <input type="text" name="noKk" class="form-control" placeholder="No. KK Orang Tua">
+                        <?php
+                          if ($sd->no_kk == '-') {
+                        ?>
+                        <input type="text" name="noKk" value="<?php echo $sd->no_kk;?>" class="form-control" placeholder="No. KK Orang Tua">    
+                        <?php } else { ?>
+                        <input type="text" name="noKk" value="<?php echo $sd->no_kk;?>" class="form-control" placeholder="No. KK Orang Tua" readonly>    
+                        <?php
+                        }
+                        ?>
                       </div>
                     </div>
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Alamat</label>
                         <textarea name="alamat" class="form-control" placeholder="Alamat"><?php echo $sd->alamat_istri;?></textarea>
                       </div>
                     </div>
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Tanggal Lahir</label>
                         <input type="date" name="tglLahir" value="<?php echo $sd->tgl_lahir;?>"  class="form-control" placeholder="Tanggal Lahir" readonly required>
                       </div>
                     </div>
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>BB Lahir (Gram)</label>
-                        <input type="number" name="bbLahir" class="form-control" placeholder="Berat Badan Lahir">
+                        <?php
+                          if (count($this->controller->getBbLahir($kirimIdPasien)) == '1') {
+                              foreach ($this->controller->getBbLahir($kirimIdPasien) as $bbL) {
+                        ?>
+                              <input type="number" value="<?php echo $bbL->bb_lahir; ?>" name="bbLahir" class="form-control" placeholder="Berat Badan Lahir" readonly>
+                              <?php } ?>
+                        <?php
+                          } else {
+                        ?>
+                            <input type="text" name="bbLahir" class="form-control" placeholder="Berat Badan Lahir">
+                        <?php } ?>
+                          
+                          
+                          
+                        
+
+                          
                       </div>
                     </div>
+
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>BB (Gram)</label>
-                        <input type="number" name="bb" class="form-control" placeholder="Berat Badan">
+                        <input type="number" name="bb"  class="form-control" placeholder="Berat Badan">
+                        
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1143,7 +1171,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <?php } ?>
         <!-- end pop up imunisasi  -->
-
+        
 
         <!-- pop up persalinan/pertus -->
         <?php
@@ -1154,6 +1182,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="persalinanLabel">Persalinan / Partus</h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -1237,7 +1266,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jam</label>
-                        <input type="text" name="jamLahir" class="form-control" placeholder="Jam Lahir" required>
+                        <input type="time" name="jamLahir" class="form-control" placeholder="Jam Lahir" required>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1378,7 +1407,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>No. KK</label>
-                        <input type="text" name="noKk" class="form-control" placeholder="No. KK">
+                        <?php 
+                          if (empty($sd->no_kk)){
+                        ?>
+                          <input type="text" name="noKk" class="form-control" placeholder="No. KK" >  
+                        <?php } else { ?>
+                          <input type="text" name="noKk" value="<?php echo $sd->no_kk;?>" class="form-control" placeholder="No. KK" readonly>
+                        <?php } ?>
+                        
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1525,6 +1561,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="pemeriksaanKBLabel">Pemeriksaan KB</h5>
+                <?php
+                  $idPasienKb=$sd->id_pasien;
+                  $this->controller->getJmlAnak($idPasienKb);
+                ?>
+                
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -1542,6 +1584,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-8">
                       <div class="form-group">
                         <label>Nama Pasien</label>
+                        <input type="text" value="<?php echo $sd->id_pasien;?>" name="idPasien" hidden>
                         <input type="text" value="<?php echo $sd->nama_pasien;?>" name="namaPasien" class="form-control" placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
@@ -1588,39 +1631,101 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
+
                         <label>Jumlah Anak Laki-laki</label>
-                        <input type="number" name="jmlAnakLaki" id="anakL" class="form-control" placeholder="Jumlah Anak Laki-laki"  required>
+                        
+                        <?php
+                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
+                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
+                        ?>
+                            <input type="number" value="<?php echo $pkb->jml_anak_laki; ?>" name="jmlAnakLaki" id="anakL" class="form-control" placeholder="Jumlah Anak Laki-laki" >                      
+                            <?php } ?>
+
+                        <?php } else { ?>
+                            <input type="number" name="jmlAnakLaki" class="form-control" id="anakLL" placeholder="Jumlah Anak Laki-laki">
+                        <?php } ?>                          
+                       
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jumlah Anak Perempuan</label>
-                        <input type="number" name="jmlAnakPerempuan" id="anakP" class="form-control" placeholder="Jumlah Anak Perempuan" required>
+
+                        <?php
+                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
+                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
+                        ?>
+                            <input type="number" value="<?php echo $pkb->jml_anak_perempuan; ?>" name="jmlAnakPerempuan" id="anakP" class="form-control" placeholder="Jumlah Anak Perempuan" >                      
+                            <?php } ?>
+
+                        <?php } else { ?>
+                            <input type="number" name="jmlAnakPerempuan" class="form-control" id="anakPP" placeholder="Jumlah Anak Perempuan">
+                        <?php } ?>
+
                       </div>
                     </div>
+                      
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jumlah Anak</label>
-                        <input type="number" name="jmlAnak" id="jmlAnak" class="form-control" readonly placeholder="Jumlah Anak" required>
+
+                        <?php
+                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
+                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
+                        ?>
+                            <input type="number" value="<?php echo $pkb->jml_anak; ?>" name="jmlAnak" id="jmlAnak" class="form-control" placeholder="Jumlah Anak" readonly >                      
+                            <?php } ?>
+
+                        <?php } else { ?>
+                            <input type="number" name="jmlAnak" class="form-control" id="jmlAnakk" placeholder="Jumlah Anak" readonly>
+                        <?php } ?>
+
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Usia Anak Terkecil</label>
-                        <input type="number" name="usiaAnakTerkecil" class="form-control" placeholder="Usia Anak Terkecil" required>
+
+                        <?php
+                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
+                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
+                        ?>
+                            <input type="number" value="<?php echo $pkb->usia_anak_terkecil; ?>" name="usiaAnakTerkecil" class="form-control" placeholder="Jumlah Anak Terkecil" >                      
+                            <?php } ?>
+
+                        <?php } else { ?>
+                            <input type="number" name="usiaAnakTerkecil" class="form-control" placeholder="Jumlah Anak Terkecil">
+                        <?php } ?>
+
                       </div>
                     </div>
+                   
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Satuan Usia</label>
                         <select name="idSatuanUsia" id="satUsia"class="form-control" style="width:100%;">
                           <?php
+                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
+                          ?>
+                            <option value="<?php echo $pkb->id_satuan_usia;?>">
+                              <?php 
+                              $id = $pkb->id_satuan_usia;
+                              if ($id=='1') {
+                                echo "Hari";
+                              } else if ($id=='2'){
+                                echo "Bulan";
+                              } else if ($id=='3'){
+                                echo "Tahun";
+                              }
+                              ?>
+                            </option>
+                            <?php } ?>
+
+                          <?php
                             foreach ($satuanUsia->result() as $su) {
                           ?>
                           <option value="<?php echo $su->id;?>"><?php echo $su->nama_satuan;?></option>
-                          <?php
-                          }
-                          ?>
+                          <?php } ?>
                         </select>
                       </div>
                     </div>
@@ -1753,6 +1858,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             var jmlAnak = parseInt(anakL) + parseInt(anakP);
             $("#jmlAnak").val(jmlAnak);
+        });
+    });
+
+    $(document).ready(function() {
+        $("#anakLL, #anakPP").keyup(function() {
+            var anakLL  = $("#anakLL").val();
+            var anakPP = $("#anakPP").val();
+
+            var jmlAnak = parseInt(anakLL) + parseInt(anakPP);
+            $("#jmlAnakk").val(jmlAnakk);
         });
     });
   </script>
