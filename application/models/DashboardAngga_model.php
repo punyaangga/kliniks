@@ -76,6 +76,23 @@ class DashboardAngga_model extends CI_Model {
         $penyakit= $this->db->get('jenis_penyakit');
         return $penyakit;
     }
+    public function getJenisPelayanan(){
+        $pelayanan = $this->db->get('jenis_pelayanans');
+        return $pelayanan;
+    }
+    public function getPasien(){
+        $pasien = $this->db->get('pasiens');
+        return $pasien;
+    }
+    public function getDokter(){
+        $dokter = $this->db->get('dokters');
+        return $dokter;
+    }
+    public function getAntrian(){
+        $date = date('yy-m-d');
+        $antrian= $this->db->query("SELECT * FROM `antrians` where tgl_antrian like '$date%'  ORDER BY tgl_antrian DESC LIMIT 1 ");
+        return $antrian;
+    }
     public function getRentangUmur(){
         $rUmur = $this->db->get('rentang_umur');
         return $rUmur;

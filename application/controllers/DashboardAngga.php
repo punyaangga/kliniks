@@ -38,6 +38,10 @@ class DashboardAngga extends CI_Controller {
 		$data['tindakan'] = $this->DashboardAngga_model->getTindakan();
 		$data['satuanUsia'] = $this->DashboardAngga_model->getSatuanUsia();
 		$data['alatKontra'] = $this->DashboardAngga_model->getAlatKontrasepsi();
+        $data['pelayanan'] = $this->DashboardAngga_model->getJenisPelayanan();
+        $data['pasien']  = $this->DashboardAngga_model->getPasien();
+        $data['dokter'] = $this->DashboardAngga_model->getDokter();
+        $data['antrian'] = $this->DashboardAngga_model->getAntrian();
         // $data['bbLahir'] = $this->DashboardAngga_model->getBbLahir();
         //buat get data dari view di kirim ke model
         $this->controller=$this;
