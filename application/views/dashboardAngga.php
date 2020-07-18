@@ -270,7 +270,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </table>
                 </div>
               </div>
-              
             </div>
           </div>
         </div>
@@ -353,21 +352,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <br>
-                        <select name="id_pelayanan" id="jenisPelayanan" class="form-control" style="width:100%;">
-                          <?php
-                            //foreach ($jenisPelayanan->result() as $jp) {
-                          ?>
-                          <option value="<?php //echo $jp->id;?>"> <?php //echo $jp->nama_pelayanan;?></option>
-                         <?php //} ?>
+                        <select name="jenisPelayanan" id="jenisPelayanan" class="form-control" style="width:100%;">
+                        <?php //foreach ($pelayanan->result() as $pl) {
+                        ?>
+                          <option value="<?php //echo $pl->id;?>"><?php //echo $pl->nama_pelayanan;?></option>
+                        <?php //} ?>
+                          
+                         
                         </select>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Pasien</label>
-                        <select name="id_pasien" id="namaPasien" class="form-control" style="width:100%;">
+                        <select name="namaPasien" id="pasien" class="form-control" style="width:100%;">
                           <?php 
-                            //foreach ($namaPasien->result() as $np) {
+                            //foreach ($pasien->result() as $np) {
                           ?>
                           <option value="<?php //echo $np->id;?>"> <?php //echo $np->nama_pasien;?> </option>
                           <?php
@@ -379,9 +379,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Dokter</label>
-                        <select name="id_dokter" id="namaDokter" class="form-control" style="width:100%;">
+                        <select name="namaDokter" id="dokter" class="form-control" style="width:100%;">
                           <?php
-                            //foreach ($namaDokter->result() as $nd) {
+                           // foreach ($dokter->result() as $nd) {
                           ?>
                           <option value="<?php //echo $nd->id;?>"><?php //echo $nd->nama_dokter;?></option>
                           <?php
@@ -393,13 +393,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <input type="number" name="no_antrian" class="form-control" placeholder="No. Antrian" required>
+                        <?php// foreach ($antrian->result() as $antri) { ?>
+                        <input type="number" name="noAntrian" class="form-control" placeholder="No. Antrian" value="<?php echo $antri->no_antrian;?>"required>
+                        <?php //} ?>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Tanggal Kunjungan</label>
-                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" required>
+                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" required readonly>
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -1845,6 +1847,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        $('#alatKontra').select2();
        $('#fourT').select2();
        $('#macTindakan').select2();
+       $('#jenisPelayanan').select2();
+       $('#pasien').select2();
+       $('#dokter').select2();
    });
   </script>
   <!-- js untuk pencarian di inputan select -->
