@@ -275,7 +275,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
 
         <!-- pop up tambah kunjungan -->
-        <div class="modal fade" id="tambahKunjungan" role="dialog" aria-labelledby="tambahKunjunganLabel" aria-hidden="true">
+     <!--    <div class="modal fade" id="tambahKunjungan" role="dialog" aria-labelledby="tambahKunjunganLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -332,11 +332,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- pop up tambah kunjungan  -->
 
         <!-- Pop up tambah kunjungan angga -->
-        <!-- <div class="modal fade" id="tambahKunjungan" role="dialog" aria-labelledby="tambahKunjunganLabel" aria-hidden="true">
+        <div class="modal fade" id="tambahKunjungan" role="dialog" aria-labelledby="tambahKunjunganLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -346,19 +346,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <form method="post" action="#">
+                <form method="post" action="<?php echo base_url('DashboardAngga/simpanAntrian');?>">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <br>
-                        <select name="jenisPelayanan" id="jenisPelayanan" class="form-control" style="width:100%;">
-                        <?php //foreach ($pelayanan->result() as $pl) {
-                        ?>
-                          <option value="<?php //echo $pl->id;?>"><?php //echo $pl->nama_pelayanan;?></option>
-                        <?php //} ?>
-                          
-                         
+                        <select class="form-control" id="jp" name="jenisPelayanan" class="form-control" style="width:100%;">
+                                <?php foreach ($pelayanan as $pel) : ?>
+                                    <option value="<?= $pel['id']; ?>"><?= $pel['nama_pelayanan']; ?></option>
+                                <?php endforeach; ?>
                         </select>
                       </div>
                     </div>
@@ -367,11 +364,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <label>Pasien</label>
                         <select name="namaPasien" id="pasien" class="form-control" style="width:100%;">
                           <?php 
-                            //foreach ($pasien->result() as $np) {
+                            foreach ($pasien->result() as $np) {
                           ?>
-                          <option value="<?php //echo $np->id;?>"> <?php //echo $np->nama_pasien;?> </option>
+                          <option value="<?php echo $np->id;?>"> <?php echo $np->nama_pasien;?> </option>
                           <?php
-                          //}
+                          }
                           ?>
                         </select>
                       </div>
@@ -381,11 +378,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <label>Dokter</label>
                         <select name="namaDokter" id="dokter" class="form-control" style="width:100%;">
                           <?php
-                           // foreach ($dokter->result() as $nd) {
+                            foreach ($dokter->result() as $nd) {
                           ?>
-                          <option value="<?php //echo $nd->id;?>"><?php //echo $nd->nama_dokter;?></option>
+                          <option value="<?php echo $nd->id;?>"><?php echo $nd->nama_dokter;?></option>
                           <?php
-                            //}
+                            }
                           ?>
                         </select>
                       </div>
@@ -393,9 +390,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>No. Antrian</label>
-                        <?php// foreach ($antrian->result() as $antri) { ?>
-                        <input type="number" name="noAntrian" class="form-control" placeholder="No. Antrian" value="<?php echo $antri->no_antrian;?>"required>
-                        <?php //} ?>
+                        <textarea id="noPelayanan" name="noAntrian" class="form-control" style="height:30px; padding-top: 5px; padding-left: 20px;" readonly> </textarea>
+                        
                       </div>
                     </div>
                     <div class="col-md-6">
@@ -411,15 +407,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </div>
                     </div>
                   </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
+                    <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
+                  </div>
+                
                 </form>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-                <button id="0" name="btn_tambah_kunjungan" type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
-              </div>
+             
             </div>
           </div>
-        </div> -->
+        </div>
         <!-- end pop up tambah kunjungan -->
 
         <!-- pop up tambah pasien -->
@@ -1824,7 +1822,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript" src="<?php echo base_url('assets/DataTables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/select2/js/select2.min.js'); ?>"></script>
   <!-- untuk perhitungan -->
-  <script type="text/javascript"src=></script>
+  
+  <!-- untuk antrian -->
+  <script>
+        $(document).ready(function() {
+            $('#jp').change(function() {
+                var id = $(this).val();
+                $.ajax({
+                    type: "POST",
+                    url: "<?= base_url('DashboardAngga/getNoPelayanan') ?>",
+                    data: {
+                        id: id
+                    },
+                    dataType: "JSON",
+                    success: function(response) {
+                        $('#noPelayanan').html(response);
+                    }
+                });
+            });
+          $('#jp').select2();
+            
+        });
+    </script>
+  <!-- untuk antrian -->
+  
    <!-- js untuk table by angga-->
     <script>
             $(document).ready(function () {
@@ -1847,7 +1868,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        $('#alatKontra').select2();
        $('#fourT').select2();
        $('#macTindakan').select2();
-       $('#jenisPelayanan').select2();
+       
        $('#pasien').select2();
        $('#dokter').select2();
    });

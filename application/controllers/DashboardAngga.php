@@ -39,20 +39,17 @@ class DashboardAngga extends CI_Controller {
 		$data['satuanUsia'] = $this->DashboardAngga_model->getSatuanUsia();
 		$data['alatKontra'] = $this->DashboardAngga_model->getAlatKontrasepsi();
         $data['pelayanan'] = $this->DashboardAngga_model->getJenisPelayanan();
+
         $data['pasien']  = $this->DashboardAngga_model->getPasien();
         $data['dokter'] = $this->DashboardAngga_model->getDokter();
-        $data['antrian'] = $this->DashboardAngga_model->getAntrian();
         // $data['bbLahir'] = $this->DashboardAngga_model->getBbLahir();
+        
         //buat get data dari view di kirim ke model
         $this->controller=$this;
+        
+        
 		
-		// start komen sementara
-		 
-		// $data['jenisPelayanan'] =$this->DashboardAngga_model->infoPelayanan();
-		// $data['namaDokter'] =$this->DashboardAngga_model->infoDokter();
-		// $data['namaPasien'] =$this->DashboardAngga_model->infoPasien();
-		// end komen sementara
-
+		
 		$this->load->view('dashboardAngga',$data);
 
     }
@@ -248,6 +245,49 @@ class DashboardAngga extends CI_Controller {
 				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
 			}
     }
+    public function simpanAntrian(){
+        $dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+        $statusAntrian = "Proses";
+        $antrian = $this->input->post('noAntrian');
+        
+        if (empty($antrian)) {
+            $no = "1";
+            $data = array('created_at'=>$dateNow,
+                      'id_dokter'=>$this->input->post('namaDokter'),
+                      'id_pasien'=>$this->input->post('namaPasien'),
+                      'no_antrian'=>$no,
+                      'status_antrian'=>$statusAntrian,
+                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                      'tgl_antrian'=>$dateNow,
+                          'kode_antrian'=>$this->input->post('kode_antrian'));
+            $proses = $this->DashboardAngga_model->simpanAntrian($data);
+            if (!$proses) {
+                    // header('Location: index');
+                    echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                } else {
+                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                }
+
+
+        } else {
+            $data = array('created_at'=>$dateNow,
+                      'id_dokter'=>$this->input->post('namaDokter'),
+                      'id_pasien'=>$this->input->post('namaPasien'),
+                      'no_antrian'=>$this->input->post('noAntrian'),
+                      'status_antrian'=>$statusAntrian,
+                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                      'tgl_antrian'=>$dateNow,
+                      'kode_antrian'=>$this->input->post('kode_antrian'));
+            $proses = $this->DashboardAngga_model->simpanAntrian($data);
+            if (!$proses) {
+                    // header('Location: index');
+                    echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                } else {
+                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                }
+
+        }
+    }
 
 
     public function updateDataAntrian(){
@@ -286,6 +326,24 @@ class DashboardAngga extends CI_Controller {
     public function getJmlAnak($idPasienKb){
         return $this->DashboardAngga_model->getJmlAnak($idPasienKb);
     }
+
+    public function getNoPelayanan()
+    {
+        $idpelayanan = $this->input->post('id');
+        $data = $this->DashboardAngga_model->getNoPelayanan($idpelayanan);
+        
+        $output = "";
+     
+        foreach ($data as $row) {
+            $getNo = $row->no_antrian;
+
+            $counterNumber = $getNo+1;
+            $output .= $counterNumber; 
+        }
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
+    }
+
+
 
    
 

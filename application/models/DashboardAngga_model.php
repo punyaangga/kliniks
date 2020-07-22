@@ -28,6 +28,9 @@ class DashboardAngga_model extends CI_Model {
     public function simpanDataPersalinan($data){
         $this->db->insert('detail_persalinan',$data);
     }
+    public function simpanAntrian($data){
+        $this->db->insert('antrians',$data);
+    }
     
     public function tampilPasienDilayani(){
         $tanggalSekarang = date('Y-m-d');
@@ -41,22 +44,41 @@ class DashboardAngga_model extends CI_Model {
         return $query;
     }
     public function tampilPasienHarusDilayani(){
-        //nambahin a.id_pasien kalo ada erorr cek bagian ini!!!
+        //codingan dibawah digunakan untuk menampilkan semua data yang berstatus proses serta tanggal nya hari ini
+        $tanggalSekarang = date('Y-m-d');
         $harusDilayani = $this->db->query("SELECT a.id,a.id_pasien,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter, p.nama_pasien, j.nama_pelayanan 
                                             FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
                                             JOIN pasiens AS p ON a.id_pasien = p.id 
                                             JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 
-                                            where a.status_antrian ='proses' 
+                                            where a.status_antrian ='proses' && SUBSTRING(a.tgl_antrian,1,10)='$tanggalSekarang'
                                             order by a.no_antrian ASC ");
+
+        //codingan dibawah digunakan untuk menampilkan semua data yang berstatus proses
+        // $harusDilayani = $this->db->query("SELECT a.id,a.id_pasien,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter, p.nama_pasien, j.nama_pelayanan 
+        //                                     FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
+        //                                     JOIN pasiens AS p ON a.id_pasien = p.id 
+        //                                     JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 
+        //                                     where a.status_antrian ='proses' 
+        //                                     order by a.no_antrian ASC ");
         return $harusDilayani;
     }
     public function tampilPasienSedangDilayani(){
+        //codingan dibawah digunakan untuk menampilkan semua data yang berstatus Sedang Dilayani serta tanggal nya hari ini
+        $tanggalSekarang = date('Y-m-d');
         $sedangDilayani = $this->db->query("SELECT p.id as id_pasien,p.no_kk,p.nama_suami,p.alamat_istri,p.tgl_lahir,p.jk_pasien,a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter,p.nik, p.nama_pasien, j.nama_pelayanan 
                                             FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
                                             JOIN pasiens AS p ON a.id_pasien = p.id 
                                             JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 
-                                            where a.status_antrian ='Sedang Dilayani' 
+                                            where a.status_antrian ='Sedang Dilayani' && SUBSTRING(a.tgl_antrian,1,10)='$tanggalSekarang' 
                                             order by a.no_antrian ASC ");
+        //codingan dibawah digunakan untuk menampilkan semua data yang berstatus Sedang Dilayani
+        //codingan yang belum di kasih filter by tanggal sekarang
+        // $sedangDilayani = $this->db->query("SELECT p.id as id_pasien,p.no_kk,p.nama_suami,p.alamat_istri,p.tgl_lahir,p.jk_pasien,a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter,p.nik, p.nama_pasien, j.nama_pelayanan 
+        //                                     FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
+        //                                     JOIN pasiens AS p ON a.id_pasien = p.id 
+        //                                     JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 
+        //                                     where a.status_antrian ='Sedang Dilayani' 
+        //                                     order by a.no_antrian ASC ");
         return $sedangDilayani;
     }
     
@@ -76,10 +98,17 @@ class DashboardAngga_model extends CI_Model {
         $penyakit= $this->db->get('jenis_penyakit');
         return $penyakit;
     }
+    
     public function getJenisPelayanan(){
-        $pelayanan = $this->db->get('jenis_pelayanans');
-        return $pelayanan;
+        return $this->db->get('jenis_pelayanans')->result_array();
     }
+    public function getNoPelayanan($idpelayanan)
+    {
+        $dateNow=date('yy-m-d');
+        return $this->db->query("SELECT * FROM antrians WHERE id_jenis_pelayanan LIKE '$idpelayanan' and tgl_antrian LIKE '$dateNow%' ORDER BY no_antrian DESC LIMIT 1")->result();
+    }
+
+
     public function getPasien(){
         $pasien = $this->db->get('pasiens');
         return $pasien;
@@ -88,11 +117,7 @@ class DashboardAngga_model extends CI_Model {
         $dokter = $this->db->get('dokters');
         return $dokter;
     }
-    public function getAntrian(){
-        $date = date('yy-m-d');
-        $antrian= $this->db->query("SELECT * FROM `antrians` where tgl_antrian like '$date%'  ORDER BY tgl_antrian DESC LIMIT 1 ");
-        return $antrian;
-    }
+  
     public function getRentangUmur(){
         $rUmur = $this->db->get('rentang_umur');
         return $rUmur;
