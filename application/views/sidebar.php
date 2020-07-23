@@ -1,7 +1,7 @@
 			<div class="sidebar-wrapper" id="sidebar-wrapper">
         <ul class="nav">
           <li id="li-dashboard">
-            <a href="<?php echo base_url('dashboardAngga/'); ?>">
+            <a href="<?php echo base_url('dashboard/'); ?>">
               <i class="fas fa-home"></i>
               <p>Dashboard</p>
             </a>

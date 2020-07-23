@@ -1837,10 +1837,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     dataType: "JSON",
                     success: function(response) {
                         $('#noPelayanan').html(response);
+
                     }
                 });
             });
-          $('#jp').select2();
+          $('#jp').select2({'theme': 'bootstrap4'});
+
             
         });
     </script>
@@ -1859,18 +1861,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <!-- js untuk pencarian di inputan select -->
   <script type="text/javascript">
    $(document).ready(function() {
-       $('#namPenyakit').select2();
-       $('#renUmur').select2();
-       $('#tindakan').select2();
-       $('#satUsia').select2();
-       $('#pasBaru').select2();
-       $('#pasCabut').select2();
-       $('#alatKontra').select2();
-       $('#fourT').select2();
-       $('#macTindakan').select2();
+       $('#namPenyakit').select2({'theme': 'bootstrap4'});
+       $('#renUmur').select2({'theme': 'bootstrap4'});
+       $('#tindakan').select2({'theme': 'bootstrap4'});
+       $('#satUsia').select2({'theme': 'bootstrap4'});
+       $('#pasBaru').select2({'theme': 'bootstrap4'});
+       $('#pasCabut').select2({'theme': 'bootstrap4'});
+       $('#alatKontra').select2({'theme': 'bootstrap4'});
+       $('#fourT').select2({'theme': 'bootstrap4'});
+       $('#macTindakan').select2({'theme': 'bootstrap4'});
        
-       $('#pasien').select2();
-       $('#dokter').select2();
+       $('#pasien').select2({'theme': 'bootstrap4'});
+       $('#dokter').select2({'theme': 'bootstrap4'});
    });
   </script>
   <!-- js untuk pencarian di inputan select -->
