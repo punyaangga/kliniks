@@ -292,7 +292,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <label>Jenis Pelayanan</label>
                         <br>
                         <select class="form-control" id="jp" name="jenisPelayanan" class="form-control" style="width:100%;" required>
-                               
+                                <option> </option>
                                 <?php foreach ($pelayanan as $pel) : ?>
                                     <option value="<?= $pel['id']; ?>"><?= $pel['nama_pelayanan']; ?></option>
                                 <?php endforeach; ?>
@@ -306,7 +306,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php 
                             foreach ($pasien->result() as $np) {
                           ?>
-                          <option value="<?php echo $np->id;?>"> <?php echo $np->nama_pasien;?> </option>
+                          <option value="<?php echo $np->id;?>"> <?php echo $np->no_registrasi." | ".$np->nama_pasien;?> </option>
                           <?php
                           }
                           ?>
@@ -354,13 +354,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php } ?>
                       </div>
                     </div>
+                   <!--  <div class="col-md-12">
+                      <label>Catatan</label>
+                      <textarea class="form-control"></textarea>
+                    </div> -->
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
+                   
                     <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
                   </div>
                 
                 </form>
+                 <!-- <button class="btn btn-success d-print-none m-4" onclick="cetak()">Cetak struk</button> -->
               </div>
              
             </div>
@@ -1847,6 +1853,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         });
     });
   </script>
+  <script>
+    // function cetak() {
+    //     return window.print();
+    // }
+    </script>
   <!-- js untuk hitung jumlah anak -->
 </body>
 

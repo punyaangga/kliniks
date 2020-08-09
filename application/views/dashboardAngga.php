@@ -340,7 +340,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="tambahKunjunganLabel">Tambah Kunjunganz</h5>
+                <h5 class="modal-title" id="tambahKunjunganLabel">Tambah Kunjungan</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -406,6 +406,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <input type="text" name="kode_antrian" class="form-control" placeholder="Kode Antrian" readonly>
                       </div>
                     </div>
+
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>

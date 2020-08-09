@@ -12,6 +12,12 @@
               <p>Kunjungan</p>
             </a>
 					</li>
+					<li id="li-laporan">
+            <a href="<?php echo base_url('LaporanKunjungan/'); ?>">
+              <i class="fas fa-file-medical"></i>
+              <p>Laporan Kunjungan</p>
+            </a>
+					</li>
 					<!-- <li id="li-apotek">
             <a href="<?php //echo base_url('apotek/'); ?>">
               <i class="fas fa-clinic-medical"></i>
