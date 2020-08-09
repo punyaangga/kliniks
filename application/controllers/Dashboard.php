@@ -62,7 +62,32 @@ class Dashboard extends CI_Controller {
     
     public function simpanDataPasien()
     {
-    	$data = array('jk_pasien'=>$this->input->post('jk_pasien'),'no_registrasi'=>$this->input->post('no_registrasi'),'nik'=>$this->input->post('nik'),'nama_pasien'=>$this->input->post('nama_pasien'),'tgl_lahir'=>$this->input->post('tgl_lahir'),'pendidikan_istri'=>$this->input->post('pendidikan_istri'),'agama_istri'=>$this->input->post('agama_istri'),'pekerjaan_istri'=>$this->input->post('pekerjaan_istri'),'alamat_ktp_istri'=>$this->input->post('alamat_ktp_istri'),'alamat_istri'=>$this->input->post('alamat_istri'),'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),'nama_suami'=>$this->input->post('nama_suami'),'tgl_lahir_suami'=>$this->input->post('tgl_lahir_suami'),'pendidikan_suami'=>$this->input->post('pendidikan_suami'),'agama_suami'=>$this->input->post('agama_suami'),'pekerjaan_suami'=>$this->input->post('pekerjaan_suami'),'alamat_ktp_suami'=>$this->input->post('alamat_ktp_suami'),'alamat_suami'=>$this->input->post('alamat_suami'),'id_kota'=>$this->input->post('id_kota'),'id_desa'=>$this->input->post('id_desa'),'gol_darah'=>$this->input->post('gol_darah'),'no_telp_pasien'=>$this->input->post('no_telp_pasien'),'email'=>$this->input->post('email'),'medsos'=>$this->input->post('medsos'),'catatan_bidan'=>$this->input->post('catatan_bidan'));
+        
+    	$data = array('jk_pasien'=>$this->input->post('jk_pasien'),
+                'no_registrasi'=>$this->input->post('no_registrasi'),
+                'nik'=>$this->input->post('nik'),
+                'nama_pasien'=>$this->input->post('nama_pasien'),
+                'tgl_lahir'=>$this->input->post('tgl_lahir'),
+                'pendidikan_istri'=>$this->input->post('pendidikan_istri'),
+                'agama_istri'=>$this->input->post('agama_istri'),
+                'pekerjaan_istri'=>$this->input->post('pekerjaan_istri'),
+                'alamat_ktp_istri'=>$this->input->post('alamat_ktp_istri'),
+                'alamat_istri'=>$this->input->post('alamat_istri'),
+                'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),
+                'nama_suami'=>$this->input->post('nama_suami'),
+                'tgl_lahir_suami'=>$this->input->post('tgl_lahir_suami'),
+                'pendidikan_suami'=>$this->input->post('pendidikan_suami'),
+                'agama_suami'=>$this->input->post('agama_suami'),
+                'pekerjaan_suami'=>$this->input->post('pekerjaan_suami'),
+                'alamat_ktp_suami'=>$this->input->post('alamat_ktp_suami'),
+                'alamat_suami'=>$this->input->post('alamat_suami'),
+                'id_kota'=>$this->input->post('id_kota'),
+                'id_desa'=>$this->input->post('id_desa'),
+                'gol_darah'=>$this->input->post('gol_darah'),
+                'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
+                'email'=>$this->input->post('email'),
+                'medsos'=>$this->input->post('medsos'),
+                'catatan_bidan'=>$this->input->post('catatan_bidan').".");
 		$proses=$this->Dashboard_model->simpanDataPasien($data);
 			if (!$proses) {
 				echo "<script>alert('Data Berhasil Di Simpan');history.go(-1);</script>";
@@ -268,8 +293,13 @@ class Dashboard extends CI_Controller {
                        'kode_antrian'=>$this->input->post('kode_antrian'));
             $proses = $this->Dashboard_model->simpanAntrian($data);
             if (!$proses) {
-                    // header('Location: index');
-                    echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                    //script pake print nomor antrian
+                    $url = base_url('index.php/cetakAntrian');
+                    echo "<script>window.open('".$url."','_blank');</script>";
+                    echo "<script>history.go(-2);</script>";
+
+                    //script ga pake print
+                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
                 } else {
                     echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
                 }
@@ -286,8 +316,15 @@ class Dashboard extends CI_Controller {
                       'kode_antrian'=>$this->input->post('kode_antrian'));
             $proses = $this->Dashboard_model->simpanAntrian($data);
             if (!$proses) {
-                    // header('Location: index');
-                    echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                    // header('Location: antrian.php');
+                    //script pake print nomot antrian
+                    $url = base_url('index.php/cetakAntrian');
+                    echo "<script>window.open('".$url."','_blank');</script>";
+                    echo "<script>history.go(-2);</script>";
+                    // echo "<script>alert('Data Berhasil Disimpan');window.location='".$url."'</script>"; 
+
+                    //script ga pake print nomor antrian
+                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
                 } else {
                     echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
                 }
