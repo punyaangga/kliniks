@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title></title>
+    <title></title>
     <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/core/jquery.min.js');?>"></script>
     <script src="<?php echo base_url('assets/js/core/bootstrap.min.js');?>"></script>
@@ -10,50 +10,26 @@
         });
     </script>
 
-  <style>
+    <style>
         * {
             font-size: 3mm;
         }
         p {
             margin: 2mm 0mm;
         }
-        p.tag {
-            text-align: left;
-            margin: 2mm 0mm;
-            margin-top: 0mm;
+        p.judul {
+            font-size: 5mm;
         }
-        .container {
-            width: 11cm;
-            margin-left: 0px;
-            margin-right: 0px;
-            border-radius: 10px;
-            margin-bottom: 10mm;
-            padding-right: 0px;
-        }
-        .kartu{
-          font-size: 6mm;
-          color: white;
-        }
-        .containerKartu{
-          width: 4cm;
-          text-align: left;
-          border-radius: 8px;
-          padding-right: 0px;
-          background-color: black;
-       
+        .kertas {
+            width: 15cm;
+            padding: 20px;
         }
         td {
             vertical-align: top;
             text-align: start;
-            font-size: 17px;
-        }
-        .logo{
-          width: 230px;
-
         }
         .jarak-vertikal-bawah {
-            margin-bottom: 10mm;
-            margin-top: 25mm;
+            margin-bottom: 3mm;
         }
         .last-td-align-end td:last-child {
             text-align: end;
@@ -75,43 +51,45 @@
 </div>
 <!-- end modal notif -->
 
-<div class="kertas text-center p-0">
-    <div class="col-sm-6" style="border:solid ;">
-  <img class="logo float-left" src="<?php echo base_url();?>assets/img/logo-tag.jpg">
-  <div class="containerKartu float-right" >
-  <p class="kartu"> KARTU BEROBAT </P> </div>
+<center>
+<br>
+<div class="col-sm-6">
+    <div class="kertas text-center p-0" style="border:solid 5px; border-radius:10px; padding:10px;">
+        <img class="logo float-left" src="<?php echo base_url();?>assets/img/logo-tag.png">
+        <img src="<?php echo base_url('assets/img/icd.png');?>" style="width:110px;float:right;">
 
-    <table border="0" class="col-sm-12 jarak-vertikal-bawah" style="width:100px;">
-        <tr>
-            <td >No. RM </td>
-            <td >:</td>  
-        </tr>
-        <tr>
-            <td >Nama</td>
-            <td >:</td>
-        </tr>
-        <tr>
-            <td  >Umur</td>
-            <td >:</td>
-        </tr>
-        <tr>
-            <td  >Alamat</td>
-            <td > :</td>
-        </tr>
+        <table border="0" class="col-sm-12 jarak-vertikal-bawah" style="margin-left:20px;">
+            <tr>
+                <th style="width:70px;font-size:15px;">No.RM</th>
+                <td style="font-size:17px">: 123</td>  
+            </tr>
+            <tr>
+                <th style="width:70px;font-size:15px;">Nama</th>
+                 <td style="font-size:17px">: Pasien</td>
+            </tr>
+            <tr>
+                <th style="width:70px;font-size:15px;">Umur</th>
+                 <td style="font-size:17px">: 123</td>
+            </tr>
+            <tr>
+                <th style="width:70px;font-size:15px; ">Alamat</th>
+                <td style="font-size:17px">: Cimahi</td>
+            </tr>
+
+        </table>
         
-    </table>
+    </div>
 </div>
-</div>
+<br>
+<a href="<?php echo base_url('index.php/dashboard');?>"><button class="btn btn-primary d-print-none">Kembali</button></a>
+<button onClick="cetak()" class="btn btn-primary d-print-none" >Print</button>
+</center>
 
-
- <a href="<?php echo base_url('index.php/dashboard');?>"><button class="btn btn-primary d-print-none">Kembali</button></a>
-  <button onClick="cetak()" class="btn btn-primary d-print-none" >Print</button>
-
-    <script>
-     function cetak() {
+<script>
+    function cetak() {
         return window.print();
-        }
-    </script>
+    }
+</script>
 
 </body>
 </html>

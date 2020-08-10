@@ -9,7 +9,7 @@ class Antrian extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('login_model', 'login');
-		$this->load->model('antrian_model', 'model');
+		$this->load->model('Antrian_model');
 
 		$this->userData = array(
 			'session'	=> $this->session->userdata('userSession'),
@@ -35,128 +35,139 @@ class Antrian extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('antrian');
+		$data['pelayanan'] = $this->Antrian_model->getJenisPelayanan();
+		$data['kunjunganPasien'] = $this->Antrian_model->getKunjunganPasien();
+		$data['allPasien'] = $this->Antrian_model->getAllPasien();
+    	$data['allDokter'] = $this->Antrian_model->getAllDokter();
+    	$data['kdAntrian'] = $this->Antrian_model->getKodeAntrian();
+		$this->load->view('antrian',$data);
+
+		
+    }
+    public function hapusDataAntrian()
+	{
+		$id = $this->uri->segment(3);
+		$proses = $this->Antrian_model->hapusDataAntrian($id);
+		if (!$proses) {
+				echo "<script>alert('Data Berhasil Di Hapus');history.go(-1);</script>";
+				
+		} else {
+			echo "Data Gagal dihapus";
+			echo "<br>";
+			echo "<a href='".base_url('index.php/Antrian')."'>Tampil data Dokter</a>";
+		}
+	}
+	public function simpanAntrian(){
+        $dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+        $statusAntrian = "Proses";
+        $antrian = $this->input->post('noAntrian');
+        
+        if (empty($antrian)) {
+            $no = "1";
+            $data = array('created_at'=>$dateNow,
+                      'id_dokter'=>$this->input->post('namaDokter'),
+                      'id_pasien'=>$this->input->post('namaPasien'),
+                      'no_antrian'=>$no,
+                      'status_antrian'=>$statusAntrian,
+                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                      'tgl_antrian'=>$dateNow,
+                          'kode_antrian'=>$this->input->post('kode_antrian'));
+            $proses = $this->Antrian_model->simpanAntrian($data);
+            if (!$proses) {
+                    // header('Location: index');
+                    echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                } else {
+                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                }
+
+
+        } else {
+            $data = array('created_at'=>$dateNow,
+                      'id_dokter'=>$this->input->post('namaDokter'),
+                      'id_pasien'=>$this->input->post('namaPasien'),
+                      'no_antrian'=>$this->input->post('noAntrian'),
+                      'status_antrian'=>$statusAntrian,
+                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                      'tgl_antrian'=>$dateNow,
+                      'kode_antrian'=>$this->input->post('kode_antrian'));
+            $proses = $this->Antrian_model->simpanAntrian($data);
+            if (!$proses) {
+                    // header('Location: index');
+                    echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                } else {
+                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                }
+
+        }
     }
 
-    public function edit($id = 0)
+
+
+
+
+
+    //fungsi untuk halaman form edit kunjungan
+    public function getDataAntrian(){
+    	$id=$this->uri->segment(3);
+    	$data['query'] = $this->Antrian_model->getDataAntrian($id);
+    	$data['pelayanan'] = $this->Antrian_model->getJenisPelayanan();
+    	$data['allPasien'] = $this->Antrian_model->getAllPasien();
+    	$data['allDokter'] = $this->Antrian_model->getAllDokter();
+    	$this->load->view('antrianEdit',$data);
+    	
+    }
+    public function getNoPelayanan()
     {
-    	$response = $this->model->edit($id);
-		echo json_encode($response, JSON_PRETTY_PRINT);	
+        $idpelayanan = $this->input->post('id');
+        $data = $this->Antrian_model->getNoPelayanan($idpelayanan);
+        
+        $output = "";
+     
+        foreach ($data as $row) {
+            $getNo = $row->no_antrian;
+
+            $counterNumber = $getNo+1;
+            $output .= $counterNumber; 
+        }
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
+    public function updateDataKunjungan(){
+    	$id = $this->input->post('id');
+    	$antrian = $this->input->post('noAntrian');
 
-    public function datatable()
-    {
-		$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
+	    	if (empty($antrian)) {
+	            $no = "1";
+	            $data = array('id_jenis_pelayanan' => $this->input->post('namaPelayanan'), 
+						  'id_pasien' => $this->input->post('namaPasien'),
+						  'id_dokter' => $this->input->post('namaDokter'),
+						  'no_antrian' => $no);
+						 	
+				$proses = $this->Antrian_model->updateDataKunjungan($id, $data);
+					if (!$proses) {
+						echo "<script>alert('Data Berhasil Di Update');history.go(-2)</script>";
+					} else {
+						echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+					}
 
-		$param 		= $_GET;
-		$response 	= $this->model->datatable($param);
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
 
-    public function save()
-    {
-		$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
+	        } else {
+	        	$data = array('id_jenis_pelayanan' => $this->input->post('namaPelayanan'), 
+						  'id_pasien' => $this->input->post('namaPasien'),
+						  'id_dokter' => $this->input->post('namaDokter'),
+						  'no_antrian' => $antrian);
+						 	
+				$proses = $this->Antrian_model->updateDataKunjungan($id, $data);
+					if (!$proses) {
+						echo "<script>alert('Data Berhasil Di Update');history.go(-2)</script>";
+					} else {
+						echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
+					}
+				 
+		        }		
+		}
+    //end fungsi untuk form edit kunjungan
 
-		$param = array(
-			'userData' => $this->userData,
-			'postData' => $_POST
-		);
-		$response = $this->model->save($param);
-
-		echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function delete()
-    {
-		$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$param = array(
-			'userData' => $this->userData,
-			'postData' => $_POST
-		);
-		$response = $this->model->delete($param);
-
-		echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function select_pasien($id = 0)
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->select_pasien($id);
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function select_jenis_pelayanan($id = 0)
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->select_jenis_pelayanan($id);
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function select_dokter($id = 0)
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->select_dokter($id);
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function input_no_antrian()
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$param = array(
-			'userData' => $this->userData,
-			'postData' => $_POST
-		);
-
-		$response = $this->model->input_no_antrian($param);
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function input_tgl_antrian()
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->input_tgl_antrian();
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function input_kode_antrian()
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->input_kode_antrian();
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-    
 }
+
+
+  

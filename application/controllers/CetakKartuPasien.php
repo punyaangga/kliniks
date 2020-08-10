@@ -8,7 +8,7 @@ class cetakKartuPasien extends CI_Controller {
 		
 	}
 
-	public function cetak(){
+	public function index(){
 		$this->load->view('cetakKartuPasien');
 	}
 

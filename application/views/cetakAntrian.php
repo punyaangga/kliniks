@@ -50,7 +50,7 @@
 </div>
 <!-- end modal notif -->
 
-
+<center>
 <div class="kertas text-center p-0">
    <center><p class="judul">Klinik Utama Nur Khadijah </p>
     <p>Jl. Cihanjuang No.293, Cihanjuang Rahayu, Kec. Parongpong, Kabupaten Bandung Barat, Jawa Barat 40559</p></center>
@@ -77,6 +77,7 @@
     <a href="<?php echo base_url('index.php/dashboard');?>"><button class="btn btn-primary d-print-none">Kembali</button></a>
 	<button onClick="cetak()" class="btn btn-primary d-print-none" >Print</button>
 </div>
+</center>
 
 <script>
     function cetak() {

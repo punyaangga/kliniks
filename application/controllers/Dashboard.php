@@ -90,7 +90,12 @@ class Dashboard extends CI_Controller {
                 'catatan_bidan'=>$this->input->post('catatan_bidan').".");
 		$proses=$this->Dashboard_model->simpanDataPasien($data);
 			if (!$proses) {
-				echo "<script>alert('Data Berhasil Di Simpan');history.go(-1);</script>";
+				//script pake print kartu berobat
+                    $url = base_url('index.php/CetakKartuPasien');
+                    echo "<script>window.open('".$url."','_blank');</script>";
+                    echo "<script>history.go(-2);</script>";
+                //script ga pake print kartu berobat
+                // echo "<script>alert('Data Berhasil Di Simpan');history.go(-1);</script>";
 				
 			} else {
 				echo "Data Gagal Disimpan";

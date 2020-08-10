@@ -250,7 +250,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url('assets/js/now-ui-dashboard.min.js?v=1.3.0'); ?>" type="text/javascript"></script>
   <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
   <script src="<?php echo base_url('assets/demo/demo.js'); ?>"></script>
-  <script src="<?php echo base_url('assets/js/admina.antrian.js'); ?>" type="text/javascript"></script>
+  
   <script type="text/javascript" src="<?php echo base_url('assets/DataTables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/select2/js/select2.min.js'); ?>"></script>
 </body>
@@ -290,6 +290,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('#tableHarusDilayani').dataTable();
                 $('#tableSedangDilayani').dataTable();
             });
+            $('#li-laporan').addClass('active')
     </script>
   <!-- js untuk table by Angga -->
 
