@@ -9,7 +9,7 @@ class Pasien extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('login_model', 'login');
-		$this->load->model('pasien_model', 'model');
+		$this->load->model('Pasien_model');
 
 		$this->userData = array(
 			'session'	=> $this->session->userdata('userSession'),
@@ -35,133 +35,209 @@ class Pasien extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('pasien');
+		$data['tPasien']=$this->Pasien_model->tampilDataPasien();
+		$this->load->view('pasien',$data);
     }
 
-    public function edit($id = 0)
-    {
-    	$response = $this->model->edit($id);
-		echo json_encode($response, JSON_PRETTY_PRINT);	
+    public function getDataKunjungan(){
+    	$id=$this->uri->segment(3);
+    	$data['query'] = $this->Pasien_model->getDataKunjungan($id);
+    	$data['pelayanan'] = $this->Pasien_model->getJenisPelayanan();
+    	$data['kdAntrian'] = $this->Pasien_model->getKodeAntrian();
+    	$data['tDokter'] = $this->Pasien_model->getDokter();
+    	$this->load->view('kunjungan',$data);
     }
 
-    public function datatable()
-    {
-		$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
 
-		$param 		= $_GET;
-		$response 	= $this->model->datatable($param);
-    	echo json_encode($response, JSON_PRETTY_PRINT);
+
+    public function getNoPelayanan()
+    {
+        $idpelayanan = $this->input->post('id');
+        $data = $this->Pasien_model->getNoPelayanan($idpelayanan);
+        
+        $output = "";
+     
+        foreach ($data as $row) {
+            $getNo = $row->no_antrian;
+
+            $counterNumber = $getNo+1;
+            $output .= $counterNumber; 
+        }
+        $this->output->set_content_type('application/json')->set_output(json_encode($output));
     }
 
-    public function save()
-    {
-		$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
+    public function simpanKunjungan(){
+    	$dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+        $statusAntrian = "Proses";
+        $antrian = $this->input->post('noAntrian');
+        
+        if (empty($antrian)) {
+        	//untuk simpan ke db antrian
+            $no = "1";
+            $data = array('created_at'=>$dateNow,
+                      'id_dokter'=>$this->input->post('namaDokter'),
+                      'id_pasien'=>$this->input->post('namaPasien'),
+                      'no_antrian'=>$no,
+                      'status_antrian'=>$statusAntrian,
+                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                      'tgl_antrian'=>$dateNow,
+                       'kode_antrian'=>$this->input->post('kode_antrian'));
+            
+            //untuk simpan ke db detail_pemeriksaan kehamilan
+            $getIdAntrian = $this->input->post('idAntrian');
+            $kodeAntrian = $getIdAntrian + 1; 
+            $dataDpk = array('id_antrian'=>$kodeAntrian,
+    			'id_pasien'=>$this->input->post('namaPasien'),
+    			'tgl_lahir'=>$this->input->post('tglLahir'),
+    			'nik'=>$this->input->post('nik'),
+    			'umur'=>$this->input->post('umur'),
+    			'nama_suami'=>$this->input->post('namaSuami'),
+    			'no_kk'=>$this->input->post('noKk'),
+    			'buku_kia'=>$this->input->post('bukuKia'),
+    			'alamat'=>$this->input->post('alamat'),
+    			'hpht'=>$this->input->post('hpht'),
+    			'tp'=>$this->input->post('tp'),
+    			'bb'=>$this->input->post('bb'),
+    			'tb'=>$this->input->post('tb'),
+    			'usia_kehamilan'=>$this->input->post('usiaKehamilan'),
+    			'gpa'=>$this->input->post('gpa'),
+    			'k1'=>$this->input->post('k1'),
+    			'k4'=>$this->input->post('k4'),
+    			'tt'=>$this->input->post('tt'),
+    			'lila'=>$this->input->post('lila'),
+    			'hb'=>$this->input->post('hb'),
+    			'resiko'=>$this->input->post('resiko'),
+    			'keterangan'=>$this->input->post('keterangan'),
+    			'baru_lama'=>$this->input->post('baruLama'),
+    			'catatan'=>$this->input->post('catatan'));
+			$prosesDpk = $this->Pasien_model->simpanPemeriksaanKehamilan($dataDpk); 
+            $proses = $this->Pasien_model->simpanAntrian($data);
+        
+            if (!$proses & !$prosesDpk) {
+                    //script pake print nomor antrian
+                    $url = base_url('index.php/cetakAntrian');
+                    echo "<script>window.open('".$url."','_blank');</script>";
+                    echo "<script>history.go(-2);</script>";
 
-		$param = array(
-			'userData' => $this->userData,
-			'postData' => $_POST
-		);
-		$response = $this->model->save($param);
+                    //script ga pake print
+                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                } else {
+                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                }
 
-		echo json_encode($response, JSON_PRETTY_PRINT);
+
+        } else {
+            $data = array('created_at'=>$dateNow,
+                      'id_dokter'=>$this->input->post('namaDokter'),
+                      'id_pasien'=>$this->input->post('namaPasien'),
+                      'no_antrian'=>$this->input->post('noAntrian'),
+                      'status_antrian'=>$statusAntrian,
+                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                      'tgl_antrian'=>$dateNow,
+                      'kode_antrian'=>$this->input->post('kode_antrian'));
+            //untuk simpan ke db detail_pemeriksaan kehamilan
+            $getIdAntrian = $this->input->post('idAntrian');
+            $kodeAntrian = $getIdAntrian + 1; 
+            $dataDpk = array('id_antrian'=>$kodeAntrian,
+    			'id_pasien'=>$this->input->post('namaPasien'),
+    			'tgl_lahir'=>$this->input->post('tglLahir'),
+    			'nik'=>$this->input->post('nik'),
+    			'umur'=>$this->input->post('umur'),
+    			'nama_suami'=>$this->input->post('namaSuami'),
+    			'no_kk'=>$this->input->post('noKk'),
+    			'buku_kia'=>$this->input->post('bukuKia'),
+    			'alamat'=>$this->input->post('alamat'),
+    			'hpht'=>$this->input->post('hpht'),
+    			'tp'=>$this->input->post('tp'),
+    			'bb'=>$this->input->post('bb'),
+    			'tb'=>$this->input->post('tb'),
+    			'usia_kehamilan'=>$this->input->post('usiaKehamilan'),
+    			'gpa'=>$this->input->post('gpa'),
+    			'k1'=>$this->input->post('k1'),
+    			'k4'=>$this->input->post('k4'),
+    			'tt'=>$this->input->post('tt'),
+    			'lila'=>$this->input->post('lila'),
+    			'hb'=>$this->input->post('hb'),
+    			'resiko'=>$this->input->post('resiko'),
+    			'keterangan'=>$this->input->post('keterangan'),
+    			'baru_lama'=>$this->input->post('baruLama'),
+    			'catatan'=>$this->input->post('catatan'));
+			$prosesDpk = $this->Pasien_model->simpanPemeriksaanKehamilan($dataDpk); 
+            $proses = $this->Pasien_model->simpanAntrian($data);
+            if (!$proses & !$prosesDpk) {
+                    // header('Location: antrian.php');
+                    //script pake print nomot antrian
+                    $url = base_url('index.php/cetakAntrian');
+                    echo "<script>window.open('".$url."','_blank');</script>";
+                    echo "<script>history.go(-2);</script>";
+
+                    //script ga pake print nomor antrian
+                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+
+                } else {
+                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                }
+
+        }
     }
+    public function simpanPendaftaranBaru(){
+    	$dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+    	$data = array('created_at'=>$dateNow,
+    			'jk_pasien'=>$this->input->post('jk_pasien'),
+                'no_registrasi'=>$this->input->post('no_registrasi'),
+                'nik'=>$this->input->post('nik'),
+                'nama_pasien'=>$this->input->post('nama_pasien'),
+                'tgl_lahir'=>$this->input->post('tgl_lahir'),
+                'pendidikan_istri'=>$this->input->post('pendidikan_istri'),
+                'agama_istri'=>$this->input->post('agama_istri'),
+                'pekerjaan_istri'=>$this->input->post('pekerjaan_istri'),
+                'alamat_ktp_istri'=>$this->input->post('alamat_ktp_istri'),
+                'alamat_istri'=>$this->input->post('alamat_istri'),
+                'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),
+                'nama_suami'=>$this->input->post('nama_suami'),
+                'tgl_lahir_suami'=>$this->input->post('tgl_lahir_suami'),
+                'pendidikan_suami'=>$this->input->post('pendidikan_suami'),
+                'agama_suami'=>$this->input->post('agama_suami'),
+                'pekerjaan_suami'=>$this->input->post('pekerjaan_suami'),
+                'alamat_ktp_suami'=>$this->input->post('alamat_ktp_suami'),
+                'alamat_suami'=>$this->input->post('alamat_suami'),
+                'id_kota'=>$this->input->post('id_kota'),
+                'id_desa'=>$this->input->post('id_desa'),
+                'gol_darah'=>$this->input->post('gol_darah'),
+                'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
+                'email'=>$this->input->post('email'),
+                'medsos'=>$this->input->post('medsos'),
+                'catatan_bidan'=>$this->input->post('catatan_bidan'));
+		$proses=$this->Pasien_model->simpanDataPasien($data);
+			if (!$proses) {
+				//script pake print kartu berobat
+					$getId = $this->input->post('idPasien');
+					$idPasien= $getId + 1;
+                    $url = base_url('index.php/CetakKartuPasien');
+					$urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
+                    echo "<script>window.open('".$url."','_blank');</script>";
+                    // echo "<script>history.go(-2);</script>";
+				    
+                	echo "<script>window.location='".$urlKunjungan."'</script>";
+                //script ga pake print kartu berobat
+                // echo "<script>alert('Data Berhasil Di Simpan');history.go(-2);</script>";
+				
+			} else {
+				echo "Data Gagal Disimpan";
+				echo "<br>";
+				echo "<a href='".base_url('index.php/DataDokter/index/')."'>Kembali ke form</a>";
+			}
 
-    public function delete()
-    {
-		$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$param = array(
-			'userData' => $this->userData,
-			'postData' => $_POST
-		);
-		$response = $this->model->delete($param);
-
-		echo json_encode($response, JSON_PRETTY_PRINT);
     }
-
-    public function select_kota()
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->select_kota();
-    	echo json_encode($response, JSON_PRETTY_PRINT);
+    public function pendaftaranBaru(){
+    	$data['tNoRegis']=$this->Pasien_model->getNoRegis();
+    	$data['tPekerjaan']=$this->Pasien_model->getPekerjaan();
+    	$data['tKota'] = $this->Pasien_model->getKota();
+    	$data['tDesa'] = $this->Pasien_model->getDesa();
+    	$this->load->view('form_pendaftaran',$data);
     }
-
-    public function select_desa()
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->select_desa();
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function select_pekerjaan()
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->select_pekerjaan();
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function input_no_registrasi()
-    {
-    	$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$response = $this->model->input_no_registrasi();
-    	echo json_encode($response, JSON_PRETTY_PRINT);
-    }
-
-    public function cetak($id = 0)
-    {
-    	$response = $this->model->cetak($id);
-    	if ($response['result']) {
-    		$this->load->view('pasien_cetak', $response);
-    	} else{
-    		redirect('pasien/');
-    	}
-    }
-
-    public function detail()
-    {
-		$response 	= array(
-			'result'	=> false,
-			'msg'		=> ''
-		);
-
-		$param = array(
-			'userData' => $this->userData,
-			'postData' => $_POST
-		);
-		$response = $this->model->detail($param);
-
-		echo json_encode($response, JSON_PRETTY_PRINT);
-	}
-	
-	public function query( $id = 0 )
-	{
-		$r = $this->model->query($id);
-		echo $r;
-	}
     
+
+
+
 }

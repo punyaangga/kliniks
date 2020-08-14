@@ -354,7 +354,7 @@ class Dashboard extends CI_Controller {
         // end untuk simpan data ke table tiap pol yg membutuhkan id_pasien
         
 
-    	$status="Sedang Dilayani";
+    	$status="Selesai";
 		$data = array('id'=> $id ,'status_antrian' => $status);
 		
 		$proses = $this->Dashboard_model->updateAntrian($id, $data);

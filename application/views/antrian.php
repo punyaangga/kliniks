@@ -101,7 +101,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </div>
                   <div class="col-6">
                     <div class="pull-right">
-                      <button name="btn_add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</button>
+                      <button  class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</button>
                     </div>
                   </div>
                 </div>
@@ -141,7 +141,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             $tgl = $kp->tgl_antrian;  
                             $tglSistem = substr($tgl, 0,10);
                             if ($tglSistem == $tglSekarang) {
-                              echo anchor('Antrian/getDataAntrian/'.$kp->id,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); 
+                              $namaPelayanan = $kp->nama_pelayanan;
+                              $jp = str_replace(' ', '', $namaPelayanan);
+                              echo anchor('Antrian/getDataAntrian/'.$kp->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); 
                               echo " ";
                               echo anchor('Antrian/hapusDataAntrian/'.$kp->id,'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
                               </button>');
@@ -167,84 +169,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
 
-          <div id="form" class="col-md-12" style="display: none;">
-            <div class="card">
-              <div class="card-header">
-                <h4 id="formTitle" class="card-title"> Tambah Data</h4>
-              </div>
-              <div class="card-body">
-                <form id="formData" method="POST" action="<?php echo base_url('Antrian/SimpanAntrian');?>">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <br>
-                        <select class="form-control" name="jenisPelayanan" id="sJp" required>
-                          <option></option>
-                          <?php foreach ($pelayanan as $pel) : ?>
-                            <option value="<?= $pel['id']; ?>"><?= $pel['nama_pelayanan']; ?></option>
-                          <?php endforeach; ?>
-
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Pasien</label>
-                        <select class="form-control" name="namaPasien" id="sNamaPasien">
-                          <?php foreach ($allPasien->result() as $ap) { ?>
-                          <option value="<?php echo $ap->id;?>"><?php echo $ap->nama_pasien;?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Dokter</label>
-                        <select class="form-control" name="namaDokter" id="sDokter">
-                          <?php foreach ($allDokter->result() as $ad) { ?>
-                          <option value="<?php echo $ad->id;?>"><?php echo $ad->nama_dokter;?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>No Antrian</label>
-                        <textarea class="form-control" name="noAntrian" id="noPelayanan" style="height:30px; padding-top: 5px; padding-left: 20px;" readonly></textarea>                 
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tanggal Kunjungan</label>
-                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7);?>"required readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Kode Antrian</label>
-                        <?php
-                          foreach ($kdAntrian->result() as $kd ) {
-                            $getKd = $kd->kode_antrian;
-                            $pecahKd = substr($getKd, 2);
-                            $angka = $pecahKd+1;
-                            $kode = "A-".$angka;
-                        ?>
-                        <input type="text" name="kode_antrian" class="form-control" placeholder="Kode Antrian" value="<?php echo $kode;?>"readonly>
-                        <?php } ?>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <a href="<?php echo base_url('Antrian');?>"><button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button></a>
-                    <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
-                  </div>
-                
-                </form>
-              </div>
-              
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>

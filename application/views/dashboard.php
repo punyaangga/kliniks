@@ -91,15 +91,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
-        <div class="row">
+        <!-- <div class="row">
          
           <div class="col-lg-6">
             <div class="card">
               <div class="card-header card-antrian">
 
-                <?php foreach ($hitungPengunjung->result() as $hitung) {
-                     echo "<center style='font-size:33px;'>".$hitung->kunjungan."</center>";
-                  }?>
+                <?php //foreach ($hitungPengunjung->result() as $hitung) {
+                    // echo "<center style='font-size:33px;'>".$hitung->kunjungan."</center>";
+                  //}?>
                 <div class="card-title d-flex justify-content-center">Kunjungan 
                
                 </div>
@@ -126,7 +126,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
           </div>
-        </div>       
+        </div>  -->      
 
         <div class="row">
           <div id="table" class="col-md-12">
@@ -152,7 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </thead>
                     <tbody>
                       <?php 
-                        foreach ($harusDilayani->result() as $hd ) {
+                         foreach ($harusDilayani->result() as $hd ) {
                       ?>
                       <tr>
                         <td><input type="text" name="id" value="<?php echo $hd->id;?>" hidden><?php echo $hd->no_antrian;?></td>
@@ -174,8 +174,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
           </div>
-        </div>
-        <div class="row">
+        </div> 
+       <!--  <div class="row">
           <div id="table" class="col-md-12">
             <div class="card">
               <div class="card-header">
@@ -199,24 +199,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </thead>
                     <tbody>
                       <?php
-                        foreach ($sedangDilayani->result() as $sd) {
+                        //foreach ($sedangDilayani->result() as $sd) {
                       ?>
                       <tr>
-                        <td><?php echo $sd->no_antrian;?></td>
-                        <td><?php echo $sd->nama_pasien;?></td>
-                        <td><?php echo $sd->nama_pelayanan;?></td>
-                        <td><?php echo $sd->nama_dokter;?></td>
-                        <td><?php echo $sd->status_antrian;?></td>
-                        <td><?php echo $sd->tgl_antrian;?></td> 
+                        <td><?php //echo $sd->no_antrian;?></td>
+                        <td><?php //echo $sd->nama_pasien;?></td>
+                        <td><?php //echo $sd->nama_pelayanan;?></td>
+                        <td><?php //echo $sd->nama_dokter;?></td>
+                        <td><?php //echo $sd->status_antrian;?></td>
+                        <td><?php //echo $sd->tgl_antrian;?></td> 
                         <td>
                           <?php 
-                              $text = $sd->nama_pelayanan;
-                              $whitespace = str_replace(' ', '', $text);
-                              $kalimat = "#".$whitespace; ?> 
-                          <button style="width:85px" class="btn btn-success btn-sm" data-toggle="modal" data-target="<?php echo $kalimat.$sd->id;?>" ><i class="fa fa-check"></i>Selesai</button></td>
+                              //$text = $sd->nama_pelayanan;
+                              //$whitespace = str_replace(' ', '', $text);
+                              //$kalimat = "#".$whitespace; ?> 
+                          <button style="width:85px" class="btn btn-success btn-sm" data-toggle="modal" data-target="<?php //echo $kalimat.$sd->id;?>" ><i class="fa fa-check"></i>Selesai</button></td>
                       </tr>
-                      <!-- tadinya disini -->
-                      <?php } ?>
+                       tadinya disini 
+                      <?php //} ?>
                     </tbody>
                   </table>
 
@@ -224,7 +224,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <div class="row">
           <div id="table" class="col-md-12">
             <div class="card">
@@ -1540,6 +1540,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <label>Nama Pasien</label>
                         <input type="text" value="<?php echo $sd->id_pasien;?>" name="idPasien" hidden>
                         <input type="text" value="<?php echo $sd->nama_pasien;?>" name="namaPasien" class="form-control" placeholder="Nama Pasien" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label>Agama</label>
+                        <input type="text" value="<?php echo $sd->nama_pasien;?>" class="form-control" placeholder="Nama Pasien" readonly>
                       </div>
                     </div>
                     <div class="col-md-12">

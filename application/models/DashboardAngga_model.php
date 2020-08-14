@@ -148,6 +148,10 @@ class DashboardAngga_model extends CI_Model {
         // var_dump($JmlAnak);
         return $jmlAnak;
     }
+    public function getKodeAntrian(){
+        $kdAntrian = $this->db->query("SELECT kode_antrian FROM antrians order by id DESC LIMIT 1 ");
+        return $kdAntrian;
+    }
 
     
 }

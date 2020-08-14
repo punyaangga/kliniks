@@ -92,43 +92,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       <div class="content">
         <div class="row">
-         
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header card-antrian">
-
-                <?php foreach ($hitungPengunjung->result() as $hitung) {
-                     echo "<center style='font-size:33px;'>".$hitung->kunjungan."</center>";
-                  }?>
-                <div class="card-title d-flex justify-content-center">Kunjungan Angga
-               
-                </div>
-              </div>
-              <div class="card-body d-flex justify-content-center">
-                <i class="fa fa-users fa-10x"></i>
-              </div>
-              <div class="card-footer">
-                <a href="#tambahKunjungan">Tambah Kunjungan<i class="fa fa-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header card-pasien">
-                <div class="card-category d-flex justify-content-center">!</div>
-                <div class="card-title d-flex justify-content-center">Pasien</div>
-              </div>
-              <div class="card-body d-flex justify-content-center">
-                <i class="fa fa-book fa-10x"></i>
-              </div>
-              <div class="card-footer">
-                <a href="#tambahPasien">Tambah Pasien Baru <i class="fa fa-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>       
-
-        <div class="row">
           <div id="table" class="col-md-12">
             <div class="card" id="pasienharusdilayani">
               <div class="card-header">
@@ -139,220 +102,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table id="tableHarusDilayani" class="table table-striped table-hover">
-                    <thead class="table-danger">
-                      <th>No. Antrian</th>
-                      <th>Nama Pasien</th>
-                      <th>Jenis Pelayanan</th>
-                      <th>Dokter</th>
-                      <th>Status</th>
-                      <th>Waktu</th>
-                      <th>Aksi</th>
-                    </thead>
-                    <tbody>
-                      <?php 
-                        foreach ($harusDilayani->result() as $hd ) {
-                      ?>
-                      <tr>
-                        <td><input type="text" name="id" value="<?php echo $hd->id;?>" hidden><?php echo $hd->no_antrian;?></td>
-                        <td><?php echo $hd->nama_pasien;?></td>
-                        <td><?php echo $hd->nama_pelayanan;?></td>
-                        <td><?php echo $hd->nama_dokter;?></td>
-                        <td><?php echo $hd->status_antrian;?></td>
-                        <td><?php echo $hd->tgl_antrian;?></td>
-                        <td>
-                          <?php echo anchor('DashboardAngga/updateDataAntrian/'.$hd->id,'<button class="btn btn-info btn-sm" title="Layani Pasien" style="width:85px;"><i class="fa fa-check"></i>Layani</button>'); ?> 
-                        </td>
-
-                        
-                      </tr>
-                      <?php } ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div id="table" class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="row">
-                  <div class="col-6">
-                    <h4 class="card-title"> Pasien yang sedang dilayani: </h4>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body" id="pasienSedangDilayani">
-                <div class="table-responsive">
-                  <table id="tableSedangDilayani" class="table table-striped table-hover">
-                    <thead class="table-warning">
-                      <th>No. Antrian</th>
-                      <th>Nama Pasien</th>
-                      <th>Jenis Pelayanan</th>
-                      <th>Dokter</th>
-                      <th>Status</th>
-                      <th>Waktu</th>
-                      <th>Aksi</th>
-                    </thead>
-                    <tbody>
-                      <?php
-                        foreach ($sedangDilayani->result() as $sd) {
-                      ?>
-                      <tr>
-                        <td><?php echo $sd->no_antrian;?></td>
-                        <td><?php echo $sd->nama_pasien;?></td>
-                        <td><?php echo $sd->nama_pelayanan;?></td>
-                        <td><?php echo $sd->nama_dokter;?></td>
-                        <td><?php echo $sd->status_antrian;?></td>
-                        <td><?php echo $sd->tgl_antrian;?></td> 
-                        <td>
-                          <?php 
-                              $text = $sd->nama_pelayanan;
-                              $whitespace = str_replace(' ', '', $text);
-                              $kalimat = "#".$whitespace; ?> 
-                          <button style="width:85px" class="btn btn-success btn-sm" data-toggle="modal" data-target="<?php echo $kalimat.$sd->id;?>" ><i class="fa fa-check"></i>Selesai</button></td>
-                      </tr>
-                      <!-- tadinya disini -->
-                      <?php } ?>
-                    </tbody>
-                  </table>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div id="table" class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="row">
-                  <div class="col-6">
-                    <h4 class="card-title"> Pasien yang sudah dilayani: </h4>
-                  </div>
-                  <div class="col-3">
-                    
-                  </div>
-                  <div class="col-3 form-group">
-                    <label><b>Filter Hari:</b></label>
-                    <input type="date" name="filterDate" class="form-control">
-                  </div>
-                </div>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                    <thead class="text-primary">
-                      <th>No Antrian.</th>
-                      <th>Nama Pasien</th>
-                      <th>Jenis Pelayanan</th>
-                      <th>Dokter</th>
-                      <th>Status</th>
-                      <th>Tanggal</th>
-                    </thead>
-                    <tbody>
-                      <?php
-                        foreach ($query->result() as $baris) {
-                      ?>
-                      <tr>
-                        <td><?php echo $baris->no_antrian;?></td>
-                        <td><?php echo $baris->nama_pasien;?></td>
-                        <td><?php echo $baris->nama_pelayanan;?></td>
-                        <td><?php echo $baris->nama_dokter;?></td>
-                        <td><?php echo $baris->status_antrian;?></td>
-                        <td><?php echo $baris->tgl_antrian;?></td>
-                      </tr>  
-                      <?php } ?>                   
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- pop up tambah kunjungan -->
-     <!--    <div class="modal fade" id="tambahKunjungan" role="dialog" aria-labelledby="tambahKunjunganLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="tambahKunjunganLabel">Tambah Kunjungan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form id="formDataTambahKunjungan">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <select name="id_jenis_pelayanan" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Pasien</label>
-                        <select name="id_pasien" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Dokter</label>
-                        <select name="id_dokter" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <input type="number" name="no_antrian" class="form-control" placeholder="No. Antrian" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tanggal Kunjungan</label>
-                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Kode Antrian</label>
-                        <input type="text" name="kode_antrian" class="form-control" placeholder="Kode Antrian" readonly>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-                <button id="0" name="btn_tambah_kunjungan" type="button" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- pop up tambah kunjungan  -->
-
-        <!-- Pop up tambah kunjungan angga -->
-        <div class="modal fade" id="tambahKunjungan" role="dialog" aria-labelledby="tambahKunjunganLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="tambahKunjunganLabel">Tambah Kunjungan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form method="post" action="<?php echo base_url('DashboardAngga/simpanAntrian');?>">
+                <form method="post" action="<?php echo base_url('Dashboard/simpanAntrian');?>">
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Jenis Pelayanan</label>
                         <br>
-                        <select class="form-control" id="jp" name="jenisPelayanan" class="form-control" style="width:100%;">
+                        <select class="form-control" id="jp" name="jenisPelayanan" class="form-control" style="width:100%;" required>
+                                <option> </option>
                                 <?php foreach ($pelayanan as $pel) : ?>
                                     <option value="<?= $pel['id']; ?>"><?= $pel['nama_pelayanan']; ?></option>
                                 <?php endforeach; ?>
@@ -366,7 +123,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php 
                             foreach ($pasien->result() as $np) {
                           ?>
-                          <option value="<?php echo $np->id;?>"> <?php echo $np->nama_pasien;?> </option>
+                          <option value="<?php echo $np->id;?>"> <?php echo $np->no_registrasi." | ".$np->nama_pasien;?> </option>
                           <?php
                           }
                           ?>
@@ -397,287 +154,262 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Tanggal Kunjungan</label>
-                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" required readonly>
+                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7);?>" required readonly>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label>Kode Antrian</label>
-                        <input type="text" name="kode_antrian" class="form-control" placeholder="Kode Antrian" readonly>
+                        <?php
+                          foreach ($kdAntrian->result() as $kd ) {
+                            $getKd = $kd->kode_antrian;
+                            $pecahKd = substr($getKd, 2);
+                            $angka = $pecahKd+1;
+                            $kode = "A-".$angka;
+                        ?>
+                        <input type="text" name="kode_antrian" class="form-control" placeholder="Kode Antrian" value="<?php echo $kode;?>"readonly>
+                        <?php } ?>
                       </div>
                     </div>
-
+                   <!--  <div class="col-md-12">
+                      <label>Catatan</label>
+                      <textarea class="form-control"></textarea>
+                    </div> -->
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
+                   
                     <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
                   </div>
                 
                 </form>
-              </div>
-             
-            </div>
-          </div>
-        </div>
-        <!-- end pop up tambah kunjungan -->
-
-        <!-- pop up tambah pasien -->
-        <div class="modal fade" id="tambahPasien" role="dialog" aria-labelledby="tambahPasienLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="tambahPasienLabel">Tambah Pasien</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <!-- <form id="formDataTambahPasien"> -->
-                <form action="<?php echo base_url('DashboardAngga/simpanDataPasien');?>" method="POST">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h1>Data Umum</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>No. Rekam Medis (RM)</label>
-                        <input type="text" name="no_registrasi" class="form-control" placeholder="No. Buku / No. Reg" >
-                       <!--  <input type="text" name="no_registrasi" class="form-control" placeholder="No. Buku / No. Reg" required readonly> -->
+                <div id="1" class="myDiv"style="display:none;">
+                <?php
+                  foreach ($sedangDilayani->result() as $sd) {
+                ?>
+                <!-- pop up pemeriksaan kehamilan -->
+                <div  role="dialog" aria-labelledby="pemeriksaanKehamilanLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                     
+                      <div class="modal-body">
+                        <form action="<?php echo base_url('Dashboard/simpanDataPemeriksaanKehamilan');?>" method="post">
+                          <div class="row">
+                           
+                            
+                          
+                            <div class="col-md-12">
+                              <h3><b>Hasil Pemeriksaan:</b></h3>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Tanggal Lahir</label>
+                                <input type="date" name="tglLahir" value="<?php echo $sd->tgl_lahir;?>" class="form-control" placeholder="Tanggal Lahir" readonly>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>NIK</label>
+                                <input type="text" name="nik" class="form-control" value="<?php echo $sd->nik;?>" placeholder="NIK" readonly>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Umur</label>
+                                <?php
+                                //waktu sekarang
+                                $tglSekarang = date('yy-m-d');
+                                $waktuSekarang = explode('-', $tglSekarang);
+                                //tgl lahir pasien
+                                $tglPasien= $sd->tgl_lahir;
+                                $waktuPasien = explode('-',$tglPasien);
+                                //hitung umur
+                                $getHari = $waktuSekarang[2] - $waktuPasien[2];
+                                $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+                                $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+                                //hasil umur
+                                $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("getHari")." Hari"; 
+                                ?>
+                                <input type="text" name="umur" value="<?php echo $umurPasien;?>"  class="form-control" placeholder="Umur" readonly required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Nama Suami</label>
+                                <input type="text" name="namaSuami" value="<?php echo $sd->nama_suami;?>"class="form-control" placeholder="Nama Suami" readonly required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>No. KK</label>
+                                <?php 
+                                  if (empty($sd->no_kk)){
+                                ?>
+                                  <input type="text" name="noKk" class="form-control" placeholder="No. KK" >  
+                                <?php } else { ?>
+                                  <input type="text" name="noKk" value="<?php echo $sd->no_kk;?>" class="form-control" placeholder="No. KK" readonly>
+                                <?php } ?>
+                                
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>KIA</label>
+                                <!-- <input type="text" name="buku_kia" class="form-control" placeholder="Buku KIA"> -->
+                                <select name="bukuKia" class="form-control">
+                                  <option value="lama">Lama</option>
+                                  <option value="baru">Baru</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Alamat</label>
+                                <textarea name="alamat" class="form-control" placeholder="Alamat" readonly> <?php echo $sd->alamat_istri;?> </textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>HPHT</label>
+                                <input type="date" name="hpht" class="form-control" placeholder="HPHT" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>TP</label>
+                                <input type="date" name="tp" class="form-control" placeholder="TP" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>BB</label>
+                                <input type="number" name="bb" class="form-control" placeholder="Berat Badan" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>TB</label>
+                                <input type="number" name="tb" class="form-control" placeholder="Tinggi Badan" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Usia Kehamilan (minggu)</label>
+                                <input type="text" name="usiaKehamilan" class="form-control" placeholder="Usia Kehamilan" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>GPA</label>
+                                <input type="text" name="gpa" class="form-control" placeholder="GPA" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>K1</label>
+                                <select name="k1" class="form-control">
+                                  <option value="1" selected>Ya</option>
+                                  <option value="0">Tidak</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>K4</label>
+                                <select name="k4" class="form-control">
+                                  <option value="1" selected>Ya</option>
+                                  <option value="0">Tidak</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>TT</label>
+                                <input type="text" name="tt" class="form-control" placeholder="TT">
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>LILA (cm)</label>
+                                <input type="number" name="lila" class="form-control" placeholder="LILA (cm)" required>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Hb (g/dl)</label>
+                                <input type="number" name="hb" class="form-control" placeholder="Hb (g/dl)">
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Resiko</label>
+                                <textarea name="resiko" class="form-control"></textarea>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Keterangan (10 T, Jumlah Fe)</label>
+                                <textarea name="keterangan" class="form-control"></textarea>
+                              </div>
+                            </div>
+                            <!-- <div class="col-md-6">
+                              <div class="form-group">
+                                <label>VCT</label>
+                                <input type="text" name="vct" class="form-control" placeholder="VCT" required>
+                              </div>
+                            </div> -->
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Keterangan Hamil</label>
+                                <select name="baruLama" class="form-control">
+                                  <option value="BARU" selected>Baru</option>
+                                  <option value="LAMA">Lama</option>
+                                </select>
+                              </div>
+                            </div>  
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Catatan</label>
+                                <textarea name="catatan" class="form-control"></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
+                            <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
+                          </div>
+                        </form>
                       </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12">
-                      <h1>Data Pasien</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>NIK</label>
-                        <input type="text" name="nik" class="form-control" placeholder="NIK" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
-                      </div>
-                    </div>
-                     <div class="col-md-12">
-                      <label>Jenis Kelamin : </label>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jk_pasien" value="Laki-Laki" checked>
-                        <label>Laki-Laki</label> 
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jk_pasien" value="Perempuan"> 
-                        <label>Perempuan</label>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pendidikan Pasien</label>
-                        <select name="pendidikan_istri" class="form-control">
-                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
-                          <option value="SD">SD</option>
-                          <option value="SMP">SMP</option>
-                          <option value="SLTA">SLTA</option>
-                          <option value="D1">D1</option>
-                          <option value="D3">D3</option>
-                          <option value="D4">D4</option>
-                          <option value="S1">S1</option>
-                          <option value="S2">S2</option>
-                          <option value="S3">S3</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Agama Pasien</label>
-                        <select name="agama_istri" class="form-control">
-                          <option value="Islam" selected="selected">Islam</option>
-                          <option value="Kristen">Kristen</option>
-                          <option value="Hindu">Hindu</option>
-                          <option value="Budha">Budha</option>
-                          <option value="Protestan">Protestan</option>
-                          <option value="Kong Hu Chu">Kong Hu Chu</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pekerjaan Pasien</label>
-                        <select name="pekerjaan_istri" class="form-control" required></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat KTP</label>
-                        <input type="text" name="alamat_ktp_istri" class="form-control" placeholder="Alamat KTP">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat Domisili</label>
-                        <input type="text" name="alamat_istri" class="form-control" placeholder="Alamat Domisili">
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12">
-                      <h1>Data Penanggung Jawab (Suami/Istri/Ibu)</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Nama Ayah Kandung</label>
-                        <input type="text" name="nama_ayah_kandung" class="form-control" placeholder="Nama Ayah Kandung">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Penanggung Jawab</label>
-                        <input type="text" name="nama_suami" class="form-control" placeholder="Penanggung Jawab" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir_suami" class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pendidikan</label>
-                        <select name="pendidikan_suami" class="form-control">
-                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
-                          <option value="SD">SD</option>
-                          <option value="SMP">SMP</option>
-                          <option value="SLTA">SLTA</option>
-                          <option value="D1">D1</option>
-                          <option value="D3">D3</option>
-                          <option value="D4">D4</option>
-                          <option value="S1">S1</option>
-                          <option value="S2">S2</option>
-                          <option value="S3">S3</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Agama</label>
-                        <select name="agama_suami" class="form-control">
-                          <option value="Islam" selected="selected">Islam</option>
-                          <option value="Kristen">Kristen</option>
-                          <option value="Hindu">Hindu</option>
-                          <option value="Budha">Budha</option>
-                          <option value="Protestan">Protestan</option>
-                          <option value="Kong Hu Chu">Kong Hu Chu</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pekerjaan</label>
-                        <select name="pekerjaan_suami" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat KTP</label>
-                        <input type="text" name="alamat_ktp_suami" class="form-control" placeholder="Alamat KTP">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat Domisili</label>
-                        <input type="text" name="alamat_suami" class="form-control" placeholder="Alamat Domisili">
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12 formTambahan">
-                      <h1>Data Tambahan</h1>
-                      <!-- <div class="alert alert-danger" role="alert">
-                        Catatan: Khusus untuk <b>Kabupaten Bandung Barat</b> silahkan pilih nama desa, selain itu nama desa biarkan "<b>Tidak Ada</b>".
-                      </div> -->
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Kota</label>
-                        <select name="id_kota" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Desa</label>
-                        <select name="id_desa" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Golongan Darah</label>
-                        <select name="gol_darah" class="form-control">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="AB">AB</option>
-                          <option value="O">O</option>
-                          <option value="-" selected="selected">-</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>No Telp / WA</label>
-                        <input type="text" name="no_telp_pasien" class="form-control" placeholder="No Telepon">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Alamat Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Alamat Email">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Medsos</label>
-                        <input type="text" name="medsos" class="form-control" placeholder="Medsos">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Catatan Bidan</label>
-                        <select name="catatan_bidan" class="form-control" multiple>
-                          <option value="Metoda REFRESH">Metoda REFRESH</option>
-                          <option value="TP (Catat & Masukan Ke KTP)">TP (Catat & Masukan Ke KTP)</option>
-                          <option value="Rencana Persalinan">Rencana Persalinan</option>
-                          <option value="Brosur">Brosur</option>
-                          <option value="Tanda Persalinan >= 37 mgg">Tanda Persalinan >= 37 mgg</option>
-                          <option value="Breast Care >= 37 mgg">Breast Care >= 37 mgg</option>
-                        </select>
-                      </div>
+                     
                     </div>
                   </div>
-                  <div class="modal-footer">
-                  <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                  <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
                 </div>
-                </form>
+                <?php } ?>
+                <!-- end pop up pemeriksaan kehamilah -->
+
+                </div>
               </div>
-              
             </div>
           </div>
         </div>
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         <?php
           foreach ($sedangDilayani->result() as $sd) {
@@ -692,7 +424,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <form action="<?php echo base_url('DashboardAngga/simpanPemeriksaanUmum');?>" method="POST" >
+                <form action="<?php echo base_url('Dashboard/simpanPemeriksaanUmum');?>" method="POST" >
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -796,7 +528,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <form method="post" action="<?php echo base_url('DashboardAngga/simpanDataProgramIspa');?>">
+                <form method="post" action="<?php echo base_url('Dashboard/simpanDataProgramIspa');?>">
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -921,7 +653,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <form action="<?php echo base_url('DashboardAngga/simpanDataImunisasi'); ?>" method="post">
+                <form action="<?php echo base_url('Dashboard/simpanDataImunisasi'); ?>" method="post">
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -1189,7 +921,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <form action="<?php echo base_url('DashboardAngga/simpanDataPersalinan');?>" method="post">
+                <form action="<?php echo base_url('Dashboard/simpanDataPersalinan');?>" method="post">
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -1342,7 +1074,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <form action="<?php echo base_url('DashboardAngga/simpanDataPemeriksaanKehamilan');?>" method="post">
+                <form action="<?php echo base_url('Dashboard/simpanDataPemeriksaanKehamilan');?>" method="post">
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -1573,7 +1305,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </button>
               </div>
               <div class="modal-body">
-                <form action="<?php echo base_url('DashboardAngga/simpanPemeriksaanKb');?>" method="post">
+                <form action="<?php echo base_url('Dashboard/simpanPemeriksaanKb');?>" method="post">
                   <div class="row">
                     <div class="col-md-4">
                       <div class="form-group">
@@ -1831,7 +1563,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 var id = $(this).val();
                 $.ajax({
                     type: "POST",
-                    url: "<?= base_url('DashboardAngga/getNoPelayanan') ?>",
+                    url: "<?= base_url('Dashboard/getNoPelayanan') ?>",
                     data: {
                         id: id
                     },
@@ -1901,6 +1633,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     });
   </script>
   <!-- js untuk hitung jumlah anak -->
+  <!-- js untuk show form data pemeriksaan awal -->
+  <script>
+    $(document).ready(function(){
+        $('#jp').on('change', function(){
+            var demovalue = $(this).val(); 
+            $("div.myDiv").hide();
+            $("#"+demovalue).show();
+        });
+    });
+  </script>
+  <!-- end js untuk show form data pemeriksaan awal -->
 </body>
 
 </html>

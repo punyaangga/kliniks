@@ -102,28 +102,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 	</div>
                 	<div class="col-6">
                 		<div class="pull-right">
-                			<button name="btn_add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</button>
+                			<a href="<?php echo base_url('Pasien/pendaftaranBaru');?>"class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</a>
                 		</div>
                 	</div>
                 </div>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table id="tablePasien" class="table table-striped table-hover">
+                  <table id="dataTables-example" class="table table-striped table-hover">
                     <thead class="text-primary">
                       <th>No.</th>
-                      <!-- <th>Jenis Pasien</th> -->
                       <th>No. Rekam Medis</th>
                       <th>Nama Pasien</th>
-                      <!-- <th>Tanggal Lahir</th>
-                      <th>Penanggung Jawab</th>
-                      <th>Tgl. Lahir</th>
-                      <th>Kota</th>
-                      <th>HPHT</th>
-                      <th>Taksiran Partus</th> -->
                       <th style="min-width: 200px;">Aksi</th>
                     </thead>
                     <tbody>
+                      <?php
+                          $no=1;
+                          foreach ($tPasien->result() as $tp) {
+                      ?>
+                      <tr>
+                        <td><?php echo $no++;?></td>
+                        <td><?php echo $tp->no_registrasi;?></td>
+                        <td><?php echo $tp->nama_pasien;?></td>
+                        <td>
+                          <?php  echo anchor('Pasien/getDataKunjungan/'.$tp->id,'<button class="btn btn-success btn-sm" title="Layani"><i class="fa fa-check"></i></button>'); ?>
+                          <button class="btn btn-default btn-sm" title="Lihat Detail"><i class="fa fa-search"></i></button> 
+                          <button class="btn btn-warning btn-sm" title="Cetak Karu Berobat"><i class="fa fa-print"></i></button>
+                          <button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>
+                          <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button></td>
+                        </td>
+                      </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>
@@ -234,297 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
 
-          <div id="form" class="col-md-12" style="display: none;">
-            <div class="card">
-              <div class="card-header">
-                <h4 id="formTitle" class="card-title"> Tambah Data</h4>
-              </div>
-              <div class="card-body">
-                <form id="formData">
-                	<div class="row">
-                    <div class="col-md-12">
-                      <h1>Data Umum</h1>
-                    </div>
-                    <!-- <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Jenis Pasien</label>
-                        <select name="jenis_pasien" class="form-control">
-                          <option value="Bersalin" selected="selected">Bersalin</option>
-                          <option value="Sakit">Sakit</option>
-                          <option value="Imunisasi">Imunisasi</option>
-                          <option value="KB">KB</option>
-                          <option value="Poli Gigi">Poli Gigi</option>
-                          <option value="Hamil">Hamil</option>
-                          <option value="Melahirkan">Melahirkan</option>
-                        </select>
-                      </div>
-                    </div> -->
-                		<div class="col-md-12">
-                			<div class="form-group">
-                				<label>No. Rekam Medis (RM)</label>
-                				<input type="text" name="no_registrasi" class="form-control" placeholder="No. Buku / No. Reg" required readonly>
-                			</div>
-                		</div>
-                    <hr>
-
-                    <div class="col-md-12">
-                      <h1>Data Pasien</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>NIK</label>
-                        <input type="text" name="nik" class="form-control" placeholder="NIK">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pendidikan Pasien</label>
-                        <select name="pendidikan_istri" class="form-control">
-                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
-                          <option value="SD">SD</option>
-                          <option value="SMP">SMP</option>
-                          <option value="SLTA">SLTA</option>
-                          <option value="D1">D1</option>
-                          <option value="D3">D3</option>
-                          <option value="D4">D4</option>
-                          <option value="S1">S1</option>
-                          <option value="S2">S2</option>
-                          <option value="S3">S3</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Agama Pasien</label>
-                        <select name="agama_istri" class="form-control">
-                          <option value="Islam" selected="selected">Islam</option>
-                          <option value="Kristen">Kristen</option>
-                          <option value="Hindu">Hindu</option>
-                          <option value="Budha">Budha</option>
-                          <option value="Protestan">Protestan</option>
-                          <option value="Kong Hu Chu">Kong Hu Chu</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pekerjaan Pasien</label>
-                        <select name="pekerjaan_istri" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat KTP</label>
-                        <input type="text" name="alamat_ktp_istri" class="form-control" placeholder="Alamat KTP">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat Domisili</label>
-                        <input type="text" name="alamat_istri" class="form-control" placeholder="Alamat Domisili">
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12">
-                      <h1>Data Penanggung Jawab (Suami/Istri/Ibu)</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Nama Ayah Kandung</label>
-                        <input type="text" name="nama_ayah_kandung" class="form-control" placeholder="Nama Ayah Kandung">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Penanggung Jawab</label>
-                        <input type="text" name="nama_suami" class="form-control" placeholder="Penanggung Jawab" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir_suami" class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pendidikan</label>
-                        <select name="pendidikan_suami" class="form-control">
-                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
-                          <option value="SD">SD</option>
-                          <option value="SMP">SMP</option>
-                          <option value="SLTA">SLTA</option>
-                          <option value="D1">D1</option>
-                          <option value="D3">D3</option>
-                          <option value="D4">D4</option>
-                          <option value="S1">S1</option>
-                          <option value="S2">S2</option>
-                          <option value="S3">S3</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Agama</label>
-                        <select name="agama_suami" class="form-control">
-                          <option value="Islam" selected="selected">Islam</option>
-                          <option value="Kristen">Kristen</option>
-                          <option value="Hindu">Hindu</option>
-                          <option value="Budha">Budha</option>
-                          <option value="Protestan">Protestan</option>
-                          <option value="Kong Hu Chu">Kong Hu Chu</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pekerjaan</label>
-                        <select name="pekerjaan_suami" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat KTP</label>
-                        <input type="text" name="alamat_ktp_suami" class="form-control" placeholder="Alamat KTP">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat Domisili</label>
-                        <input type="text" name="alamat_suami" class="form-control" placeholder="Alamat Domisili">
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12 formTambahan">
-                      <h1>Data Tambahan</h1>
-                      <!-- <div class="alert alert-danger" role="alert">
-                        Catatan: Khusus untuk <b>Kabupaten Bandung Barat</b> silahkan pilih nama desa, selain itu nama desa biarkan "<b>Tidak Ada</b>".
-                      </div> -->
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Kota</label>
-                        <select name="id_kota" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Desa</label>
-                        <select name="id_desa" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Golongan Darah</label>
-                        <select name="gol_darah" class="form-control">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="AB">AB</option>
-                          <option value="O">O</option>
-                          <option value="-" selected="selected">-</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>No Telp / WA</label>
-                        <input type="text" name="no_telp_pasien" class="form-control" placeholder="No Telepon">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Alamat Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Alamat Email">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Medsos</label>
-                        <input type="text" name="medsos" class="form-control" placeholder="Medsos">
-                      </div>
-                    </div>
-                    <!-- <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Gravida (G)</label>
-                        <input type="number" name="gravida" class="form-control" placeholder="Gravida">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Para (P)</label>
-                        <input type="number" name="para" class="form-control" placeholder="Para">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Abortus (A)</label>
-                        <input type="number" name="abortus" class="form-control" placeholder="Abortus">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>HPHT</label>
-                        <input type="date" name="hpht" class="form-control" placeholder="HPHT">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Siklus</label>
-                        <input type="number" name="siklus" class="form-control" placeholder="Siklus">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Durasi Haid</label>
-                        <input type="number" name="durasi_haid" class="form-control" placeholder="Durasi Haid">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Taksiran Partus</label>
-                        <input type="date" name="taksiran_partus" class="form-control" placeholder="Taksiran Partus">
-                      </div>
-                    </div> -->
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Catatan Bidan</label>
-                        <select name="catatan_bidan" class="form-control" multiple>
-                          <option value="Metoda REFRESH">Metoda REFRESH</option>
-                          <option value="TP (Catat & Masukan Ke KTP)">TP (Catat & Masukan Ke KTP)</option>
-                          <option value="Rencana Persalinan">Rencana Persalinan</option>
-                          <option value="Brosur">Brosur</option>
-                          <option value="Tanda Persalinan >= 37 mgg">Tanda Persalinan >= 37 mgg</option>
-                          <option value="Breast Care >= 37 mgg">Breast Care >= 37 mgg</option>
-                        </select>
-                      </div>
-                    </div>
-                	</div>
-                </form>
-              </div>
-              <div class="card-footer row">
-              	<div class="col-md-2">
-            			<button id="0" name="btn_save" class="btn btn-primary btn-block"><i class="fa fa-save"></i> Save</button>
-            		</div>
-            		<div class="col-md-2">
-            			<button name="btn_cancel" class="btn btn-danger btn-block"><i class="fa fa-times"></i> Cancel</button>
-            		</div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -545,6 +265,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url('assets/js/admina.pasien.js'); ?>" type="text/javascript"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/DataTables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/select2/js/select2.min.js'); ?>"></script>
+
+    <!-- untuk table -->
+  <script>
+            $(document).ready(function () {
+                $('#dataTables-example').dataTable({"ordering": false});
+            });
+    </script>
 </body>
 
 </html>
