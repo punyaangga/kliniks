@@ -113,7 +113,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      	<div class="form-group">
 			                        <label>Jenis Pelayanan</label>
 			                        <br>
-			                        <select class="form-control" id="jp" name="jenisPelayanan" class="form-control" style="width:100%;" required>
+			                        <select class="form-control" id="jp" name="jenisPelayanan" class="form-control" style="width:100%;" >
 			                            <option> </option>
 			                            <?php foreach ($pelayanan as $pel) : ?>
 		                                    <option value="<?= $pel['id']; ?>"><?= $pel['nama_pelayanan']; ?></option>
@@ -150,7 +150,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>Tanggal Kunjungan</label>
-		                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7);?>" required readonly>
+		                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7);?>"  readonly>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-6">
@@ -180,9 +180,129 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
               </div>
               <!-- end = body form tambah kunjungan -->
-              <!-- start form pemeriksaan kehamilan -->
+
+              <!-- start form persalinan -->
+              	<div id="3" class="myDiv"style="display:none;">
+              		<div class="modal-body">
+	                <!-- <form action="<?php //echo base_url('Dashboard/simpanDataPersalinan');?>" method="post"> -->
+	                  <div class="row">                  
+	                    <div class="col-md-12">
+	                      <h3><b>Hasil Pemeriksaan Awal:</b></h3>
+	                    </div>
+	                    <?php foreach ($query->result() as $tp) { ?>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Umur</label>
+	                        <?php
+	                        // waktu sekarang
+	                        $tglSekarang = date('yy-m-d');
+	                        $waktuSekarang = explode('-', $tglSekarang);
+	                        //tgl lahir pasien
+	                        $tglPasien= $tp->tgl_lahir;
+	                        $waktuPasien = explode('-',$tglPasien);
+	                        //hitung umur
+	                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+	                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+	                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+	                        //hasil umur
+	                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("$getHari")." Hari"; 
+	                        ?>
+	                        <input type="text" value="<?php echo $umurPasien; ?>" name="umur" class="form-control" placeholder="Umur" readonly >
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Alamat</label>
+	                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_istri;?></textarea>
+	                      </div>
+	                    </div>
+	                     <?php } ?>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Anak Ke</label>
+	                        <input type="number" name="anakKe" class="form-control" placeholder="Anak Ke" >
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>BB (kg)</label>
+	                        <input type="number" name="bb" class="form-control" placeholder="Berat Badan" >
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>PB (cm)</label>
+	                        <input type="number" name="pb" class="form-control" placeholder="Panjang Badan" >
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Tanggal Lahir</label>
+	                        <input type="date" name="tglLahir" class="form-control" placeholder="Tanggal Lahir"  >
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Jam</label>
+	                        <input type="time" name="jamLahir" class="form-control" placeholder="Jam Lahir" >
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Jenis Kelamin</label>
+	                        <select name="jenisKelamin" class="form-control">
+	                          <option value="Laki-Laki" selected>Laki-laki</option>
+	                          <option value="Perempuan" >Perempuan</option>
+	                        </select>
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>IMD</label>
+	                        <select name="imd" class="form-control">
+	                          <option value="1" selected>Ya</option>
+	                          <option value="0">Tidak</option>
+	                        </select>
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Lingkar Kepala</label>
+	                        <input type="number" name="lingkarKepala" class="form-control" placeholder="Lingkar Kepala" >
+	                      </div>
+	                    </div>
+	                    <div class="col-md-12">
+	                      <div class="form-group">
+	                        <label>Resiko</label>
+	                        <textarea name="resikoPersalinan" class="form-control"></textarea>
+	                      </div>
+	                    </div>
+	                    <div class="col-md-12">
+	                      <div class="form-group">
+	                        <label>Keterangan</label>
+	                        <textarea name="keteranganPersalinan" class="form-control"></textarea>
+	                      </div>
+	                    </div>
+	                    <div class="col-md-12">
+	                      <div class="form-group">
+	                        <label>Catatan</label>
+	                        <textarea name="catatanPersalinan" class="form-control"></textarea>
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="modal-footer">
+	                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
+	                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
+	                  </div>
+	                <!-- </form> -->
+	              </div>
+              	</div>
+              	<!-- end form persalinan -->
+
+
+              	<!-- start form pemeriksaan kehamilan -->
 		       	<div id="1" class="myDiv"style="display:none;">
-			              <div class="modal-body">
+		       			  <div class="modal-body">
 			                  <div class="row">			                    
 			                    <div class="col-md-12">
 			                      <h3><b>Hasil Pemeriksaan Awal:</b></h3>
@@ -218,13 +338,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs($getHari)." Hari"; 
 				                        
 			                        ?>
-			                        <input type="text" name="umur" value="<?php echo $umurPasien;?>"  class="form-control" placeholder="Umur" readonly required>
+			                        <input type="text" name="umur" value="<?php echo $umurPasien;?>"  class="form-control" placeholder="Umur" readonly >
 			                      </div>
 			                    </div>
 			                    <div class="col-md-6">
 			                      <div class="form-group">
 			                        <label>Nama Suami</label>
-			                        <input type="text" name="namaSuami" value="<?php echo $tp->nama_suami;?>"class="form-control" placeholder="Nama Suami" readonly required>
+			                        <input type="text" name="namaSuami" value="<?php echo $tp->nama_suami;?>"class="form-control" placeholder="Nama Suami" readonly >
 			                      </div>
 			                    </div>
 			                    <div class="col-md-6">

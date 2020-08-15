@@ -52,6 +52,9 @@ class Pasien_model extends CI_Model {
     public function simpanPemeriksaanKehamilan($data){
         $sKunjungan= $this->db->insert('detail_pemeriksaan_kehamilan',$data);
     }
+    public function simpanDataPersalinan($data){
+        $sPersalinan=$this->db->insert('detail_persalinan',$data);
+    }
     public function simpanDataPasien($data){
         $sPasien=$this->db->insert('pasiens',$data);
     }
