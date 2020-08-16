@@ -46,14 +46,42 @@ class Pasien_model extends CI_Model {
         $tDesa = $this->db->get('desas');
         return $tDesa;
     }
+    public function getBbLahir($idPasien){
+        $gBb = $this->db->query("SELECT * FROM detail_imunisasi where id_pasien='$idPasien' group by id_pasien");
+        return $gBb;
+    }
+    public function getTindakanImunisasi(){
+        $gTi = $this->db->get('macam_tindakan_imunisasi');
+        return $gTi;
+    }
+    public function getDaftarPenyakit(){
+        $gDp = $this->db->get('jenis_penyakit');
+        return $gDp;
+    }
+    public function getRentangUmur(){
+        $gRu = $this->db->get('rentang_umur');
+        return $gRu;
+    }
+     public function updateNoKk($id,$kk){
+        $this->db->update('pasiens',$kk,array('id'=>$id));
+    }
     public function simpanAntrian($data){
         $sAntrian=$this->db->insert('antrians',$data);
     }
     public function simpanPemeriksaanKehamilan($data){
         $sKunjungan= $this->db->insert('detail_pemeriksaan_kehamilan',$data);
     }
+    public function simpanDataImunisasi($data){
+        $sIm = $this->db->insert('detail_imunisasi',$data);
+    }
     public function simpanDataPersalinan($data){
         $sPersalinan=$this->db->insert('detail_persalinan',$data);
+    }
+    public function simpanPemeriksaanUmum($data){
+        $sUmum = $this->db->insert('detail_pemeriksaan_umum',$data);
+    }
+    public function simpanDataProgramIspa($data){
+        $sIspa = $this->db->insert('detail_program_ispa',$data);
     }
     public function simpanDataPasien($data){
         $sPasien=$this->db->insert('pasiens',$data);

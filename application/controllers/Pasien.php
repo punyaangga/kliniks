@@ -41,6 +41,10 @@ class Pasien extends CI_Controller {
 
     public function getDataKunjungan(){
     	$id=$this->uri->segment(3);
+        $data['gBb'] = $this->Pasien_model->getBbLahir($id);
+        $data['gDp'] = $this->Pasien_model->getDaftarPenyakit();
+        $data['gRu'] = $this->Pasien_model->getRentangUmur();
+        $data['gTi'] = $this->Pasien_model->getTindakanImunisasi();
     	$data['query'] = $this->Pasien_model->getDataKunjungan($id);
     	$data['pelayanan'] = $this->Pasien_model->getJenisPelayanan();
     	$data['kdAntrian'] = $this->Pasien_model->getKodeAntrian();
@@ -272,8 +276,288 @@ class Pasien extends CI_Controller {
                     }
                     // end fungsi simpan data ke table persalinan
             
-        } else if ($idLayana == 8){
-            echo "Jalankan Imunisasi";
+        } else if ($idLayanan == 8){
+            if (empty($antrian)) {
+                //untuk simpan ke table antrian
+                $no = "1";
+                $data = array('created_at'=>$dateNow,
+                          'id_dokter'=>$this->input->post('namaDokter'),
+                          'id_pasien'=>$this->input->post('namaPasien'),
+                          'no_antrian'=>$no,
+                          'status_antrian'=>$statusAntrian,
+                          'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                          'tgl_antrian'=>$dateNow,
+                           'kode_antrian'=>$this->input->post('kode_antrian'));
+                
+                //untuk simpan ke table detail_imunisasi
+                $dataIm=array('id_antrian'=>$kodeAntrian,
+                     'created_at'=>$dateNow,
+                     'id_pasien'=>$this->input->post('namaPasien'),
+                     'nama_anak'=>$this->input->post('namaAnak'),
+                     'no_kk'=>$this->input->post('noKkImunisasi'),
+                     'alamat'=>$this->input->post('alamat'),
+                     'tgl_lahir'=>$this->input->post('tglLahir'),
+                     'bb_lahir'=>$this->input->post('bbLahir'),
+                     'bb'=>$this->input->post('bbImunisasi'),
+                     'pb'=>$this->input->post('pbImunisasi'),
+                     'catatan'=>$this->input->post('catatanImunisasi'),
+                     'hb0'=>$this->input->post('hb0'),
+                     'bcg'=>$this->input->post('bcg'),
+                     'polio1'=>$this->input->post('polio1'),
+                     'polio2'=>$this->input->post('polio2'),
+                     'polio3'=>$this->input->post('polio3'),
+                     'polio4'=>$this->input->post('polio4'),
+                     'pentabio1'=>$this->input->post('pentabio1'),
+                     'pentabio2'=>$this->input->post('pentabio2'),
+                     'pentabio3'=>$this->input->post('pentabio3'),
+                     'campak'=>$this->input->post('campak'),
+                     'tt'=>$this->input->post('tt'),
+                     'pentabio_ulang'=>$this->input->post('pentabioUlang'),
+                     'campak_ulang'=>$this->input->post('campakUlang'),
+                     'id_macam_tindakan_imunisasi'=>$this->input->post('idMacamTindakanImunisasi'));
+                //start untuk update no_kk Pasien di table pasiens
+                $id=$this->input->post('namaPasien');
+                $kk=array('no_kk'=>$this->input->post('noKkImunisasi'));
+                // end untuk update no_kk pasien di table pasiens
+                    
+                $updateKk = $this->Pasien_model->updateNoKk($id, $kk);// update no_kk di table pasien                
+                $prosesIm = $this->Pasien_model->simpanDataImunisasi($dataIm); // simpan data ke table detail_imunisasi
+                $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                        
+                        if (!$proses & !$prosesIm) {
+                                //script pake print nomor antrian
+                                $url = base_url('index.php/cetakAntrian');
+                                echo "<script>window.open('".$url."','_blank');</script>";
+                                echo "<script>history.go(-2);</script>";
+
+                                //script ga pake print
+                                // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                            } else {
+                                echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                            }
+
+
+                    } else {
+                        $data = array('created_at'=>$dateNow,
+                                  'id_dokter'=>$this->input->post('namaDokter'),
+                                  'id_pasien'=>$this->input->post('namaPasien'),
+                                  'no_antrian'=>$this->input->post('noAntrian'),
+                                  'status_antrian'=>$statusAntrian,
+                                  'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                                  'tgl_antrian'=>$dateNow,
+                                  'kode_antrian'=>$this->input->post('kode_antrian'));
+                         //untuk simpan ke table detail_imunisasi
+                            $dataIm=array('id_antrian'=>$kodeAntrian,
+                                 'created_at'=>$dateNow,
+                                 'id_pasien'=>$this->input->post('namaPasien'),
+                                 'nama_anak'=>$this->input->post('namaAnak'),
+                                 'no_kk'=>$this->input->post('noKkImunisasi'),
+                                 'alamat'=>$this->input->post('alamat'),
+                                 'tgl_lahir'=>$this->input->post('tglLahir'),
+                                 'bb_lahir'=>$this->input->post('bbLahir'),
+                                 'bb'=>$this->input->post('bbImunisasi'),
+                                 'pb'=>$this->input->post('pbImunisasi'),
+                                 'catatan'=>$this->input->post('catatanImunisasi'),
+                                 'hb0'=>$this->input->post('hb0'),
+                                 'bcg'=>$this->input->post('bcg'),
+                                 'polio1'=>$this->input->post('polio1'),
+                                 'polio2'=>$this->input->post('polio2'),
+                                 'polio3'=>$this->input->post('polio3'),
+                                 'polio4'=>$this->input->post('polio4'),
+                                 'pentabio1'=>$this->input->post('pentabio1'),
+                                 'pentabio2'=>$this->input->post('pentabio2'),
+                                 'pentabio3'=>$this->input->post('pentabio3'),
+                                 'campak'=>$this->input->post('campak'),
+                                 'tt'=>$this->input->post('tt'),
+                                 'pentabio_ulang'=>$this->input->post('pentabioUlang'),
+                                 'campak_ulang'=>$this->input->post('campakUlang'),
+                                 'id_macam_tindakan_imunisasi'=>$this->input->post('idMacamTindakanImunisasi'));
+                            //start untuk update no_kk Pasien di table pasiens
+                            $id=$this->input->post('namaPasien');
+                            $kk=array('no_kk'=>$this->input->post('noKkImunisasi'));
+                            // end untuk update no_kk pasien di table pasiens
+                                
+                            $updateKk = $this->Pasien_model->updateNoKk($id, $kk);// update no_kk di table pasien                
+                            $prosesIm = $this->Pasien_model->simpanDataImunisasi($dataIm); // simpan data ke table detail_imunisasi
+                            $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                        if (!$proses & !$prosesIm ) {
+                                // header('Location: antrian.php');
+                                //script pake print nomot antrian
+                                $url = base_url('index.php/cetakAntrian');
+                                echo "<script>window.open('".$url."','_blank');</script>";
+                                echo "<script>history.go(-2);</script>";
+
+                                //script ga pake print nomor antrian
+                                // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+
+                            } else {
+                                echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                            }
+                    }
+                    // end fungsi simpan data ke table persalinan
+
+
+        } else if ($idLayanan == 9){
+            if (empty($antrian)) {
+                //untuk simpan ke table antrian
+                $no = "1";
+                $data = array('created_at'=>$dateNow,
+                          'id_dokter'=>$this->input->post('namaDokter'),
+                          'id_pasien'=>$this->input->post('namaPasien'),
+                          'no_antrian'=>$no,
+                          'status_antrian'=>$statusAntrian,
+                          'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                          'tgl_antrian'=>$dateNow,
+                           'kode_antrian'=>$this->input->post('kode_antrian'));
+                
+                //untuk simpan ke table detail_pemeriksaan_umum
+                $dataUmum = array('id_antrian'=>$kodeAntrian,
+                      'jenis_kelamin'=>$this->input->post('jenisKelaminUmum'),
+                      'id_penyakit'=>$this->input->post('idPenyakitUmum'),
+                      'id_rentang_umur'=>$this->input->post('idRentangUmurUmum'),
+                      'id_macam_tindakan_imunisasi'=>$this->input->post('idTindakanUmum'),
+                      'catatan'=>$this->input->post('catatanDokterUmum'));
+                $prosesUmum = $this->Pasien_model->simpanPemeriksaanUmum($dataUmum); // simpan data ke table pemeriksaan umum
+                $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                        
+                        if (!$proses & !$prosesUmum) {
+                                //script pake print nomor antrian
+                                $url = base_url('index.php/cetakAntrian');
+                                echo "<script>window.open('".$url."','_blank');</script>";
+                                echo "<script>history.go(-2);</script>";
+
+                                //script ga pake print
+                                // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                            } else {
+                                echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                            }
+
+
+                    } else {
+                        $data = array('created_at'=>$dateNow,
+                                  'id_dokter'=>$this->input->post('namaDokter'),
+                                  'id_pasien'=>$this->input->post('namaPasien'),
+                                  'no_antrian'=>$this->input->post('noAntrian'),
+                                  'status_antrian'=>$statusAntrian,
+                                  'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                                  'tgl_antrian'=>$dateNow,
+                                  'kode_antrian'=>$this->input->post('kode_antrian'));
+                         //untuk simpan ke table detail_pemeriksaan_umum
+                          $dataUmum = array('id_antrian'=>$kodeAntrian,
+                                'jenis_kelamin'=>$this->input->post('jenisKelaminUmum'),
+                                'id_penyakit'=>$this->input->post('idPenyakitUmum'),
+                                'id_rentang_umur'=>$this->input->post('idRentangUmurUmum'),
+                                'id_macam_tindakan_imunisasi'=>$this->input->post('idTindakanUmum'),
+                                'catatan'=>$this->input->post('catatanDokterUmum'));
+                          $prosesUmum = $this->Pasien_model->simpanPemeriksaanUmum($dataUmum); // simpan data ke table pemeriksaan umum
+                          $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                                  
+                        if (!$proses & !$prosesUmum) {
+                                //script pake print nomor antrian
+                                $url = base_url('index.php/cetakAntrian');
+                                echo "<script>window.open('".$url."','_blank');</script>";
+                                echo "<script>history.go(-2);</script>";
+
+                                //script ga pake print
+                                // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                            } else {
+                                echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                            }
+                    }
+                    // end fungsi simpan data ke table persalinan  
+
+        } else if ($idLayanan == 34){
+              if (empty($antrian)) {
+                    //untuk simpan ke table antrian
+                    $no = "1";
+                    $data = array('created_at'=>$dateNow,
+                              'id_dokter'=>$this->input->post('namaDokter'),
+                              'id_pasien'=>$this->input->post('namaPasien'),
+                              'no_antrian'=>$no,
+                              'status_antrian'=>$statusAntrian,
+                              'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                              'tgl_antrian'=>$dateNow,
+                               'kode_antrian'=>$this->input->post('kode_antrian'));
+                    
+                    //untuk simpan ke table detail_pemeriksaan_ispa
+                    $dataIs=array('id_antrian'=>$kodeAntrian,
+                      'nama_anak'=>$this->input->post('namaAnakIspa'),
+                      'jenis_kelamin'=>$this->input->post('jkIspa'),
+                      'umur_tahun'=>$this->input->post('umurTahun'),
+                      'umur_bulan'=>$this->input->post('umurBulan'),
+                      'tb_pb'=>$this->input->post('tbPbIspa'),
+                      'bb'=>$this->input->post('bbIspa'),
+                      'catatan'=>$this->input->post('catatanIspa'));
+                    $prosesIs=$this->Pasien_model->simpanDataProgramIspa($dataIs); // simpan data pemeriksaan ispa
+                    $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                            
+                            if (!$proses & !$prosesIspa) {
+                                    //script pake print nomor antrian
+                                    $url = base_url('index.php/cetakAntrian');
+                                    echo "<script>window.open('".$url."','_blank');</script>";
+                                    echo "<script>history.go(-2);</script>";
+
+                                    //script ga pake print
+                                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                                } else {
+                                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                                }
+
+
+                        } else {
+                            $data = array('created_at'=>$dateNow,
+                                      'id_dokter'=>$this->input->post('namaDokter'),
+                                      'id_pasien'=>$this->input->post('namaPasien'),
+                                      'no_antrian'=>$this->input->post('noAntrian'),
+                                      'status_antrian'=>$statusAntrian,
+                                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                                      'tgl_antrian'=>$dateNow,
+                                      'kode_antrian'=>$this->input->post('kode_antrian'));
+                             //untuk simpan ke table detail_pemeriksaan_ispa
+                             $dataIs=array('id_antrian'=>$kodeAntrian,
+                                'nama_anak'=>$this->input->post('namaAnakIspa'),
+                                'jenis_kelamin'=>$this->input->post('jkIspa'),
+                                'umur_tahun'=>$this->input->post('umurTahun'),
+                                'umur_bulan'=>$this->input->post('umurBulan'),
+                                'tb_pb'=>$this->input->post('tbPbIspa'),
+                                'bb'=>$this->input->post('bbIspa'),
+                                'catatan'=>$this->input->post('catatanIspa'));
+                             $prosesIs=$this->Pasien_model->simpanDataProgramIspa($dataIs); // simpan data pemeriksaan ispa
+                             $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                                      
+                            if (!$proses & !$prosesIs) {
+                                    //script pake print nomor antrian
+                                    $url = base_url('index.php/cetakAntrian');
+                                    echo "<script>window.open('".$url."','_blank');</script>";
+                                    echo "<script>history.go(-2);</script>";
+
+                                    //script ga pake print
+                                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                                } else {
+                                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                                }
+                        }
+                        // end fungsi simpan data ke table persalinan  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        } else if($idLayanan == 35){
+
         }
         
             
@@ -282,7 +566,9 @@ class Pasien extends CI_Controller {
     }
     public function simpanPendaftaranBaru(){
     	$dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+        $strip = '-';
     	$data = array('created_at'=>$dateNow,
+                'no_kk'=>$strip,
     			'jk_pasien'=>$this->input->post('jk_pasien'),
                 'no_registrasi'=>$this->input->post('no_registrasi'),
                 'nik'=>$this->input->post('nik'),

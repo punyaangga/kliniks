@@ -180,7 +180,382 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
               </div>
               <!-- end = body form tambah kunjungan -->
+              <!-- start form pemeriksaan ispa -->
+              <div id="34" class="myDiv" style="display:none">
+              	<div class="modal-body">
+	                
+	                  <div class="row">
+	                    <div class="col-md-12">
+	                      <h3><b>Hasil Pemeriksaan:</b></h3>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Nama Anak</label>
+	                        <?php foreach ($query->result() as $tp ) { ?>	
+	                        <input type="text" name="namaAnakIspa" value="<?php echo $tp->nama_pasien;?>"class="form-control" placeholder="Nama Anak" value="" readonly required>
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Jenis Kelamin</label>
+	                        <input type="text" name="jkIspa" class="form-control" value="<?php echo $tp->jk_pasien;?>" readonly>
+	                        
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Umur (tahun)</label>
+	                        <?php
+	                        //waktu sekarang
+	                        $tglSekarang = date('yy-m-d');
+	                        $waktuSekarang = explode('-', $tglSekarang);
+	                        //tgl lahir pasien
+	                        $tglPasien= $tp->tgl_lahir;
+	                        $waktuPasien = explode('-',$tglPasien);
+	                        //hitung umur
+	                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+	                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+	                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+	                        //hasil umur
+	                        $umurPasienTahun=abs($getTahun); 
+	                        $umurPasienBulan=abs($getBulan);
+	                        ?>
 
+	                        <input type="number" name="umurTahun" value="<?php echo $umurPasienTahun; ?>" class="form-control" placeholder="Umur (tahun)" readonly>
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>Umur (bulan)</label>
+	                        <input type="number" name="umurBulan" value="<?php echo $umurPasienBulan; ?>" class="form-control" placeholder="Umur (bulan)" readonly>
+	                      </div>
+	                    </div>
+	                    <?php } ?>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>TB/PB</label>
+	                        <input type="number" name="tbPbIspa" class="form-control" placeholder="Tinggi / Panjang Badan">
+	                      </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                      <div class="form-group">
+	                        <label>BB</label>
+	                        <input type="number" name="bbIspa" class="form-control" placeholder="Berat Badan">
+	                      </div>
+	                    </div>
+	                    <div class="col-md-12">
+	                      <div class="form-group">
+	                        <label>Catatan</label>
+	                        <textarea name="catatanIspa" class="form-control"></textarea>
+	                      </div>
+	                    </div>
+	                  </div>
+	                  <div class="modal-footer">
+	                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
+	                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
+	                  </div>
+	              </div>
+	              
+	            </div>
+              </div>
+              <!-- end form pemeriksaan ispa -->
+
+              <!-- start form pemeriksaan umum -->
+              <div id="9" class="myDiv" style="display:none">
+              		<div class="modal-body">
+		                  <div class="row">
+		                    <div class="col-md-12">
+		                      <h3><b>Hasil Pemeriksaan:</b></h3>
+		                    </div>
+		                    <?php foreach ($query->result() as $tp) { ?>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Jenis Kelamin</label>
+		                          <input type="text" name="jenisKelaminUmum" value="<?php echo $tp->jk_pasien;?>" class="form-control" readonly >
+		                      </div>
+		                    </div>
+		                    <?php } ?>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Nama Penyakit</label>
+		                        <select name="idPenyakitUmum" id="namPenyakit" style="width:100%;"class="form-control">
+		                          <option value="20" Selected>Penyakit Lain-Lain </option>
+		                          <?php foreach ($gDp->result() as $dp ) { ?>
+		                          	<option value="<?php echo $dp->id;?>"><?php echo $dp->nama_penyakit;?></option>
+		                          <?php } ?>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Rentang Umur</ label>
+		                        <select name="idRentangUmurUmum" id="renUmur" style="width:100%;" class="form-control">
+		                          <?php foreach ($gRu->result() as $ru ) { ?>
+		                          	<option value="<?php echo $ru->id;?>"><?php echo $ru->rentang_umur;?></option>	
+		                          <?php } ?>
+		                          
+		                        </select>
+		                        
+		                      </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Tindakan: </label>
+		                        <select name="idTindakanUmum" class="form-control" id="tindakan" style="width:100%;">
+		                        	<option value="0">Tidak Ada</option>
+		                         <?php foreach ($gTi->result() as $ti ) { ?>
+		                         	<option value="<?php echo $ti->id;?>"><?php echo $ti->nama_tindakan;?></option>
+		                         <?php } ?>
+		                          
+		                         
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-12">
+		                      <div class="form-group">
+		                        <label>Catatan</label>
+		                        <textarea name="catatanDokterUmum" class="form-control"></textarea>
+		                      </div>
+		                    </div>
+		                  </div>
+		                  <div class="modal-footer">
+		                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
+		                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
+		                  </div>
+		              </div>
+
+
+              </div>
+              <!-- end form pemeriksaan umum -->
+
+              <!-- start form imunisasi -->
+              <div id="8" class="myDiv" style="display:none">
+              		<div class="modal-body">
+		                  <div class="row">
+		                    <div class="col-md-12">
+		                      <h3><b>Hasil Pemeriksaan Awal:</b></h3>
+		                    </div>
+		                    <?php foreach ($query->result() as $tp) { ?>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Nama Anak</label>
+		                        <input type="text" name="namaAnak" value="<?php echo $tp->nama_pasien;?>" class="form-control" placeholder="Nama Anak" readonly required>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                    	<label>Nama Orang Tua</label>
+		                    	<input type="text" value="<?php echo $tp->nama_suami;?>" class="form-control" readonly>
+		                    </div>
+		                     <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>No. KK Ortu</label>
+		                        <?php
+		                          if ($tp->no_kk == '-') {
+		                        ?>
+			                        <input type="number" name="noKkImunisasi" value="<?php echo $tp->no_kk;?>" class="form-control" placeholder="No. KK Orang Tua">    
+			                        <?php } else { ?>
+			                        <input type="number" name="noKkImunisasi" value="<?php echo $tp->no_kk;?>" class="form-control" placeholder="No. KK Orang Tua" readonly>    
+		                        <?php
+		                        }
+		                        ?>
+		                      </div>
+		                    </div>
+
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Alamat</label>
+		                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_istri; ?></textarea>
+		                      </div>
+		                    </div>
+
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Tanggal Lahir</label>
+		                        <input type="date" name="tglLahir" value="<?php echo $tp->tgl_lahir;?>"  class="form-control" placeholder="Tanggal Lahir" readonly required>
+		                      </div>
+		                    </div>
+		                    <?php } ?>
+
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>BB Lahir (Gram)</label>
+		                        <?php
+		                        	if (count($gBb->result()) == 1) {
+		                        	foreach ($gBb->result() as $bbl) {
+		                        ?>	
+		                        	<input type="text" name="bbLahir" value="<?php echo $bbl->bb_lahir;?>" class="form-control" readonly >
+		                        <?php
+		                        	}
+		                        	} else {
+		                        ?>
+		                        	<input type="number" name="bbLahir" class="form-control"  >
+		                        <?php	
+		                        	}
+		                        ?>
+			                          
+
+		                      </div>
+		                    </div>	
+
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>BB (Gram)</label>
+		                        <input type="number" name="bbImunisasi"  class="form-control" placeholder="Berat Badan">
+		                        
+		                      </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>PB (cm)</label>
+		                        <input type="number" name="pbImunisasi" class="form-control" placeholder="Panjang Badan">
+		                      </div>
+		                    </div>
+		                    <div class="col-md-12">
+		                      <div class="form-group">
+		                        <label>Catatan</label>
+		                        <textarea name="catatanImunisasi" class="form-control"></textarea>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-12">
+		                      <h3><b>Macam Imunisasi:</b></h3>
+		                    </div>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>Hb0</label>
+		                        <select name="hb0" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>BCG</label>
+		                        <select name="bcg" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Polio 1</label>
+		                        <select name="polio1" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Polio 2</label>
+		                        <select name="polio2" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Polio 3</label>
+		                        <select name="polio3" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Polio 4</label>
+		                        <select name="polio4" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Pentabio 1</label>
+		                        <select name="pentabio1" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Pentabio 2</label>
+		                        <select name="pentabio2" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Pentabio 3</label>
+		                        <select name="pentabio3" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Campak</label>
+		                        <select name="campak" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label>TT</label>
+		                        <select name="tt" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Pentabio Ulang</label>
+		                        <select name="pentabioUlang" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-3">
+		                      <div class="form-group">
+		                        <label>Campak Ulang</label>
+		                        <select name="campakUlang" class="form-control">
+		                          <option value="0" selected>Tidak</option>
+		                          <option value="1">Ya</option>
+		                        </select>
+		                      </div>
+		                    </div>
+		                    <div class="col-md-6">
+		                      <div class="form-group">
+		                        <label><b>Tindakan: </b></label>
+		                        <select name="idMacamTindakanImunisasi" id="macTindakan" style="width:100%;" class="form-control">
+		                          <option value="0">Tidak Ada Tindakan</option>
+		                          <?php foreach ($gTi->result() as $ti ) { ?>
+		                          	<option value="<?php echo $ti->id;?>"><?php echo $ti->nama_tindakan;?></option>
+		                          <?php } ?>
+		                        </select>
+		                      </div>
+		                    </div>
+		                  </div>
+		                  <div class="modal-footer">
+		                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
+		                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
+		                  </div>
+		            </div>
+              </div>
+              <!-- end form imunisasi -->
+              
               <!-- start form persalinan -->
               	<div id="3" class="myDiv"style="display:none;">
               		<div class="modal-body">
@@ -350,7 +725,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                    <div class="col-md-6">
 			                      <div class="form-group">
 			                        <label>No. KK</label>
-			                            <input type="text" name="noKk" value="<?php echo $tp->no_kk;?>" class="form-control" placeholder="No. KK" readonly>  
+			                            <input type="number" name="noKk" value="<?php echo $tp->no_kk;?>" class="form-control" placeholder="No. KK" readonly>  
 			                      </div>
 			                    </div>
 			                    <?php } ?>

@@ -163,16 +163,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Pendidikan Pasien</label>
 		                        <select name="pendidikan_istri" id="pendidikanPasien" class="form-control">
-		                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
-		                          <option value="SD">SD</option>
+		                          <option value="SD" >SD</option>
 		                          <option value="SMP">SMP</option>
-		                          <option value="SLTA">SLTA</option>
+		                          <option value="SLTA" selected="selected">SLTA</option>
 		                          <option value="D1">D1</option>
 		                          <option value="D3">D3</option>
 		                          <option value="D4">D4</option>
 		                          <option value="S1">S1</option>
 		                          <option value="S2">S2</option>
 		                          <option value="S3">S3</option>
+		                          <option value="Belum Sekolah"> Belum Sekolah </option>
+		                          <option value="Tidak Tamat" >Tidak Tamat</option>
 		                        </select>
 		                      </div>
 		                    </div>
@@ -309,6 +310,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Kota</label>
 		                        <select name="id_kota" id="kota" class="form-control">
+		                        	<option value=" ">-- Pilih Kota --</option>
 		                        	<?php
 		                        		foreach ($tKota->result() as $tk ) { ?>
 		                        		<option value="<?php echo $tk->id;?>"><?php echo $tk->nama_kota;?></option>		
@@ -321,6 +323,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Desa</label>
 		                        <select name="id_desa" id="desa" class="form-control">
+		                        	<option value="">-- Pilih Desa --</option>
 		                        	<?php
 		                        		foreach ($tDesa->result() as $td ) {
 		                        	?>
