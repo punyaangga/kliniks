@@ -162,6 +162,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
               </div>
               <!-- end = body form tambah kunjungan -->
+              <?php 
+                  $jenisPelayanan = $this->uri->segment(4);
+                  if($jenisPelayanan == 'PemeriksaanKehamilan'){ ?>
               <!-- start form pemeriksaan kehamilan -->
                   <form method="post" action="#">     
                   <div id="1" class="myDiv">
@@ -225,9 +228,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php } ?>
 
                           <!-- diagnosa pemeriksaan kehamilan-->
-                          <?php 
-                            $jenisPelayanan = $this->uri->segment(4);
-                            if($jenisPelayanan == 'PemeriksaanKehamilan'){ ?>
+                          
                             <?php foreach ($getPk->result() as $gpk) { ?>
                             <div class="col-md-6">
                               <div class="form-group">

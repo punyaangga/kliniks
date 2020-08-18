@@ -41,14 +41,16 @@ class Pasien extends CI_Controller {
 
     public function getDataKunjungan(){
     	$id=$this->uri->segment(3);
-        $data['gBb'] = $this->Pasien_model->getBbLahir($id);
-        $data['gDp'] = $this->Pasien_model->getDaftarPenyakit();
-        $data['gRu'] = $this->Pasien_model->getRentangUmur();
-        $data['gTi'] = $this->Pasien_model->getTindakanImunisasi();
+      $data['gBb'] = $this->Pasien_model->getBbLahir($id);
+      $data['gDp'] = $this->Pasien_model->getDaftarPenyakit();
+      $data['gRu'] = $this->Pasien_model->getRentangUmur();
+      $data['gTi'] = $this->Pasien_model->getTindakanImunisasi();
     	$data['query'] = $this->Pasien_model->getDataKunjungan($id);
+      $data['jmlAnak'] = $this->Pasien_model->getJmlAnak($id);
     	$data['pelayanan'] = $this->Pasien_model->getJenisPelayanan();
     	$data['kdAntrian'] = $this->Pasien_model->getKodeAntrian();
     	$data['tDokter'] = $this->Pasien_model->getDokter();
+      $data['alatKontra'] = $this->Pasien_model->getAlatKontrasepsi();
     	$this->load->view('kunjungan',$data);
     }
 
@@ -538,27 +540,107 @@ class Pasien extends CI_Controller {
                                 }
                         }
                         // end fungsi simpan data ke table persalinan  
+        } else if($idLayanan == 37){
+              if (empty($antrian)) {
+                    //untuk simpan ke table antrian
+                    $no = "1";
+                    $data = array('created_at'=>$dateNow,
+                              'id_dokter'=>$this->input->post('namaDokter'),
+                              'id_pasien'=>$this->input->post('namaPasien'),
+                              'no_antrian'=>$no,
+                              'status_antrian'=>$statusAntrian,
+                              'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                              'tgl_antrian'=>$dateNow,
+                              'kode_antrian'=>$this->input->post('kode_antrian'));
+                    
+                    //untuk simpan ke table detail_pemeriksaan_kb
+                    $satu = $this->input->post('jmlAnakLakiKb');
+                    $dua =  $this->input->post('jmlAnakPerempuanKb');
+                    $hitung = $satu + $dua;
+                    $dataKb = array('id_antrian'=>$kodeAntrian,
+                              'created_at'=>$dateNow,
+                              'id_pasien'=>$this->input->post('namaPasien'),
+                              'umur'=>$this->input->post('umurPasienKb'),
+                              'nama_pasien'=>$this->input->post('namaP'),
+                              'nama_suami'=>$this->input->post('namaSuamiKb'),
+                              'alamat'=>$this->input->post('alamatPasienKb'),
+                              'jml_anak_laki'=>$satu,
+                              'jml_anak_perempuan'=>$dua,
+                              'jml_anak'=>$hitung,
+                              'usia_anak_terkecil'=>$this->input->post('usiaAnakTerkecilKb'),
+                              'id_satuan_usia'=>$this->input->post('idSatuanUsiaKb'),
+                              'pasang_baru'=>$this->input->post('pasangBaruKb'),
+                              'pasang_cabut'=>$this->input->post('pasangCabutKb'),
+                              'id_alat_kontrasepsi'=>$this->input->post('idAlatKontraKb'),
+                              'akli'=>$this->input->post('akliKb'),
+                              't_4'=>$this->input->post('t4Kb'),
+                              'ganti_cara'=>$this->input->post('gantiCaraKb'),
+                              'catatan'=>$this->input->post('catatanKb'));
+                    $prosesKb=$this->Pasien_model->simpanPemeriksaanKb($dataKb);
+                    $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                            
+                            if (!$proses & !$prosesKb) {
+                                    //script pake print nomor antrian
+                                    $url = base_url('index.php/cetakAntrian');
+                                    echo "<script>window.open('".$url."','_blank');</script>";
+                                    echo "<script>history.go(-2);</script>";
+
+                                    //script ga pake print
+                                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                                } else {
+                                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                                }
 
 
+                        } else {
+                            $data = array('created_at'=>$dateNow,
+                                      'id_dokter'=>$this->input->post('namaDokter'),
+                                      'id_pasien'=>$this->input->post('namaPasien'),
+                                      'no_antrian'=>$this->input->post('noAntrian'),
+                                      'status_antrian'=>$statusAntrian,
+                                      'id_jenis_pelayanan'=>$this->input->post('jenisPelayanan'),
+                                      'tgl_antrian'=>$dateNow,
+                                      'kode_antrian'=>$this->input->post('kode_antrian'));
+                             //untuk simpan ke table detail_pemeriksaan_kb
+                              $satu = $this->input->post('jmlAnakLakiKb');
+                              $dua =  $this->input->post('jmlAnakPerempuanKb');
+                              $hitung = $satu + $dua;
+                              $dataKb = array('id_antrian'=>$kodeAntrian,
+                                        'created_at'=>$dateNow,
+                                        'id_pasien'=>$this->input->post('namaPasien'),
+                                        'umur'=>$this->input->post('umurPasienKb'),
+                                        'nama_pasien'=>$this->input->post('namaP'),
+                                        'nama_suami'=>$this->input->post('namaSuamiKb'),
+                                        'alamat'=>$this->input->post('alamatPasienKb'),
+                                        'jml_anak_laki'=>$satu,
+                                        'jml_anak_perempuan'=>$dua,
+                                        'jml_anak'=>$hitung,
+                                        'usia_anak_terkecil'=>$this->input->post('usiaAnakTerkecilKb'),
+                                        'id_satuan_usia'=>$this->input->post('idSatuanUsiaKb'),
+                                        'pasang_baru'=>$this->input->post('pasangBaruKb'),
+                                        'pasang_cabut'=>$this->input->post('pasangCabutKb'),
+                                        'id_alat_kontrasepsi'=>$this->input->post('idAlatKontraKb'),
+                                        'akli'=>$this->input->post('akliKb'),
+                                        't_4'=>$this->input->post('t4Kb'),
+                                        'ganti_cara'=>$this->input->post('gantiCaraKb'),
+                                        'catatan'=>$this->input->post('catatanKb'));
+                              $prosesKb=$this->Pasien_model->simpanPemeriksaanKb($dataKb);
+                              $proses = $this->Pasien_model->simpanAntrian($data); //simpan data antrian ke table antrian
+                                      
+                            if (!$proses & !$prosesKb) {
+                                    //script pake print nomor antrian
+                                    $url = base_url('index.php/cetakAntrian');
+                                    echo "<script>window.open('".$url."','_blank');</script>";
+                                    echo "<script>history.go(-2);</script>";
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        } else if($idLayanan == 35){
-
-        }
+                                    //script ga pake print
+                                    // echo "<script>alert('Data Berhasil Disimpan');window.location='index'</script>";
+                                } else {
+                                    echo "<script>alert('Data Gagal Di Simpan');history.go(-2)</script>";
+                                }
+                        }
+                        // end fungsi simpan data ke table persalinan  
+              }
         
             
         

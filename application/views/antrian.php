@@ -137,20 +137,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td>
                           <center>
                             <?php
-                            $tglSekarang = date('yy-m-d');
-                            $tgl = $kp->tgl_antrian;  
-                            $tglSistem = substr($tgl, 0,10);
-                            if ($tglSistem == $tglSekarang) {
                               $namaPelayanan = $kp->nama_pelayanan;
                               $jp = str_replace(' ', '', $namaPelayanan);
-                              echo anchor('Antrian/getDataAntrian/'.$kp->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); 
+                              echo anchor('Antrian/getDataAntrian/'.$kp->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Lihat Data"><i class="fa fa-search"></i></button>'); 
                               echo " ";
                               echo anchor('Antrian/hapusDataAntrian/'.$kp->id,'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
                               </button>');
-                            } else {
-                              echo anchor('Antrian/hapusDataAntrian/'.$kp->id, '<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                              </button>');
-                            }
+                            
+
+                            // $tglSekarang = date('yy-m-d');
+                            // $tgl = $kp->tgl_antrian;  
+                            // $tglSistem = substr($tgl, 0,10);
+                            // if ($tglSistem == $tglSekarang) {
+                            //   $namaPelayanan = $kp->nama_pelayanan;
+                            //   $jp = str_replace(' ', '', $namaPelayanan);
+                            //   echo anchor('Antrian/getDataAntrian/'.$kp->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); 
+                            //   echo " ";
+                            //   echo anchor('Antrian/hapusDataAntrian/'.$kp->id,'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
+                            //   </button>');
+                            // } else {
+                            //   echo anchor('Antrian/hapusDataAntrian/'.$kp->id, '<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
+                            //   </button>');
+                            // }
                             ?>
                             <!-- button hapus -->
                              <?php //echo anchor('Antrian/getDataAntrian/'.$kp->id,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); ?>

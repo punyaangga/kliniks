@@ -16,8 +16,18 @@ class Pasien_model extends CI_Model {
         return $tDokter;
     }
 
+    public function getJmlAnak($idPasien){
+        $jmlAnak = $this->db->query("SELECT * FROM detail_pemeriksaan_kb where id_pasien='$idPasien'  ORDER BY id DESC limit 1");
+        return $jmlAnak;
+    }
+
     public function getJenisPelayanan(){
         return $this->db->get('jenis_pelayanans')->result_array();
+    }
+
+    public function getAlatKontrasepsi(){
+        $alatKontra= $this->db->get('alat_kontrasepsi');
+        return $alatKontra;
     }
 
     public function getNoPelayanan($idpelayanan)
@@ -66,22 +76,25 @@ class Pasien_model extends CI_Model {
         $this->db->update('pasiens',$kk,array('id'=>$id));
     }
     public function simpanAntrian($data){
-        $sAntrian=$this->db->insert('antrians',$data);
+       $this->db->insert('antrians',$data);
     }
     public function simpanPemeriksaanKehamilan($data){
-        $sKunjungan= $this->db->insert('detail_pemeriksaan_kehamilan',$data);
+        $this->db->insert('detail_pemeriksaan_kehamilan',$data);
     }
     public function simpanDataImunisasi($data){
-        $sIm = $this->db->insert('detail_imunisasi',$data);
+        $this->db->insert('detail_imunisasi',$data);
     }
     public function simpanDataPersalinan($data){
-        $sPersalinan=$this->db->insert('detail_persalinan',$data);
+        $this->db->insert('detail_persalinan',$data);
     }
     public function simpanPemeriksaanUmum($data){
-        $sUmum = $this->db->insert('detail_pemeriksaan_umum',$data);
+        $this->db->insert('detail_pemeriksaan_umum',$data);
     }
     public function simpanDataProgramIspa($data){
-        $sIspa = $this->db->insert('detail_program_ispa',$data);
+        $this->db->insert('detail_program_ispa',$data);
+    }
+    public function simpanPemeriksaanKb($data){
+        $this->db->insert('detail_pemeriksaan_kb',$data);
     }
     public function simpanDataPasien($data){
         $sPasien=$this->db->insert('pasiens',$data);

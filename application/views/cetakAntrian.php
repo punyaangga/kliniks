@@ -57,21 +57,25 @@
     <hr />
 
     <table border="1" class="col-sm-12 jarak-vertikal-bawah" style="width:265px;">
+        <?php foreach ($cetak->result() as $c) { ?>
+            
+        
         <tr>
             <td ><center>No Antrian</center></td>
             
         </tr>
         <tr>
-        	<td><center style="font-size:50px;">001</center></td>
+        	<td><center style="font-size:50px;"><?php echo $c->no_antrian;?></center></td>
         </tr>
         <tr>
-            <td><center style="font-size:15px;" >Jenis Pelayanan Disini</center></td>
+            <td><center style="font-size:15px;" ><?php echo $c->nama_pelayanan;?></center></td>
             
         </tr>
         <tr>
-            <td><center style="font-size:15px;" >Tanggal Disini</center></td>
+            <td><center style="font-size:15px;" ><?php echo $c->tgl_antrian;?></center></td>
             
         </tr>
+        <?php } ?>
         
     </table>
     <a href="<?php echo base_url('index.php/dashboard');?>"><button class="btn btn-primary d-print-none">Kembali</button></a>
