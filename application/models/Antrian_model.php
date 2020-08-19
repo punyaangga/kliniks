@@ -29,10 +29,56 @@ class Antrian_model extends CI_Model {
                                     where a.id='$id'");
         return $query;
     }
+    public function getDataPenyakit(){
+        $getDp = $this->db->get('jenis_penyakit');
+        return $getDp;
+    }
+    public function getDataRentangUmur(){
+        $getRu = $this->db->get('rentang_umur');
+        return $getRu;
+    }
+    public function getDataMacamTindakan(){
+        $getMt = $this->db->get('macam_tindakan_imunisasi');
+        return $getMt;
+    }
+
 
     public function getPemeriksaanKehamilan($idAntrian){
         $getPk = $this->db->query("SELECT * FROM detail_pemeriksaan_kehamilan where id_antrian='$idAntrian'");
         return $getPk;
+    }
+    public function getPemeriksaanUmum($idAntrian){
+        $getPu = $this->db->query("SELECT pu.*, jp.nama_penyakit,mti.nama_tindakan,ru.rentang_umur FROM detail_pemeriksaan_umum as pu 
+                                    JOIN jenis_penyakit as jp
+                                    ON pu.id_penyakit = jp.id
+                                    JOIN macam_tindakan_imunisasi as mti
+                                    ON pu.id_macam_tindakan_imunisasi = mti.id
+                                    JOIN rentang_umur as ru
+                                    ON pu.id_rentang_umur = ru.id
+                                    where pu.id_antrian='$idAntrian'");
+        return $getPu;
+    }
+    public function getPemeriksaanKb($idAntrian){
+        $getKb = $this->db->query("SELECT dpk.*,ak.nama_alat FROM detail_pemeriksaan_kb as dpk 
+                                    JOIN alat_kontrasepsi as ak 
+                                    ON dpk.id_alat_kontrasepsi = ak.id 
+                                    where id_antrian='$idAntrian'");
+        return $getKb;
+    }
+    public function getPemeriksaanImunisasi($idAntrian){
+        $getImunisasi = $this->db->query("SELECT di.*,ti.nama_tindakan FROM detail_imunisasi as di 
+                        JOIN macam_tindakan_imunisasi as ti 
+                        ON di.id_macam_tindakan_imunisasi = ti.id
+                        WHERE id_antrian ='$idAntrian'");
+        return $getImunisasi;
+    }
+    public function getPemeriksaanPersalinan($idAntrian) {
+        $getPersalinan = $this->db->query("SELECT * FROM detail_persalinan WHERE id_antrian = '$idAntrian'");
+        return $getPersalinan;
+    }
+    public function getPemeriksaanIspa($idAntrian){
+        $getIspa = $this->db->query("SELECT * FROM detail_program_ispa WHERE id_antrian = '$idAntrian'");
+        return $getIspa;
     }
  
 

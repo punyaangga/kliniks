@@ -10,6 +10,7 @@ class Antrian extends CI_Controller {
 		parent::__construct();
 		$this->load->model('login_model', 'login');
 		$this->load->model('Antrian_model');
+		$this->load->model('Pasien_model');
 
 		$this->userData = array(
 			'session'	=> $this->session->userdata('userSession'),
@@ -59,6 +60,18 @@ class Antrian extends CI_Controller {
     	$id=$this->uri->segment(3);
     	$data['query'] = $this->Antrian_model->getDataAntrian($id);
     	$data['getPk'] = $this->Antrian_model->getPemeriksaanKehamilan($id);
+    	$data['getPu'] = $this->Antrian_model->getPemeriksaanUmum($id);
+    	$data['getKb'] = $this->Antrian_model->getPemeriksaanKb($id);
+    	$data['getImunisasi'] = $this->Antrian_model->getPemeriksaanImunisasi($id);
+    	$data['getPersalinan'] = $this->Antrian_model->getPemeriksaanPersalinan($id);
+    	$data['getIspa']=$this->Antrian_model->getPemeriksaanIspa($id);
+    	$data['getDp'] = $this->Antrian_model->getDataPenyakit();
+    	$data['getRu'] = $this->Antrian_model->getDataRentangUmur();
+    	$data['getMt'] = $this->Antrian_model->getDataMacamTindakan();
+
+    	//model pasien
+    	$data['alatKontra'] = $this->Pasien_model->getAlatKontrasepsi();
+
     	$this->load->view('antrianEdit',$data);
     	
     }  
