@@ -544,7 +544,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>No. KK Ortu</label>
 		                        <?php
-		                          if ($tp->no_kk == '-') {
+		                          if ($tp->no_kk == null) {
 		                        ?>
 			                        <input type="number" name="noKkImunisasi" value="<?php echo $tp->no_kk;?>" class="form-control" placeholder="No. KK Orang Tua">    
 			                        <?php } else { ?>
@@ -871,6 +871,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
               	<!-- start form pemeriksaan kehamilan -->
 		       	<div id="1" class="myDiv"style="display:none;">
+		       		
 		       			  <div class="modal-body">
 			                  <div class="row">			                    
 			                    <div class="col-md-12">

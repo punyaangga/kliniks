@@ -648,10 +648,10 @@ class Pasien extends CI_Controller {
     }
     public function simpanPendaftaranBaru(){
     	$dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
-        $strip = '-';
+
     	$data = array('created_at'=>$dateNow,
-                'no_kk'=>$strip,
-    			'jk_pasien'=>$this->input->post('jk_pasien'),
+                'no_kk'=>$this->input->post('nokk'),
+          			'jk_pasien'=>$this->input->post('jk_pasien'),
                 'no_registrasi'=>$this->input->post('no_registrasi'),
                 'nik'=>$this->input->post('nik'),
                 'nama_pasien'=>$this->input->post('nama_pasien'),

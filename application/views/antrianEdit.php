@@ -164,12 +164,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <!-- end = body form tambah kunjungan -->
               <?php 
                   $jenisPelayanan = $this->uri->segment(4);
+                  $idAntrian = $this->uri->segment(3);
                   if($jenisPelayanan == 'PemeriksaanKehamilan'){ ?>
               <!-- start form pemeriksaan kehamilan -->
-                  <form method="post" action="#">     
+                  <form method="POST" action="<?php echo base_url('Antrian/updatePemeriksaanKehamilan');?>">     
                   <div id="1" class="myDiv">
                     <div class="modal-body">
-                        <div class="row">                         
+                        <div class="row">
+                        <input type="text" name="getIdAntrian" value="<?php echo $idAntrian;?>" hidden>                         
                           <div class="col-md-12">
                             <h3><b>Hasil Pemeriksaan Awal:</b></h3>
                           </div>
@@ -216,7 +218,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>No. KK</label>
-                                  <input type="text" name="noKk" value="<?php echo $kp->no_kk;?>" class="form-control" placeholder="No. KK" readonly>  
+                                <input type="text" name="noKk" value="<?php echo $kp->no_kk;?>" class="form-control" placeholder="No. KK" readonly>  
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -371,11 +373,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   
                   <!-- start pemeriksaan Umum -->
                         <?php } else if($jenisPelayanan == 'PemeriksaanUmum'){ ?>
-                        <form method="post" action="#">     
+                        <form method="post" action="<?php echo base_url('Antrian/updatePemeriksaanUmum');?>">     
                           <div class="modal-body">
                               <div class="row">
                                 <div class="col-md-12">
                                   <h3><b>Hasil Pemeriksaan:</b></h3>
+                                  <input type="text" name="getIdAntrian" value="<?php echo $idAntrian;?>" hidden>
                                 </div>
                                 <?php foreach ($getPu->result() as $pu) { ?>
                                 <div class="col-md-6">
@@ -390,7 +393,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <label>Nama Penyakit</label>
                                     <select name="idPenyakitUmum" id="namPenyakit" style="width:100%;"class="form-control">
                                       <option value="<?php echo $pu->id_penyakit;?>"><?php echo $pu->nama_penyakit;?></option>
-                                      <option value="20" Selected>Penyakit Lain-Lain </option>
+                                      <option value="20">Penyakit Lain-Lain </option>
                                       <?php foreach ($getDp->result() as $dp ) { ?>
                                         <option value="<?php echo $dp->id;?>"><?php echo $dp->nama_penyakit;?></option>
                                       <?php } ?>
@@ -441,10 +444,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         <!-- start pemeriksaan kb -->
                         <?php } else if($jenisPelayanan == 'KB'){ ?>
-                              <form action="#">
+                              <form method="post" action="<?php echo base_url('Antrian/updatePemeriksaanKb');?>">
                                 <div class="modal-body">
                                     <div class="row">
                                       <div class="col-md-12">
+                                        <input type="text" name="getIdAntrian" value="<?php echo $idAntrian;?>" hidden>                 
                                         <h3><b>Hasil Pemeriksaan:</b></h3>
                                       </div>
                                       <?php foreach ($getKb->result() as $kb ) { ?> 
@@ -496,14 +500,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                             <label>Satuan Usia</label>
                                             <select name="idSatuanUsiaKb" id="satUsia"class="form-control" style="width:100%;">
                                               <option value="<?php echo $kb->id_satuan_usia;?>">
-                                                <?php 
-                                                  if ($kb->id_satuan_usia == 1) {
-                                                    echo "Hari";
-                                                  }else if($kb->satuan_usia == 2){
-                                                    echo "Bulan";
-                                                  }else if ($kb->satuan_usia == 3){
-                                                    echo "Tahun";
-                                                  }
+                                                <?php if ($kb->id_satuan_usia == '1') {
+                                                  echo "Hari";
+                                                } else if ($kb->id_satuan_usia == '2'){
+                                                  echo "Bulan";
+                                                } else if ($kb->id_satuan_usia == '3'){
+                                                  echo "Tahun";
+                                                }
                                                 ?>
                                               </option>
                                               <option value="1" >Hari</option>
@@ -548,7 +551,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         <div class="form-group">
                                           <label>Alat Kontrasepsi</label>
                                           <select name="idAlatKontraKb" id="alatKontra" style="width:100%;" class="form-control">
-                                          <option value="<?php $kb->id_alat_kontrasepsi?>"><?php echo $kb->nama_alat?></option> 
+                                          <option value="<?php echo $kb->id_alat_kontrasepsi; ?>"><?php echo $kb->nama_alat; ?></option> 
                                             <?php foreach ($alatKontra->result() as $ak) { ?>
                                               <option value="<?php echo $ak->id;?>"><?php echo $ak->nama_alat;?></option>
                                             <?php } ?>
@@ -603,10 +606,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         
                               <!-- start pemeriksaan imunisasi  -->
                         <?php } else if ($jenisPelayanan == 'Imunisasi'){ ?>
-                            <form method="post" action="#">
+                            <form method="post" action="<?php echo base_url('Antrian/updateImunisasi');?>">
                                 <div class="modal-body">
                                     <div class="row">
                                       <div class="col-md-12">
+                                        <input type="text" name="getIdAntrian" value="<?php echo $idAntrian;?>" hidden>  
                                         <h3><b>Hasil Pemeriksaan Awal:</b></h3>
                                       </div>
                                       <?php foreach ($getImunisasi->result() as $gi ) { ?>
@@ -932,9 +936,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                             <!-- start persalinan -->
                         <?php } else if($jenisPelayanan == 'Persalinan'){ ?>
-                            <form method="post" action="#">
+                            <form method="post" action="<?php echo base_url('Antrian/updatePemeriksaanPersalinan');?>">
                               <div class="modal-body">
-                                <div class="row">                  
+                                <div class="row">  
+                                <input type="text" name="getIdAntrian" value="<?php echo $idAntrian;?>" hidden>                  
                                   <div class="col-md-12">
                                     <h3><b>Hasil Pemeriksaan Awal:</b></h3>
                                   </div>
@@ -1048,10 +1053,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <!-- end persalinan -->
                         <!-- start ispa -->
                         <?php } else if($jenisPelayanan == 'ProgramISPA'){ ?>
-                          <form method="POST" action="#">
+                          <form method="POST" action="<?php echo base_url('Antrian/updatePemeriksaanIspa');?>">
                             <div class="modal-body">
                                 <div class="row">
                                   <div class="col-md-12">
+                                    <input type="text" name="getIdAntrian" value="<?php echo $idAntrian;?>" hidden>  
                                     <h3><b>Hasil Pemeriksaan:</b></h3>
                                   </div>
                                   <?php foreach ($getIspa->result() as $gis ) { ?>

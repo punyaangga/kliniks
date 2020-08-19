@@ -126,10 +126,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <h1>Data Pasien</h1>
 		                    </div>
+		                     <div class="col-md-12">
+		                      <div class="form-group">
+		                        <label>NO. Kartu Keluarga</label>
+		                        <input type="number" name="nokk" class="form-control" placeholder="Masukan Nomor KK">
+		                      </div>
+		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>NIK</label>
-		                        <input type="text" name="nik" class="form-control" placeholder="NIK" required>
+		                        <input type="number" name="nik" class="form-control" placeholder="NIK" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">

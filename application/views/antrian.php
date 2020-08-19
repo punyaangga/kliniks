@@ -96,13 +96,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card">
               <div class="card-header">
                 <div class="row">
+                  <div class="col-12">
+                    <h2 class="card-title"><center> Tabel Kunjungan</center></h4>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-6">
-                    <h4 class="card-title"> Tabel Kunjungan</h4>
+                    <h4><center><u>Kunjungan Hari Ini</u></center></h4>
                   </div>
                   <div class="col-6">
-                    <div class="pull-right">
-                      <button  class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> Tambah Data</button>
-                    </div>
+                    <h4><center>Laporan Kunjungan</center></h4>
                   </div>
                 </div>
               </div>
@@ -141,8 +144,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               $jp = str_replace(' ', '', $namaPelayanan);
                               echo anchor('Antrian/getDataAntrian/'.$kp->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Lihat Data"><i class="fa fa-search"></i></button>'); 
                               echo " ";
-                              echo anchor('Antrian/hapusDataAntrian/'.$kp->id,'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                              </button>');
+                              // echo anchor('Antrian/hapusDataAntrian/'.$kp->id,'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
+                              // </button>');
                             
 
                             // $tglSekarang = date('yy-m-d');

@@ -4,10 +4,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Antrian_model extends CI_Model {
 
     public function getKunjunganPasien(){
-        $kunjunganPasien = $this->db->query('SELECT a.id,a.id_pasien,a.kode_antrian,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter, p.nama_pasien, j.nama_pelayanan 
-                                            FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
-                                            JOIN pasiens AS p ON a.id_pasien = p.id 
-                                            JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id ORDER BY a.tgl_antrian DESC ');
+        $dateNow = date('Y-m-d');
+        //script untuk menampilkan semua kunjungan
+        // $kunjunganPasien = $this->db->query('SELECT a.id,a.id_pasien,a.kode_antrian,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter, p.nama_pasien, j.nama_pelayanan 
+        //                                     FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
+        //                                     JOIN pasiens AS p ON a.id_pasien = p.id 
+        //                                     JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id ORDER BY a.tgl_antrian DESC ');
+        
+        //script untuk menampilkan kunjungan hari ini saja
+        $kunjunganPasien = $this->db->query("SELECT SUBSTRING(a.tgl_antrian,1,10) ,a.*, b.`nama_dokter`, c.`nama_pasien`, d.`nama_pelayanan` 
+            FROM `antrians` a LEFT JOIN `dokters` b ON a.`id_dokter` = b.`id` 
+            LEFT JOIN `pasiens` c ON a.`id_pasien` = c.`id` 
+            LEFT JOIN `jenis_pelayanans` d ON a.`id_jenis_pelayanan` = d.`id` 
+            where SUBSTRING(a.tgl_antrian,1,10)='$dateNow'");
         return $kunjunganPasien;
     }   
      public function hapusDataAntrian($id)
@@ -80,7 +89,27 @@ class Antrian_model extends CI_Model {
         $getIspa = $this->db->query("SELECT * FROM detail_program_ispa WHERE id_antrian = '$idAntrian'");
         return $getIspa;
     }
- 
+    
+    //fungsi untuk update data di bagian kunjungan
+    public function updatePemeriksaanKehamilan($idAntrian,$data){
+        $this->db->update('detail_pemeriksaan_kehamilan',$data,array('id_antrian'=>$idAntrian));
+    }
+    public function updatePemeriksaanPersalinan($idAntrian,$data){
+        $this->db->update('detail_persalinan',$data,array('id_antrian'=>$idAntrian));
+    }
+    public function updateImunisasi($idAntrian,$data){
+        $this->db->update('detail_imunisasi',$data,array('id_antrian'=>$idAntrian));
+    }
+    public function updatePemeriksaanUmum($idAntrian,$data){
+        $this->db->update('detail_pemeriksaan_umum',$data,array('id_antrian'=>$idAntrian));
+    }
+    public function updatePemeriksaanIspa($idAntrian,$data){
+        $this->db->update('detail_program_ispa',$data,array('id_antrian'=>$idAntrian));  
+    }
+    public function updatePemeriksaanKb($idAntrian,$data){
+        $this->db->update('detail_pemeriksaan_kb',$data,array('id_antrian'=>$idAntrian)); 
+    }
+
 
 
 }
