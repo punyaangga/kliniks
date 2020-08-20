@@ -144,55 +144,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <th style="min-width: 100px;">Aksi</th>
                     </thead>
                     <tbody>
-                      <?php
-                        $no=1; 
-                        foreach ($kunjunganPasien->result() as $kp) {
-                      ?>
+                    	<?php 
+                    	$no=1;
+                    	foreach ($cariData->result() as $data) { ?>
                       <tr>
-                        <td><?php echo $no++; ?></td>
-                        <td><?php echo $kp->nama_pelayanan; ?></td>
-                        <td><?php echo $kp->nama_pasien; ?></td>
-                        <td><?php echo $kp->nama_dokter; ?></td>
-                        <td><?php echo $kp->no_antrian; ?></td>
-                        <td><?php echo $kp->tgl_antrian; ?></td>
-                        <td><?php echo $kp->status_antrian; ?></td>
-                        <td><?php echo $kp->kode_antrian; ?></td>
+                        <td><?php echo $no++;?></td>
+                        <td><?php echo $data->nama_pelayanan;?></td>
+                        <td><?php echo $data->nama_pasien;?></td>
+                        <td><?php echo $data->nama_dokter;?></td>
+                        <td><?php echo $data->no_antrian;?></td>
+                        <td><?php echo $data->tgl_antrian;?></td>
+                        <td><?php echo $data->status_antrian;?></td>
+                        <td><?php echo $data->kode_antrian;?></td>
                         <td>
-                          <center>
+                        	<center>
                             <?php
-                              $namaPelayanan = $kp->nama_pelayanan;
+                              $namaPelayanan = $data->nama_pelayanan;
                               $jp = str_replace(' ', '', $namaPelayanan);
-                              echo anchor('Antrian/getDataAntrian/'.$kp->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Lihat Data"><i class="fa fa-search"></i></button>'); 
-                              echo " ";
-                              // echo anchor('Antrian/hapusDataAntrian/'.$kp->id,'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                              // </button>');
-                            
-
-                            // $tglSekarang = date('yy-m-d');
-                            // $tgl = $kp->tgl_antrian;  
-                            // $tglSistem = substr($tgl, 0,10);
-                            // if ($tglSistem == $tglSekarang) {
-                            //   $namaPelayanan = $kp->nama_pelayanan;
-                            //   $jp = str_replace(' ', '', $namaPelayanan);
-                            //   echo anchor('Antrian/getDataAntrian/'.$kp->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); 
-                            //   echo " ";
-                            //   echo anchor('Antrian/hapusDataAntrian/'.$kp->id,'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                            //   </button>');
-                            // } else {
-                            //   echo anchor('Antrian/hapusDataAntrian/'.$kp->id, '<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                            //   </button>');
-                            // }
+                              echo anchor('Antrian/getDataAntrian/'.$data->id.'/'.$jp,'<button class="btn btn-info btn-sm" title="Lihat Data"><i class="fa fa-search"></i></button>'); 
                             ?>
-                            <!-- button hapus -->
-                             <?php //echo anchor('Antrian/getDataAntrian/'.$kp->id,'<button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>'); ?>
-                             <!-- button edit -->
-                           <?php //echo anchor('Antrian/hapusDataAntrian/'.$kp->id,
-                           //'<button onclick="return confirm(`yakin hapus?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                            //</button>'); ?>
-                          </center>
+
                         </td>
-                      </tr>
-                      <?php } ?>
+                    </tr>
+                    <?php } ?>
                     </tbody>
                   </table>
                 </div>

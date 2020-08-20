@@ -734,7 +734,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label><b>Tindakan: </b></label>
 		                        <select name="idMacamTindakanImunisasi" id="macTindakan" style="width:100%;" class="form-control">
-		                          <option value="0">Tidak Ada Tindakan</option>
 		                          <?php foreach ($gTi->result() as $ti ) { ?>
 		                          	<option value="<?php echo $ti->id;?>"><?php echo $ti->nama_tindakan;?></option>
 		                          <?php } ?>

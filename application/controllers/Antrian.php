@@ -216,6 +216,11 @@ class Antrian extends CI_Controller {
 				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
 			}
     }
+
+    public function filter(){
+      $data['cariData'] = $this->Antrian_model->filter();
+      $this->load->view('filterKunjungan',$data);
+    }
     
 
 }
