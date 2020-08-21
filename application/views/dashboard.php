@@ -91,43 +91,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="panel-header panel-header-sm">
       </div>
       <div class="content">
-        <!-- <div class="row">
-         
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header card-antrian">
-
-                <?php //foreach ($hitungPengunjung->result() as $hitung) {
-                    // echo "<center style='font-size:33px;'>".$hitung->kunjungan."</center>";
-                  //}?>
-                <div class="card-title d-flex justify-content-center">Kunjungan 
-               
-                </div>
-              </div>
-              <div class="card-body d-flex justify-content-center">
-                <i class="fa fa-users fa-10x"></i>
-              </div>
-              <div class="card-footer">
-                <a href="#tambahKunjungan">Tambah Kunjungan<i class="fa fa-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header card-pasien">
-                <div class="card-category d-flex justify-content-center">!</div>
-                <div class="card-title d-flex justify-content-center">Pasien</div>
-              </div>
-              <div class="card-body d-flex justify-content-center">
-                <i class="fa fa-book fa-10x"></i>
-              </div>
-              <div class="card-footer">
-                <a href="#tambahPasien">Tambah Pasien Baru <i class="fa fa-arrow-right"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>  -->      
-
         <div class="row">
           <div id="table" class="col-md-12">
             <div class="card" id="pasienharusdilayani">
@@ -139,6 +102,241 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
               <div class="card-body">
+                <?php
+                  // error_reporting(0);
+                  $panggilAntrian = $_GET['panggil'];
+                  $pecah = explode('-', $panggilAntrian);
+                  $number = $pecah[0];
+                  $poli = $pecah[1];
+                ?>
+                <?php
+                  // $angka=$_GET['angka'];
+                  $angka = 198;
+                  echo $angka;
+                  
+                  if (strlen($angka) == 1) {
+                ?>
+                  <!-- jika var angka jumlah digitnya 1 -->
+                  <audio id="myAudio">
+                    <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                  </audio>
+                  <audio id="myAudio3">
+                    <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                  </audio>
+                  <audio id="myAudio4">
+                      <source src="<?php echo base_url('assets/rekaman/'.$angka.'.wav');?>" type="audio/wav">
+                  </audio>
+
+
+                  <!-- jika var angka jumlah digitnya 1 -->
+
+                <?php } else if(strlen($angka) == 2){ ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+                    <?php
+                      if ($angka == 10) { ?>
+                      <!-- jika $angka isinya 10 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 10 -->
+
+                    <?php   } else if ($angka == 11){ ?>
+                      <!-- jika $angka isinya 11   -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 11   -->
+
+                    <?php } else if ($angka >=12 && $angka <=19){ ?>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 20 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong = substr($angka, 1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 19 -->
+                    
+                      <!-- jika $angka isinya 20 - 99 -->
+                    <?php } else if ($angka >=20 && $angka <=99){ ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka,1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong1.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya 20 - 99 -->
+                  <?php } ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+
+                  <!-- jika var angka jumlah digitnya 3 -->
+                <?php } else if(strlen($angka) == 3){ ?>
+                      <!-- jika $angka isinya =100 -->
+                      <?php if ($angka == 100) { ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya =100 -->
+
+                        <!-- jika $angka isinya 101 sampai 109 -->
+                      <?php } else if ($angka >=101 && $angka <=109) { ?>
+                          <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 101 sampai 109 -->
+
+                          <!-- jika $angka isinya = 110 -->
+                      <?php } else if ($angka == 110) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya = 110 -->
+
+                          <!-- jika $angka isinya =111 -->
+                      <?php } else if ($angka == 111 ) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika angka isinya =111 -->
+
+                          <!-- jika $angka isinya 112 sampai 119 -->
+                      <?php } else if ($angka >=112 && $angka <= 119) { ?>
+                          <?php
+                            // $potong1 = substr($angka, 0,1);
+                            // $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 112 sampai 119 -->
+
+                          <!-- jika $angka isinya 120 sampai 199 -->
+                      <?php } else if ($angka >=120 && $angka <=199){ ?> 
+                            <?php
+                            // $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                            ?>
+                            <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                            </audio>
+                            <audio id="myAudio3">
+                              <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                            </audio>
+                            <audio id="myAudio4">
+                                <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio2">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio5">
+                                <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio6">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                            </audio>
+                      <?php } ?>
+                      
+                <?php } ?>
+                  <!-- jika var angka jumlah digitnya 3 -->
+
+                <button onclick="playAudio()" type="button">Play</button>
+
+
+
+
+
+
+
+                  
+
+               
+
                 <div class="table-responsive">
                   <table id="tableHarusDilayani" class="table table-striped table-hover">
                     <thead class="table-danger">
@@ -162,10 +360,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><?php echo $hd->status_antrian;?></td>
                         <td><?php echo $hd->tgl_antrian;?></td>
                         <td>
-                          <?php echo anchor('Dashboard/updateDataAntrian/'.$hd->id,'<button class="btn btn-info btn-sm" title="Layani Pasien" style="width:85px;"><i class="fa fa-check"></i>Layani</button>'); ?> 
+                          <?php echo anchor('Dashboard/updateDataAntrian/'.$hd->id.'/'.$hd->no_antrian.'/'.str_replace(' ', '', $hd->nama_pelayanan),'<button class="btn btn-info btn-sm" title="Layani Pasien" style="width:85px;"><i class="fa fa-check"></i>Layani</button>'); ?> 
                         </td>
-
-                        
                       </tr>
                       <?php } ?>
                     </tbody>
@@ -175,56 +371,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div> 
-       <!--  <div class="row">
-          <div id="table" class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="row">
-                  <div class="col-6">
-                    <h4 class="card-title"> Pasien yang sedang dilayani: </h4>
-                  </div>
-                </div>
-              </div>
-              <div class="card-body" id="pasienSedangDilayani">
-                <div class="table-responsive">
-                  <table id="tableSedangDilayani" class="table table-striped table-hover">
-                    <thead class="table-warning">
-                      <th>No. Antrian</th>
-                      <th>Nama Pasien</th>
-                      <th>Jenis Pelayanan</th>
-                      <th>Dokter</th>
-                      <th>Status</th>
-                      <th>Waktu</th>
-                      <th>Aksi</th>
-                    </thead>
-                    <tbody>
-                      <?php
-                        //foreach ($sedangDilayani->result() as $sd) {
-                      ?>
-                      <tr>
-                        <td><?php //echo $sd->no_antrian;?></td>
-                        <td><?php //echo $sd->nama_pasien;?></td>
-                        <td><?php //echo $sd->nama_pelayanan;?></td>
-                        <td><?php //echo $sd->nama_dokter;?></td>
-                        <td><?php //echo $sd->status_antrian;?></td>
-                        <td><?php //echo $sd->tgl_antrian;?></td> 
-                        <td>
-                          <?php 
-                              //$text = $sd->nama_pelayanan;
-                              //$whitespace = str_replace(' ', '', $text);
-                              //$kalimat = "#".$whitespace; ?> 
-                          <button style="width:85px" class="btn btn-success btn-sm" data-toggle="modal" data-target="<?php //echo $kalimat.$sd->id;?>" ><i class="fa fa-check"></i>Selesai</button></td>
-                      </tr>
-                       tadinya disini 
-                      <?php //} ?>
-                    </tbody>
-                  </table>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+       
         <div class="row">
           <div id="table" class="col-md-12">
             <div class="card">
@@ -374,1392 +521,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <!-- end pop up tambah kunjungan -->
 
-        <!-- pop up tambah pasien -->
-        <div class="modal fade" id="tambahPasien" role="dialog" aria-labelledby="tambahPasienLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="tambahPasienLabel">Tambah Pasien</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <!-- <form id="formDataTambahPasien"> -->
-                <form action="<?php echo base_url('Dashboard/simpanDataPasien');?>" method="POST">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <h1>Data Umum</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>No. Rekam Medis (RM)</label>
-                        <input type="text" name="no_registrasi" class="form-control" placeholder="No. Buku / No. Reg" >
-                       <!--  <input type="text" name="no_registrasi" class="form-control" placeholder="No. Buku / No. Reg" required readonly> -->
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12">
-                      <h1>Data Pasien</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>NIK</label>
-                        <input type="text" name="nik" class="form-control" placeholder="NIK" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
-                      </div>
-                    </div>
-                     <div class="col-md-12">
-                      <label>Jenis Kelamin : </label>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jk_pasien" value="Laki-Laki" checked>
-                        <label>Laki-Laki</label> 
-                      </div>
-                    </div>
-                    <div class="col-md-2">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="jk_pasien" value="Perempuan"> 
-                        <label>Perempuan</label>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pendidikan Pasien</label>
-                        <select name="pendidikan_istri" class="form-control">
-                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
-                          <option value="SD">SD</option>
-                          <option value="SMP">SMP</option>
-                          <option value="SLTA">SLTA</option>
-                          <option value="D1">D1</option>
-                          <option value="D3">D3</option>
-                          <option value="D4">D4</option>
-                          <option value="S1">S1</option>
-                          <option value="S2">S2</option>
-                          <option value="S3">S3</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Agama Pasien</label>
-                        <select name="agama_istri" class="form-control">
-                          <option value="Islam" selected="selected">Islam</option>
-                          <option value="Kristen">Kristen</option>
-                          <option value="Hindu">Hindu</option>
-                          <option value="Budha">Budha</option>
-                          <option value="Protestan">Protestan</option>
-                          <option value="Kong Hu Chu">Kong Hu Chu</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pekerjaan Pasien</label>
-                        <select name="pekerjaan_istri" class="form-control" required></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat KTP</label>
-                        <input type="text" name="alamat_ktp_istri" class="form-control" placeholder="Alamat KTP">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat Domisili</label>
-                        <input type="text" name="alamat_istri" class="form-control" placeholder="Alamat Domisili">
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12">
-                      <h1>Data Penanggung Jawab (Suami/Istri/Ibu)</h1>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Nama Ayah Kandung</label>
-                        <input type="text" name="nama_ayah_kandung" class="form-control" placeholder="Nama Ayah Kandung">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Penanggung Jawab</label>
-                        <input type="text" name="nama_suami" class="form-control" placeholder="Penanggung Jawab" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tgl_lahir_suami" class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
-                      </div>
-                    </div>
-
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pendidikan</label>
-                        <select name="pendidikan_suami" class="form-control">
-                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
-                          <option value="SD">SD</option>
-                          <option value="SMP">SMP</option>
-                          <option value="SLTA">SLTA</option>
-                          <option value="D1">D1</option>
-                          <option value="D3">D3</option>
-                          <option value="D4">D4</option>
-                          <option value="S1">S1</option>
-                          <option value="S2">S2</option>
-                          <option value="S3">S3</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Agama</label>
-                        <select name="agama_suami" class="form-control">
-                          <option value="Islam" selected="selected">Islam</option>
-                          <option value="Kristen">Kristen</option>
-                          <option value="Hindu">Hindu</option>
-                          <option value="Budha">Budha</option>
-                          <option value="Protestan">Protestan</option>
-                          <option value="Kong Hu Chu">Kong Hu Chu</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Pekerjaan</label>
-                        <select name="pekerjaan_suami" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat KTP</label>
-                        <input type="text" name="alamat_ktp_suami" class="form-control" placeholder="Alamat KTP">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Alamat Domisili</label>
-                        <input type="text" name="alamat_suami" class="form-control" placeholder="Alamat Domisili">
-                      </div>
-                    </div>
-                    <hr>
-
-                    <div class="col-md-12 formTambahan">
-                      <h1>Data Tambahan</h1>
-                      <!-- <div class="alert alert-danger" role="alert">
-                        Catatan: Khusus untuk <b>Kabupaten Bandung Barat</b> silahkan pilih nama desa, selain itu nama desa biarkan "<b>Tidak Ada</b>".
-                      </div> -->
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Kota</label>
-                        <select name="id_kota" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Desa</label>
-                        <select name="id_desa" class="form-control"></select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Golongan Darah</label>
-                        <select name="gol_darah" class="form-control">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="AB">AB</option>
-                          <option value="O">O</option>
-                          <option value="-" selected="selected">-</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>No Telp / WA</label>
-                        <input type="text" name="no_telp_pasien" class="form-control" placeholder="No Telepon">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Alamat Email</label>
-                        <input type="email" name="email" class="form-control" placeholder="Alamat Email">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Medsos</label>
-                        <input type="text" name="medsos" class="form-control" placeholder="Medsos">
-                      </div>
-                    </div>
-                    <div class="col-md-12 formTambahan">
-                      <div class="form-group">
-                        <label>Catatan Bidan</label>
-                        <select name="catatan_bidan" class="form-control" multiple>
-                          <option value="Metoda REFRESH">Metoda REFRESH</option>
-                          <option value="TP (Catat & Masukan Ke KTP)">TP (Catat & Masukan Ke KTP)</option>
-                          <option value="Rencana Persalinan">Rencana Persalinan</option>
-                          <option value="Brosur">Brosur</option>
-                          <option value="Tanda Persalinan >= 37 mgg">Tanda Persalinan >= 37 mgg</option>
-                          <option value="Breast Care >= 37 mgg">Breast Care >= 37 mgg</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                  <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                  <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
-                </div>
-                </form>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-
-        <?php
-          foreach ($sedangDilayani->result() as $sd) {
-        ?>
-        <div class="modal fade" id="PemeriksaanUmum<?php echo $sd->id;?>" role="dialog" aria-labelledby="pemeriksaanUmumLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="pemeriksaanUmumLabel">Pemeriksaan Umum</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="<?php echo base_url('Dashboard/simpanPemeriksaanUmum');?>" method="POST" >
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <input type="text" name="idAntrian" value="<?php echo $sd->id;?>" hidden>
-                        <input type="text" value="<?php echo $sd->no_antrian;?>"class="form-control" placeholder="No. Antrian" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" value="<?php echo $sd->nama_pasien;?>"class="form-control" placeholder="Nama Pasien" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <input type="text" value="<?php echo $sd->nama_pelayanan;?>" class="form-control" placeholder="Jenis Pelayanan" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3><b>Hasil Pemeriksaan:</b></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                          <input type="text" name="jenisKelamin" value="<?php echo $sd->jk_pasien;?>" class="form-control" readonly >
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Nama Penyakit</label>
-                        <select name="idPenyakit" id="namPenyakit" style="width:100%;"class="form-control">
-                           <?php
-                            foreach ($penyakit->result() as $pen){
-                          ?>
-                          <option value="<?php echo $pen->id;?>"> <?php echo $pen->nama_penyakit;?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Rentang Umur</ label>
-                        <select name="idRentangUmur" id="renUmur" style="width:100%;" class="form-control">
-                          <?php
-                            foreach ($rUmur->result() as $ru){
-                          ?>
-                          <option value="<?php echo $ru->id;?>"><?php echo $ru->rentang_umur;?></option>
-                          <?php
-                            }
-                          ?>
-                        </select>
-                        
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tindakan: </label>
-                        <select name="idTindakan" class="form-control" id="tindakan" style="width:100%;">
-                          <?php
-                            foreach ($tindakan->result() as $tin ) {
-                          ?>
-                          <option value="<?php echo $tin->id;?>"><?php echo $tin->nama_tindakan;?></option>
-                          <?php
-                            }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Catatan</label>
-                        <textarea name="catatanDokter" class="form-control"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
-                  </div>
-                </form>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <?php } ?>
-
-        <!-- pop up program ispa -->
-        <?php
-          foreach ($sedangDilayani->result() as $sd) {
-        ?>
-        <div class="modal fade" id="ProgramISPA<?php echo $sd->id;?>" role="dialog" aria-labelledby="programIspaLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="programIspaLabel">Program ISPA</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form method="post" action="<?php echo base_url('Dashboard/simpanDataProgramIspa');?>">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <input type="text" name="idAntrian" value="<?php echo $sd->id;?>" hidden>
-                        <input type="text" class="form-control" value="<?php echo $sd->no_antrian;?>"placeholder="No. Antrian" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" name="namaPasien" class="form-control" value="<?php echo $sd->nama_pasien;?>"placeholder="Nama Pasien" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <input type="text" name="nama_pelayanan" value="<?php echo $sd->nama_pelayanan;?>" class="form-control" placeholder="Jenis Pelayanan" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3><b>Hasil Pemeriksaan:</b></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Nama Anak</label>
-                        <input type="text" name="namaAnak" class="form-control" placeholder="Nama Anak" value="<?php echo $sd->nama_pasien;?>" readonly required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <input type="text" name="jk" class="form-control" value="<?php echo $sd->jk_pasien; ?>" readonly>
-                        
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Umur (tahun)</label>
-                        <?php
-                        //waktu sekarang
-                        $tglSekarang = date('yy-m-d');
-                        $waktuSekarang = explode('-', $tglSekarang);
-                        //tgl lahir pasien
-                        $tglPasien= $sd->tgl_lahir;
-                        $waktuPasien = explode('-',$tglPasien);
-                        //hitung umur
-                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
-                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
-                        //hasil umur
-                        $umurPasienTahun=abs($getTahun); 
-                        $umurPasienBulan=abs($getBulan);
-                        ?>
-
-                        <input type="number" name="umurTahun" value="<?php echo $umurPasienTahun;?>" class="form-control" placeholder="Umur (tahun)">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Umur (bulan)</label>
-                        <input type="number" name="umurBulan" value="<?php echo $umurPasienBulan;?>" class="form-control" placeholder="Umur (bulan)">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>TB/PB</label>
-                        <input type="number" name="tbPb" class="form-control" placeholder="Tinggi / Panjang Badan">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>BB</label>
-                        <input type="number" name="bb" class="form-control" placeholder="Berat Badan">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Catatan</label>
-                        <textarea name="catatan" class="form-control"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
-                  </div>
-
-                </form>
-                
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <?php } ?>
-        <!-- end pop up program ispa -->
-
-        <!-- pop up imunisasi label -->
-        <?php
-          foreach ($sedangDilayani->result() as $sd) {
-        ?>
-        <div class="modal fade" id="Imunisasi<?php echo $sd->id;?>" role="dialog" aria-labelledby="imunisasiLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <!-- untuk get data id pasien -->
-                <?php
-                  $kirimIdPasien=$sd->id_pasien;
-                  $this->controller->getBbLahir($kirimIdPasien);
-                ?>
-                <?php
-                  // var_dump($this->controller->getBbLahir($kirimIdPasien));
-                  // foreach ($this->controller->getBbLahir($kirimIdPasien) as $bbL) {
-                  //   echo $bbL->bb_lahir;
-                  // }
-                 ?>
-                <!-- untuk get data id pasien -->
-                <h5 class="modal-title" id="imunisasiLabel">Imunisasi</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="<?php echo base_url('Dashboard/simpanDataImunisasi'); ?>" method="post">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <input type="text" name="idAntrian" value="<?php echo $sd->id;?>" hidden>
-                        <input type="text" value="<?php echo $sd->no_antrian;?>"class="form-control" placeholder="No. Antrian" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" name="idPasien" value="<?php echo $sd->id_pasien;?>" hidden>
-                        <input type="text" class="form-control" value="<?php echo $sd->nama_pasien;?>"placeholder="Nama Pasien" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <input type="text" class="form-control" value="<?php echo $sd->nama_pelayanan;?>" placeholder="Jenis Pelayanan" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3><b>Hasil Pemeriksaan:</b></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Nama Anak</label>
-                        <input type="text" name="namaAnak" value="<?php echo $sd->nama_pasien;?>" class="form-control" placeholder="Nama Anak" required>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>No. KK Ortu</label>
-                        <?php
-                          if ($sd->no_kk == '-') {
-                        ?>
-                        <input type="text" name="noKk" value="<?php echo $sd->no_kk;?>" class="form-control" placeholder="No. KK Orang Tua">    
-                        <?php } else { ?>
-                        <input type="text" name="noKk" value="<?php echo $sd->no_kk;?>" class="form-control" placeholder="No. KK Orang Tua" readonly>    
-                        <?php
-                        }
-                        ?>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Alamat</label>
-                        <textarea name="alamat" class="form-control" placeholder="Alamat"><?php echo $sd->alamat_istri;?></textarea>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tglLahir" value="<?php echo $sd->tgl_lahir;?>"  class="form-control" placeholder="Tanggal Lahir" readonly required>
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>BB Lahir (Gram)</label>
-                        <?php
-                          if (count($this->controller->getBbLahir($kirimIdPasien)) == '1') {
-                              foreach ($this->controller->getBbLahir($kirimIdPasien) as $bbL) {
-                        ?>
-                              <input type="number" value="<?php echo $bbL->bb_lahir; ?>" name="bbLahir" class="form-control" placeholder="Berat Badan Lahir" readonly>
-                              <?php } ?>
-                        <?php
-                          } else {
-                        ?>
-                            <input type="text" name="bbLahir" class="form-control" placeholder="Berat Badan Lahir">
-                        <?php } ?>
-                          
-                          
-                          
-                        
-
-                          
-                      </div>
-                    </div>
-
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>BB (Gram)</label>
-                        <input type="number" name="bb"  class="form-control" placeholder="Berat Badan">
-                        
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>PB (cm)</label>
-                        <input type="number" name="pb" class="form-control" placeholder="Panjang Badan">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Catatan</label>
-                        <textarea name="catatan" class="form-control"></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3><b>Macam Imunisasi:</b></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Hb0</label>
-                        <select name="hb0" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>BCG</label>
-                        <select name="bcg" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Polio 1</label>
-                        <select name="polio1" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Polio 2</label>
-                        <select name="polio2" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Polio 3</label>
-                        <select name="polio3" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Polio 4</label>
-                        <select name="polio4" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Pentabio 1</label>
-                        <select name="pentabio1" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Pentabio 2</label>
-                        <select name="pentabio2" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Pentabio 3</label>
-                        <select name="pentabio3" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Campak</label>
-                        <select name="campak" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>TT</label>
-                        <select name="tt" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Pentabio Ulang</label>
-                        <select name="pentabioUlang" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group">
-                        <label>Campak Ulang</label>
-                        <select name="campakUlang" class="form-control">
-                          <option value="0" selected>Tidak</option>
-                          <option value="1">Ya</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label><b>Tindakan: </b></label>
-                        <select name="idMacamTindakanImunisasi" id="macTindakan" style="width:100%;" class="form-control">
-                          <option value="0">Tidak Ada Tindakan</option>
-                          <?php
-                            foreach ($tindakan->result() as $tin) {
-                          ?>
-                          <option value="<?php echo $tin->id;?>"><?php echo $tin->nama_tindakan;?></option>
-                          <?php
-                            }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
-                  </div>
-                </form>
-              </div>
-             
-            </div>
-          </div>
-        </div>
-        <?php } ?>
-        <!-- end pop up imunisasi  -->
-        
-
-        <!-- pop up persalinan/pertus -->
-        <?php
-          foreach ($sedangDilayani->result() as $sd) {
-        ?>
-        <div class="modal fade" id="Persalinan<?php echo $sd->id;?>" role="dialog" aria-labelledby="persalinanLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="persalinanLabel">Persalinan / Partus</h5>
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="<?php echo base_url('Dashboard/simpanDataPersalinan');?>" method="post">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <input type="text" name="idAntrian" value="<?php echo $sd->id;?>" hidden>
-                        <input type="text" value="<?php echo $sd->no_antrian;?>" class="form-control" placeholder="No. Antrian" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="hidden" name="idPasien" value=<?php echo $sd->id_pasien;?> class="form-control" hidden>
-                        <input type="text" value="<?php echo $sd->nama_pasien;?>"class="form-control" placeholder="Nama Pasien" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <input type="text" class="form-control" value="<?php echo $sd->nama_pelayanan;?>"placeholder="Jenis Pelayanan" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3><b>Hasil Pemeriksaan:</b></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Umur</label>
-                        <?php
-                        //waktu sekarang
-                        $tglSekarang = date('yy-m-d');
-                        $waktuSekarang = explode('-', $tglSekarang);
-                        //tgl lahir pasien
-                        $tglPasien= $sd->tgl_lahir;
-                        $waktuPasien = explode('-',$tglPasien);
-                        //hitung umur
-                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
-                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
-                        //hasil umur
-                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("getHari")." Hari"; 
-                        ?>
-                        <input type="text" value="<?php echo $umurPasien;?>" name="umur" class="form-control" placeholder="Umur" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Alamat</label>
-                        <textarea name="alamat" class="form-control" placeholder="Alamat"><?php echo  $sd->alamat_istri; ?></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Anak Ke</label>
-                        <input type="number" name="anakKe" class="form-control" placeholder="Anak Ke" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>BB (kg)</label>
-                        <input type="number" name="bb" class="form-control" placeholder="Berat Badan" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>PB (cm)</label>
-                        <input type="number" name="pb" class="form-control" placeholder="Panjang Badan" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tglLahir" class="form-control" placeholder="Tanggal Lahir"  required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jam</label>
-                        <input type="time" name="jamLahir" class="form-control" placeholder="Jam Lahir" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <select name="jenisKelamin" class="form-control">
-                          <option value="Laki-Laki" selected>Laki-laki</option>
-                          <option value="Perempuan" >Perempuan</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>IMD</label>
-                        <select name="imd" class="form-control">
-                          <option value="1" selected>Ya</option>
-                          <option value="0">Tidak</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Lingkar Kepala</label>
-                        <input type="number" name="lingkarKepala" class="form-control" placeholder="Lingkar Kepala" required>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Resiko</label>
-                        <textarea name="resiko" class="form-control"></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Keterangan</label>
-                        <textarea name="keterangan" class="form-control"></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Catatan</label>
-                        <textarea name="catatan" class="form-control"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
-                  </div>
-                </form>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <?php
-          }
-        ?>
-        <!-- end pop up persalinan -->
-
-        <?php
-          foreach ($sedangDilayani->result() as $sd) {
-        ?>
-        <!-- pop up pemeriksaan kehamilan -->
-        <div class="modal fade" id="PemeriksaanKehamilan<?php echo $sd->id; ?>" role="dialog" aria-labelledby="pemeriksaanKehamilanLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="pemeriksaanKehamilanLabel">Pemeriksaan Kehamilan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="<?php echo base_url('Dashboard/simpanDataPemeriksaanKehamilan');?>" method="post">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <input type="text" name="idAntrian" value="<?php echo $sd->id;?>" hidden>
-                        <input type="text" value="<?php echo $sd->no_antrian;?>" class="form-control" placeholder="No. Antrian" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" name="idPasien" value="<?php echo $sd->id_pasien;?>" class="form-control" hidden>
-                        <input type="text" value="<?php echo $sd->nama_pasien;?>"class="form-control" placeholder="Nama Pasien" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <input type="text" value="<?php echo $sd->nama_pelayanan?>"class="form-control" placeholder="Jenis Pelayanan" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3><b>Hasil Pemeriksaan:</b></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" name="tglLahir" value="<?php echo $sd->tgl_lahir;?>" class="form-control" placeholder="Tanggal Lahir" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>NIK</label>
-                        <input type="text" name="nik" class="form-control" value="<?php echo $sd->nik;?>" placeholder="NIK" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Umur</label>
-                        <?php
-                        //waktu sekarang
-                        $tglSekarang = date('yy-m-d');
-                        $waktuSekarang = explode('-', $tglSekarang);
-                        //tgl lahir pasien
-                        $tglPasien= $sd->tgl_lahir;
-                        $waktuPasien = explode('-',$tglPasien);
-                        //hitung umur
-                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
-                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
-                        //hasil umur
-                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("getHari")." Hari"; 
-                        ?>
-                        <input type="text" name="umur" value="<?php echo $umurPasien;?>"  class="form-control" placeholder="Umur" readonly required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Nama Suami</label>
-                        <input type="text" name="namaSuami" value="<?php echo $sd->nama_suami;?>"class="form-control" placeholder="Nama Suami" readonly required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>No. KK</label>
-                        <?php 
-                          if (empty($sd->no_kk)){
-                        ?>
-                          <input type="text" name="noKk" class="form-control" placeholder="No. KK" >  
-                        <?php } else { ?>
-                          <input type="text" name="noKk" value="<?php echo $sd->no_kk;?>" class="form-control" placeholder="No. KK" readonly>
-                        <?php } ?>
-                        
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>KIA</label>
-                        <!-- <input type="text" name="buku_kia" class="form-control" placeholder="Buku KIA"> -->
-                        <select name="bukuKia" class="form-control">
-                          <option value="lama">Lama</option>
-                          <option value="baru">Baru</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Alamat</label>
-                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly> <?php echo $sd->alamat_istri;?> </textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>HPHT</label>
-                        <input type="date" name="hpht" class="form-control" placeholder="HPHT" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>TP</label>
-                        <input type="date" name="tp" class="form-control" placeholder="TP" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>BB</label>
-                        <input type="number" name="bb" class="form-control" placeholder="Berat Badan" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>TB</label>
-                        <input type="number" name="tb" class="form-control" placeholder="Tinggi Badan" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Usia Kehamilan (minggu)</label>
-                        <input type="text" name="usiaKehamilan" class="form-control" placeholder="Usia Kehamilan" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>GPA</label>
-                        <input type="text" name="gpa" class="form-control" placeholder="GPA" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>K1</label>
-                        <select name="k1" class="form-control">
-                          <option value="1" selected>Ya</option>
-                          <option value="0">Tidak</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>K4</label>
-                        <select name="k4" class="form-control">
-                          <option value="1" selected>Ya</option>
-                          <option value="0">Tidak</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>TT</label>
-                        <input type="text" name="tt" class="form-control" placeholder="TT">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>LILA (cm)</label>
-                        <input type="number" name="lila" class="form-control" placeholder="LILA (cm)" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Hb (g/dl)</label>
-                        <input type="number" name="hb" class="form-control" placeholder="Hb (g/dl)">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Resiko</label>
-                        <textarea name="resiko" class="form-control"></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Keterangan (10 T, Jumlah Fe)</label>
-                        <textarea name="keterangan" class="form-control"></textarea>
-                      </div>
-                    </div>
-                    <!-- <div class="col-md-6">
-                      <div class="form-group">
-                        <label>VCT</label>
-                        <input type="text" name="vct" class="form-control" placeholder="VCT" required>
-                      </div>
-                    </div> -->
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Keterangan Hamil</label>
-                        <select name="baruLama" class="form-control">
-                          <option value="BARU" selected>Baru</option>
-                          <option value="LAMA">Lama</option>
-                        </select>
-                      </div>
-                    </div>  
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Catatan</label>
-                        <textarea name="catatan" class="form-control"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
-                  </div>
-                </form>
-              </div>
-             
-            </div>
-          </div>
-        </div>
-        <?php } ?>
-        <!-- end pop up pemeriksaan kehamilah -->
-
-        <?php
-          foreach ($sedangDilayani->result() as $sd) {
-        ?>
-        <!-- pop up pemerikasaan KB -->
-        <div class="modal fade" id="KB<?php echo $sd->id;?>" role="dialog" aria-labelledby="pemeriksaanKBLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="pemeriksaanKBLabel">Pemeriksaan KB</h5>
-                <?php
-                  $idPasienKb=$sd->id_pasien;
-                  $this->controller->getJmlAnak($idPasienKb);
-                ?>
-                
-
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form action="<?php echo base_url('Dashboard/simpanPemeriksaanKb');?>" method="post">
-                  <div class="row">
-                    <div class="col-md-4">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <input type="text" name="idAntrian" hidden value="<?php echo $sd->id;?>">
-                        <input type="text" value="<?php echo $sd->no_antrian;?>"name="noAntrian" class="form-control" placeholder="No. Antrian" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-8">
-                      <div class="form-group">
-                        <label>Nama Pasien</label>
-                        <input type="text" value="<?php echo $sd->id_pasien;?>" name="idPasien" hidden>
-                        <input type="text" value="<?php echo $sd->nama_pasien;?>" name="namaPasien" class="form-control" placeholder="Nama Pasien" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Agama</label>
-                        <input type="text" value="<?php echo $sd->nama_pasien;?>" class="form-control" placeholder="Nama Pasien" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <input type="text" value="<?php echo $sd->nama_pelayanan;?>"class="form-control" placeholder="Jenis Pelayanan" readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <h3><b>Hasil Pemeriksaan:</b></h3>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Umur</label>
-                        <?php
-                        //waktu sekarang
-                        $tglSekarang = date('yy-m-d');
-                        $waktuSekarang = explode('-', $tglSekarang);
-                        //tgl lahir pasien
-                        $tglPasien= $sd->tgl_lahir;
-                        $waktuPasien = explode('-',$tglPasien);
-                        //hitung umur
-                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
-                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
-                        //hasil umur
-                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("getHari")." Hari"; 
-                        ?>
-                        <input type="text" name="umurPasien" value="<?php echo $umurPasien; ?>" class="form-control" readonly placeholder="Umur" required>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Nama Suami</label>
-                        <input type="text" value="<?php echo $sd->nama_suami;?>"name="namaSuami" class="form-control" placeholder="Nama Suami">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Alamat</label>
-                        <textarea name="alamatPasien" class="form-control" placeholder="Alamat"><?php echo $sd->alamat_istri; ?></textarea>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-
-                        <label>Jumlah Anak Laki-laki</label>
-                        
-                        <?php
-                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
-                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
-                        ?>
-                            <input type="number" value="<?php echo $pkb->jml_anak_laki; ?>" name="jmlAnakLaki" id="anakL" class="form-control" placeholder="Jumlah Anak Laki-laki" >                      
-                            <?php } ?>
-
-                        <?php } else { ?>
-                            <input type="number" name="jmlAnakLaki" class="form-control" id="anakLL" placeholder="Jumlah Anak Laki-laki">
-                        <?php } ?>                          
-                       
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jumlah Anak Perempuan</label>
-
-                        <?php
-                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
-                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
-                        ?>
-                            <input type="number" value="<?php echo $pkb->jml_anak_perempuan; ?>" name="jmlAnakPerempuan" id="anakP" class="form-control" placeholder="Jumlah Anak Perempuan" >                      
-                            <?php } ?>
-
-                        <?php } else { ?>
-                            <input type="number" name="jmlAnakPerempuan" class="form-control" id="anakPP" placeholder="Jumlah Anak Perempuan">
-                        <?php } ?>
-
-                      </div>
-                    </div>
-                      
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jumlah Anak</label>
-
-                        <?php
-                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
-                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
-                        ?>
-                            <input type="number" value="<?php echo $pkb->jml_anak; ?>" name="jmlAnak" id="jmlAnak" class="form-control" placeholder="Jumlah Anak" readonly >                      
-                            <?php } ?>
-
-                        <?php } else { ?>
-                            <input type="number" name="jmlAnak" class="form-control" id="jmlAnakk" placeholder="Jumlah Anak" readonly>
-                        <?php } ?>
-
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Usia Anak Terkecil</label>
-
-                        <?php
-                         if (count($this->controller->getJmlAnak($idPasienKb)) == '1'){
-                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
-                        ?>
-                            <input type="number" value="<?php echo $pkb->usia_anak_terkecil; ?>" name="usiaAnakTerkecil" class="form-control" placeholder="Jumlah Anak Terkecil" >                      
-                            <?php } ?>
-
-                        <?php } else { ?>
-                            <input type="number" name="usiaAnakTerkecil" class="form-control" placeholder="Jumlah Anak Terkecil">
-                        <?php } ?>
-
-                      </div>
-                    </div>
-                   
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Satuan Usia</label>
-                        <select name="idSatuanUsia" id="satUsia"class="form-control" style="width:100%;">
-                          <?php
-                            foreach ($this->controller->getJmlAnak($idPasienKb) as $pkb) {
-                          ?>
-                            <option value="<?php echo $pkb->id_satuan_usia;?>">
-                              <?php 
-                              $id = $pkb->id_satuan_usia;
-                              if ($id=='1') {
-                                echo "Hari";
-                              } else if ($id=='2'){
-                                echo "Bulan";
-                              } else if ($id=='3'){
-                                echo "Tahun";
-                              }
-                              ?>
-                            </option>
-                            <?php } ?>
-
-                          <?php
-                            foreach ($satuanUsia->result() as $su) {
-                          ?>
-                          <option value="<?php echo $su->id;?>"><?php echo $su->nama_satuan;?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Pasang Baru</label>
-                        <select name="pasangBaru" id="pasBaru" style="width:100%;" class="form-control">
-                          <option value="1" selected>Ya</option>
-                          <option value="0">Tidak</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Pemasangan / Pencabutan</label>
-                        <select name="pasangCabut" id="pasCabut" style="width:100%;" class="form-control">
-                          <option value="PEMASANGAN" selected>Pemasangan</option>
-                          <option value="PENCABUTAN">Pencabutan</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Alat Kontrasepsi</label>
-                        <select name="idAlatKontra" id="alatKontra" style="width:100%;" class="form-control">
-                          <?php
-                            foreach ($alatKontra->result() as $ak) {
-                          ?>
-                          <option value="<?php echo $ak->id;?>"><?php echo $ak->nama_alat;?></option>
-                          <?php } ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>AKLI</label>
-                        <input type="text" name="akli" class="form-control" placeholder="AKLI">
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>4T</label>
-                        <select name="t4" id="fourT" style="width:100%;" class="form-control">
-                          <option value="1" selected>Ya</option>
-                          <option value="0">Tidak</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Ganti Cara</label>
-                        <input type="textareaxt" name="gantiCara" class="form-control" placeholder="Ganti Cara">
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label>Catatan</label>
-                        <textarea name="catatan" class="form-control"></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-                    <button class="btn btn-sm btn-success"><i class="fa fa-check"></i> Selesai</button>
-                  </div>
-                </form>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-        <?php } ?>
-        <!-- end pop up pemeriksaan kb -->
-
       </div>
     </div>
   </div>
@@ -1837,34 +598,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   </script>
   <!-- js untuk pencarian di inputan select -->
   
-  <!-- js untuk hitung jumlah anak -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-        $("#anakL, #anakP").keyup(function() {
-            var anakL  = $("#anakL").val();
-            var anakP = $("#anakP").val();
-
-            var jmlAnak = parseInt(anakL) + parseInt(anakP);
-            $("#jmlAnak").val(jmlAnak);
-        });
-    });
-
-    $(document).ready(function() {
-        $("#anakLL, #anakPP").keyup(function() {
-            var anakLL  = $("#anakLL").val();
-            var anakPP = $("#anakPP").val();
-
-            var jmlAnak = parseInt(anakLL) + parseInt(anakPP);
-            $("#jmlAnakk").val(jmlAnakk);
-        });
-    });
-  </script>
+  <!-- js untuk suara   -->
   <script>
-    // function cetak() {
-    //     return window.print();
-    // }
-    </script>
-  <!-- js untuk hitung jumlah anak -->
+    var a = document.getElementById("myAudio");
+    var b = document.getElementById("myAudio3");
+    var c = document.getElementById("myAudio4"); 
+    var belas = document.getElementById("myAudio2");
+    var puluhan = document.getElementById("myAudio5");
+    var d = document.getElementById("myAudio6");
+     
+    
+
+    function playAudio() { 
+    a.play();
+    setTimeout(()=>{
+      b.play();
+    },6000);
+    setTimeout(()=>{
+      c.play();
+    },8000);
+    setTimeout(()=>{
+      belas.play();
+    },8699);
+    setTimeout(()=>{
+      puluhan.play();
+    },9489);
+    setTimeout(()=>{
+      d.play();
+    },10000);
+    //   x.play(); 
+    // setTimeout(()=>{
+    // y.play();
+    // },1000);
+       
+    } 
+
+  </script>
+
 </body>
 
 </html>

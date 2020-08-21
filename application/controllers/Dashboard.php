@@ -341,18 +341,8 @@ class Dashboard extends CI_Controller {
     public function updateDataAntrian(){
     	// $id = $this->input->post('id');
     	$id = $this->uri->segment(3);
-        
-        //start untuk simpan data ke table tiap poli yg membutuhkan id_pasien
-        // $idPasien = $this->uri->segment(4);
-        // $namaPelayanan = $this->uri->segment(5);
-        // $data = array('id_pasien'=>$idPasien);
-        // if ($namaPelayanan == 'Imunisasi') {
-        //     $simpanPoli = $this->Dashboard_model->simpanDataImunisasi($data);
-        // }else if ($namaPelayanan == 'KB'){
-        //     $simpanPoli = $this->Dashboard_model->simpanPemeriksaanKb($data);
-        // }
-        // end untuk simpan data ke table tiap pol yg membutuhkan id_pasien
-        
+        $noAntrian = $this->uri->segment(4);
+        $jenisPel  = $this->uri->segment(5);
 
     	$status="Selesai";
 		$data = array('id'=> $id ,'status_antrian' => $status);
@@ -361,7 +351,7 @@ class Dashboard extends CI_Controller {
 			if (!$proses) {
 				// echo "Berhasil";
 				// echo $id;
-				redirect('index.php/Dashboard/#pasienharusdilayani');
+				redirect('index.php/Dashboard/?panggil='.$noAntrian.'-'.$jenisPel);
 				//echo "<script>history.go(-1)</script>";
 			} else {
 				echo "<script>alert('Data Gagal Di Update');history.go(-1)</script>";
