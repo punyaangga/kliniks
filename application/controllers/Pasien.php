@@ -124,7 +124,7 @@ class Pasien extends CI_Controller {
                     
                     if (!$proses & !$prosesDpk) {
                             //script pake print nomor antrian
-                            $url = base_url('index.php/cetakAntrian');
+                            $url = base_url('index.php/cetakKartu');
                             echo "<script>window.open('".$url."','_blank');</script>";
                             echo "<script>history.go(-2);</script>";
 
@@ -174,7 +174,7 @@ class Pasien extends CI_Controller {
                     if (!$proses & !$prosesDpk) {
                             // header('Location: antrian.php');
                             //script pake print nomot antrian
-                            $url = base_url('index.php/cetakAntrian');
+                            $url = base_url('index.php/cetakKartu');
                             echo "<script>window.open('".$url."','_blank');</script>";
                             echo "<script>history.go(-2);</script>";
 
@@ -223,7 +223,7 @@ class Pasien extends CI_Controller {
                         
                         if (!$proses & !$prosesPs) {
                                 //script pake print nomor antrian
-                                $url = base_url('index.php/cetakAntrian');
+                                $url = base_url('index.php/cetakKartu');
                                 echo "<script>window.open('".$url."','_blank');</script>";
                                 echo "<script>history.go(-2);</script>";
 
@@ -265,7 +265,7 @@ class Pasien extends CI_Controller {
                         if (!$proses & !$prosesPs ) {
                                 // header('Location: antrian.php');
                                 //script pake print nomot antrian
-                                $url = base_url('index.php/cetakAntrian');
+                                $url = base_url('index.php/cetakKartu');
                                 echo "<script>window.open('".$url."','_blank');</script>";
                                 echo "<script>history.go(-2);</script>";
 
@@ -328,7 +328,7 @@ class Pasien extends CI_Controller {
                         
                         if (!$proses & !$prosesIm) {
                                 //script pake print nomor antrian
-                                $url = base_url('index.php/cetakAntrian');
+                                $url = base_url('index.php/cetakKartu');
                                 echo "<script>window.open('".$url."','_blank');</script>";
                                 echo "<script>history.go(-2);</script>";
 
@@ -385,7 +385,7 @@ class Pasien extends CI_Controller {
                         if (!$proses & !$prosesIm ) {
                                 // header('Location: antrian.php');
                                 //script pake print nomot antrian
-                                $url = base_url('index.php/cetakAntrian');
+                                $url = base_url('index.php/cetakKartu');
                                 echo "<script>window.open('".$url."','_blank');</script>";
                                 echo "<script>history.go(-2);</script>";
 
@@ -424,7 +424,7 @@ class Pasien extends CI_Controller {
                         
                         if (!$proses & !$prosesUmum) {
                                 //script pake print nomor antrian
-                                $url = base_url('index.php/cetakAntrian');
+                                $url = base_url('index.php/cetakKartu');
                                 echo "<script>window.open('".$url."','_blank');</script>";
                                 echo "<script>history.go(-2);</script>";
 
@@ -456,7 +456,7 @@ class Pasien extends CI_Controller {
                                   
                         if (!$proses & !$prosesUmum) {
                                 //script pake print nomor antrian
-                                $url = base_url('index.php/cetakAntrian');
+                                $url = base_url('index.php/cetakKartu');
                                 echo "<script>window.open('".$url."','_blank');</script>";
                                 echo "<script>history.go(-2);</script>";
 
@@ -495,7 +495,7 @@ class Pasien extends CI_Controller {
                             
                             if (!$proses & !$prosesIspa) {
                                     //script pake print nomor antrian
-                                    $url = base_url('index.php/cetakAntrian');
+                                    $url = base_url('index.php/cetakKartu');
                                     echo "<script>window.open('".$url."','_blank');</script>";
                                     echo "<script>history.go(-2);</script>";
 
@@ -529,7 +529,7 @@ class Pasien extends CI_Controller {
                                       
                             if (!$proses & !$prosesIs) {
                                     //script pake print nomor antrian
-                                    $url = base_url('index.php/cetakAntrian');
+                                    $url = base_url('index.php/cetakKartu');
                                     echo "<script>window.open('".$url."','_blank');</script>";
                                     echo "<script>history.go(-2);</script>";
 
@@ -581,7 +581,7 @@ class Pasien extends CI_Controller {
                             
                             if (!$proses & !$prosesKb) {
                                     //script pake print nomor antrian
-                                    $url = base_url('index.php/cetakAntrian');
+                                    $url = base_url('index.php/cetakKartu');
                                     echo "<script>window.open('".$url."','_blank');</script>";
                                     echo "<script>history.go(-2);</script>";
 
@@ -629,7 +629,7 @@ class Pasien extends CI_Controller {
                                       
                             if (!$proses & !$prosesKb) {
                                     //script pake print nomor antrian
-                                    $url = base_url('index.php/cetakAntrian');
+                                    $url = base_url('index.php/cetakKartu');
                                     echo "<script>window.open('".$url."','_blank');</script>";
                                     echo "<script>history.go(-2);</script>";
 

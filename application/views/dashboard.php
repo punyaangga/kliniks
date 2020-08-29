@@ -103,7 +103,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               </div>
               <div class="card-body">
                 <?php
-                  // error_reporting(0);
+                  error_reporting(0);
                   $panggilAntrian = $_GET['panggil'];
                   $pecah = explode('-', $panggilAntrian);
                   $number = $pecah[0];
@@ -111,9 +111,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 ?>
                 <?php
                   // $angka=$_GET['angka'];
-                  $angka = 198;
-                  echo $angka;
-                  
+                  $angka = $number;
+                if ($poli == "KB") {
+                      
                   if (strlen($angka) == 1) {
                 ?>
                   <!-- jika var angka jumlah digitnya 1 -->
@@ -125,6 +125,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   </audio>
                   <audio id="myAudio4">
                       <source src="<?php echo base_url('assets/rekaman/'.$angka.'.wav');?>" type="audio/wav">
+                  </audio>
+                  <audio id="myAudio5">
+                      <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
                   </audio>
 
 
@@ -144,6 +147,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <audio id="myAudio4">
                             <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
                         </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
+                        </audio>
                       <!-- jika $angka isinya 10 -->
 
                     <?php   } else if ($angka == 11){ ?>
@@ -156,6 +162,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </audio>
                         <audio id="myAudio4">
                             <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
                         </audio>
                       <!-- jika $angka isinya 11   -->
 
@@ -175,6 +184,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </audio>
                         <audio id="myAudio2">
                             <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
                         </audio>
                       <!-- jika $angka isinya lebih dari 11 kurang dari 19 -->
                     
@@ -199,6 +211,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <audio id="myAudio5">
                             <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
                         </audio>
+                        <audio id="myAudio6">
+                            <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
+                        </audio>
                         <!-- jika $angka isinya 20 - 99 -->
                   <?php } ?>
                   <!-- jika var angka jumlah digitnya 2 -->
@@ -215,6 +230,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </audio>
                         <audio id="myAudio4">
                             <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
                         </audio>
                         <!-- jika $angka isinya =100 -->
 
@@ -237,6 +255,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <audio id="myAudio2">
                               <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
                           </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
+                          </audio>
                           <!-- jika $angka isinya 101 sampai 109 -->
 
                           <!-- jika $angka isinya = 110 -->
@@ -253,6 +274,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <audio id="myAudio5">
                               <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
                           </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
+                          </audio>
                           <!-- jika $angka isinya = 110 -->
 
                           <!-- jika $angka isinya =111 -->
@@ -268,6 +292,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           </audio>
                           <audio id="myAudio5">
                               <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
                           </audio>
                           <!-- jika angka isinya =111 -->
 
@@ -292,6 +319,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           </audio>
                           <audio id="myAudio5">
                               <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
                           </audio>
                           <!-- jika $angka isinya 112 sampai 119 -->
 
@@ -320,22 +350,1239 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             <audio id="myAudio6">
                                 <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
                             </audio>
-                      <?php } ?>
-                      
+                            <audio id="myAudio7">
+                                <source src="<?php echo base_url('assets/rekaman/poliKb.wav');?>" type="audio/wav">
+                            </audio>
+                      <?php } ?>     
+                <?php } ?> 
+
+                <!-- untuk poli pemeriksaan umum -->
+                <?php } else if ($poli == "PemeriksaanUmum"){ ?>
+                <?php  if (strlen($angka) == 1) {
+                ?>
+                  <!-- jika var angka jumlah digitnya 1 -->
+                  <audio id="myAudio">
+                    <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                  </audio>
+                  <audio id="myAudio3">
+                    <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                  </audio>
+                  <audio id="myAudio4">
+                      <source src="<?php echo base_url('assets/rekaman/'.$angka.'.wav');?>" type="audio/wav">
+                  </audio>
+                  <audio id="myAudio5">
+                      <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                  </audio>
+
+
+                  <!-- jika var angka jumlah digitnya 1 -->
+
+                <?php } else if(strlen($angka) == 2){ ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+                    <?php
+                      if ($angka == 10) { ?>
+                      <!-- jika $angka isinya 10 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 10 -->
+
+                    <?php   } else if ($angka == 11){ ?>
+                      <!-- jika $angka isinya 11   -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 11   -->
+
+                    <?php } else if ($angka >=12 && $angka <=19){ ?>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 20 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong = substr($angka, 1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 19 -->
+                    
+                      <!-- jika $angka isinya 20 - 99 -->
+                    <?php } else if ($angka >=20 && $angka <=99){ ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka,1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong1.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio6">
+                            <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya 20 - 99 -->
+                  <?php } ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+
+                  <!-- jika var angka jumlah digitnya 3 -->
+                <?php } else if(strlen($angka) == 3){ ?>
+                      <!-- jika $angka isinya =100 -->
+                      <?php if ($angka == 100) { ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya =100 -->
+
+                        <!-- jika $angka isinya 101 sampai 109 -->
+                      <?php } else if ($angka >=101 && $angka <=109) { ?>
+                          <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 101 sampai 109 -->
+
+                          <!-- jika $angka isinya = 110 -->
+                      <?php } else if ($angka == 110) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya = 110 -->
+
+                          <!-- jika $angka isinya =111 -->
+                      <?php } else if ($angka == 111 ) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika angka isinya =111 -->
+
+                          <!-- jika $angka isinya 112 sampai 119 -->
+                      <?php } else if ($angka >=112 && $angka <= 119) { ?>
+                          <?php
+                            // $potong1 = substr($angka, 0,1);
+                            // $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 112 sampai 119 -->
+
+                          <!-- jika $angka isinya 120 sampai 199 -->
+                      <?php } else if ($angka >=120 && $angka <=199){ ?> 
+                            <?php
+                            // $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                            ?>
+                            <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                            </audio>
+                            <audio id="myAudio3">
+                              <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                            </audio>
+                            <audio id="myAudio4">
+                                <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio2">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio5">
+                                <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio6">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio7">
+                                <source src="<?php echo base_url('assets/rekaman/poliUmum.wav');?>" type="audio/wav">
+                            </audio>
+                      <?php } ?>     
+                <?php } ?>
+
+
+                <!-- untuk pemeriksaan imunisasi -->
+                <?php } else if ($poli == "Imunisasi"){ ?>
+                <?php  if (strlen($angka) == 1) {
+                ?>
+                  <!-- jika var angka jumlah digitnya 1 -->
+                  <audio id="myAudio">
+                    <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                  </audio>
+                  <audio id="myAudio3">
+                    <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                  </audio>
+                  <audio id="myAudio4">
+                      <source src="<?php echo base_url('assets/rekaman/'.$angka.'.wav');?>" type="audio/wav">
+                  </audio>
+                  <audio id="myAudio5">
+                      <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                  </audio>
+
+
+                  <!-- jika var angka jumlah digitnya 1 -->
+
+                <?php } else if(strlen($angka) == 2){ ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+                    <?php
+                      if ($angka == 10) { ?>
+                      <!-- jika $angka isinya 10 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 10 -->
+
+                    <?php   } else if ($angka == 11){ ?>
+                      <!-- jika $angka isinya 11   -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 11   -->
+
+                    <?php } else if ($angka >=12 && $angka <=19){ ?>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 20 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong = substr($angka, 1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 19 -->
+                    
+                      <!-- jika $angka isinya 20 - 99 -->
+                    <?php } else if ($angka >=20 && $angka <=99){ ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka,1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong1.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio6">
+                            <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya 20 - 99 -->
+                  <?php } ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+
+                  <!-- jika var angka jumlah digitnya 3 -->
+                <?php } else if(strlen($angka) == 3){ ?>
+                      <!-- jika $angka isinya =100 -->
+                      <?php if ($angka == 100) { ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya =100 -->
+
+                        <!-- jika $angka isinya 101 sampai 109 -->
+                      <?php } else if ($angka >=101 && $angka <=109) { ?>
+                          <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 101 sampai 109 -->
+
+                          <!-- jika $angka isinya = 110 -->
+                      <?php } else if ($angka == 110) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya = 110 -->
+
+                          <!-- jika $angka isinya =111 -->
+                      <?php } else if ($angka == 111 ) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika angka isinya =111 -->
+
+                          <!-- jika $angka isinya 112 sampai 119 -->
+                      <?php } else if ($angka >=112 && $angka <= 119) { ?>
+                          <?php
+                            // $potong1 = substr($angka, 0,1);
+                            // $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 112 sampai 119 -->
+
+                          <!-- jika $angka isinya 120 sampai 199 -->
+                      <?php } else if ($angka >=120 && $angka <=199){ ?> 
+                            <?php
+                            // $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                            ?>
+                            <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                            </audio>
+                            <audio id="myAudio3">
+                              <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                            </audio>
+                            <audio id="myAudio4">
+                                <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio2">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio5">
+                                <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio6">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio7">
+                                <source src="<?php echo base_url('assets/rekaman/poliImunisasi.wav');?>" type="audio/wav">
+                            </audio>
+                      <?php } ?>     
+                <?php } ?>
+
+
+                <!-- untuk pemeriksaan kehamilan -->
+                <?php } else if ($poli == "PemeriksaanKehamilan"){ ?>
+                <?php  if (strlen($angka) == 1) {
+                ?>
+                  <!-- jika var angka jumlah digitnya 1 -->
+                  <audio id="myAudio">
+                    <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                  </audio>
+                  <audio id="myAudio3">
+                    <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                  </audio>
+                  <audio id="myAudio4">
+                      <source src="<?php echo base_url('assets/rekaman/'.$angka.'.wav');?>" type="audio/wav">
+                  </audio>
+                  <audio id="myAudio5">
+                      <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                  </audio>
+
+
+                  <!-- jika var angka jumlah digitnya 1 -->
+
+                <?php } else if(strlen($angka) == 2){ ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+                    <?php
+                      if ($angka == 10) { ?>
+                      <!-- jika $angka isinya 10 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 10 -->
+
+                    <?php   } else if ($angka == 11){ ?>
+                      <!-- jika $angka isinya 11   -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 11   -->
+
+                    <?php } else if ($angka >=12 && $angka <=19){ ?>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 20 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong = substr($angka, 1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 19 -->
+                    
+                      <!-- jika $angka isinya 20 - 99 -->
+                    <?php } else if ($angka >=20 && $angka <=99){ ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka,1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong1.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio6">
+                            <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya 20 - 99 -->
+                  <?php } ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+
+                  <!-- jika var angka jumlah digitnya 3 -->
+                <?php } else if(strlen($angka) == 3){ ?>
+                      <!-- jika $angka isinya =100 -->
+                      <?php if ($angka == 100) { ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya =100 -->
+
+                        <!-- jika $angka isinya 101 sampai 109 -->
+                      <?php } else if ($angka >=101 && $angka <=109) { ?>
+                          <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 101 sampai 109 -->
+
+                          <!-- jika $angka isinya = 110 -->
+                      <?php } else if ($angka == 110) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya = 110 -->
+
+                          <!-- jika $angka isinya =111 -->
+                      <?php } else if ($angka == 111 ) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika angka isinya =111 -->
+
+                          <!-- jika $angka isinya 112 sampai 119 -->
+                      <?php } else if ($angka >=112 && $angka <= 119) { ?>
+                          <?php
+                            // $potong1 = substr($angka, 0,1);
+                            // $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 112 sampai 119 -->
+
+                          <!-- jika $angka isinya 120 sampai 199 -->
+                      <?php } else if ($angka >=120 && $angka <=199){ ?> 
+                            <?php
+                            // $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                            ?>
+                            <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                            </audio>
+                            <audio id="myAudio3">
+                              <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                            </audio>
+                            <audio id="myAudio4">
+                                <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio2">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio5">
+                                <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio6">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio7">
+                                <source src="<?php echo base_url('assets/rekaman/poliKehamilan.wav');?>" type="audio/wav">
+                            </audio>
+                      <?php } ?>     
+                <?php } ?>
+
+
+                <!-- untuk pemeriksaan persalinan -->
+                <?php } else if ($poli == "Persalinan"){ ?>
+                <?php  if (strlen($angka) == 1) {
+                ?>
+                  <!-- jika var angka jumlah digitnya 1 -->
+                  <audio id="myAudio">
+                    <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                  </audio>
+                  <audio id="myAudio3">
+                    <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                  </audio>
+                  <audio id="myAudio4">
+                      <source src="<?php echo base_url('assets/rekaman/'.$angka.'.wav');?>" type="audio/wav">
+                  </audio>
+                  <audio id="myAudio5">
+                      <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                  </audio>
+
+
+                  <!-- jika var angka jumlah digitnya 1 -->
+
+                <?php } else if(strlen($angka) == 2){ ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+                    <?php
+                      if ($angka == 10) { ?>
+                      <!-- jika $angka isinya 10 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 10 -->
+
+                    <?php   } else if ($angka == 11){ ?>
+                      <!-- jika $angka isinya 11   -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 11   -->
+
+                    <?php } else if ($angka >=12 && $angka <=19){ ?>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 20 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong = substr($angka, 1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 19 -->
+                    
+                      <!-- jika $angka isinya 20 - 99 -->
+                    <?php } else if ($angka >=20 && $angka <=99){ ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka,1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong1.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio6">
+                            <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya 20 - 99 -->
+                  <?php } ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+
+                  <!-- jika var angka jumlah digitnya 3 -->
+                <?php } else if(strlen($angka) == 3){ ?>
+                      <!-- jika $angka isinya =100 -->
+                      <?php if ($angka == 100) { ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya =100 -->
+
+                        <!-- jika $angka isinya 101 sampai 109 -->
+                      <?php } else if ($angka >=101 && $angka <=109) { ?>
+                          <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 101 sampai 109 -->
+
+                          <!-- jika $angka isinya = 110 -->
+                      <?php } else if ($angka == 110) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya = 110 -->
+
+                          <!-- jika $angka isinya =111 -->
+                      <?php } else if ($angka == 111 ) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika angka isinya =111 -->
+
+                          <!-- jika $angka isinya 112 sampai 119 -->
+                      <?php } else if ($angka >=112 && $angka <= 119) { ?>
+                          <?php
+                            // $potong1 = substr($angka, 0,1);
+                            // $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 112 sampai 119 -->
+
+                          <!-- jika $angka isinya 120 sampai 199 -->
+                      <?php } else if ($angka >=120 && $angka <=199){ ?> 
+                            <?php
+                            // $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                            ?>
+                            <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                            </audio>
+                            <audio id="myAudio3">
+                              <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                            </audio>
+                            <audio id="myAudio4">
+                                <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio2">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio5">
+                                <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio6">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio7">
+                                <source src="<?php echo base_url('assets/rekaman/poliPersalinan.wav');?>" type="audio/wav">
+                            </audio>
+                      <?php } ?>     
+                <?php } ?>
+
+
+                <!-- untuk pemeriksaan ispa -->
+                <?php } else if ($poli == "ProgramISPA"){ ?>
+                  <?php  if (strlen($angka) == 1) {
+                ?>
+                  <!-- jika var angka jumlah digitnya 1 -->
+                  <audio id="myAudio">
+                    <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                  </audio>
+                  <audio id="myAudio3">
+                    <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                  </audio>
+                  <audio id="myAudio4">
+                      <source src="<?php echo base_url('assets/rekaman/'.$angka.'.wav');?>" type="audio/wav">
+                  </audio>
+                  <audio id="myAudio5">
+                      <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                  </audio>
+
+
+                  <!-- jika var angka jumlah digitnya 1 -->
+
+                <?php } else if(strlen($angka) == 2){ ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+                    <?php
+                      if ($angka == 10) { ?>
+                      <!-- jika $angka isinya 10 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 10 -->
+
+                    <?php   } else if ($angka == 11){ ?>
+                      <!-- jika $angka isinya 11   -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya 11   -->
+
+                    <?php } else if ($angka >=12 && $angka <=19){ ?>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 20 -->
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong = substr($angka, 1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                        </audio>
+                      <!-- jika $angka isinya lebih dari 11 kurang dari 19 -->
+                    
+                      <!-- jika $angka isinya 20 - 99 -->
+                    <?php } else if ($angka >=20 && $angka <=99){ ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka,1);
+                            ?>
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong1.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio2">
+                            <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio6">
+                            <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya 20 - 99 -->
+                  <?php } ?>
+                  <!-- jika var angka jumlah digitnya 2 -->
+
+                  <!-- jika var angka jumlah digitnya 3 -->
+                <?php } else if(strlen($angka) == 3){ ?>
+                      <!-- jika $angka isinya =100 -->
+                      <?php if ($angka == 100) { ?>
+                        <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                        </audio>
+                        <audio id="myAudio3">
+                          <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                        </audio>
+                        <audio id="myAudio4">
+                            <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                        </audio>
+                        <audio id="myAudio5">
+                            <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                        </audio>
+                        <!-- jika $angka isinya =100 -->
+
+                        <!-- jika $angka isinya 101 sampai 109 -->
+                      <?php } else if ($angka >=101 && $angka <=109) { ?>
+                          <?php
+                            $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 101 sampai 109 -->
+
+                          <!-- jika $angka isinya = 110 -->
+                      <?php } else if ($angka == 110) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sepuluh.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya = 110 -->
+
+                          <!-- jika $angka isinya =111 -->
+                      <?php } else if ($angka == 111 ) { ?>
+                          <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/sebelas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika angka isinya =111 -->
+
+                          <!-- jika $angka isinya 112 sampai 119 -->
+                      <?php } else if ($angka >=112 && $angka <= 119) { ?>
+                          <?php
+                            // $potong1 = substr($angka, 0,1);
+                            // $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                          ?>
+                          <audio id="myAudio">
+                            <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                          </audio>
+                          <audio id="myAudio3">
+                            <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                          </audio>
+                          <audio id="myAudio4">
+                              <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio2">
+                              <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio5">
+                              <source src="<?php echo base_url('assets/rekaman/belas.wav');?>" type="audio/wav">
+                          </audio>
+                          <audio id="myAudio6">
+                              <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                          </audio>
+                          <!-- jika $angka isinya 112 sampai 119 -->
+
+                          <!-- jika $angka isinya 120 sampai 199 -->
+                      <?php } else if ($angka >=120 && $angka <=199){ ?> 
+                            <?php
+                            // $potong1 = substr($angka, 0,1);
+                            $potong2 = substr($angka, 1,1);
+                            $potong3 = substr($angka,2);
+                            ?>
+                            <audio id="myAudio">
+                              <source src="<?php echo base_url('assets/rekaman/bell.mp3');?>" >
+                            </audio>
+                            <audio id="myAudio3">
+                              <source src="<?php echo base_url('assets/rekaman/nomor-urut.wav');?>" type="audio/wav" >
+                            </audio>
+                            <audio id="myAudio4">
+                                <source src="<?php echo base_url('assets/rekaman/seratus.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio2">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong2.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio5">
+                                <source src="<?php echo base_url('assets/rekaman/puluh.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio6">
+                                <source src="<?php echo base_url('assets/rekaman/'.$potong3.'.wav');?>" type="audio/wav">
+                            </audio>
+                            <audio id="myAudio7">
+                                <source src="<?php echo base_url('assets/rekaman/poliIspa.wav');?>" type="audio/wav">
+                            </audio>
+                      <?php } ?>     
+                <?php } ?>
                 <?php } ?>
                   <!-- jika var angka jumlah digitnya 3 -->
 
-                <button onclick="playAudio()" type="button">Play</button>
-
-
-
-
-
-
-
-                  
-
-               
+                  <button onclick="playAudio()" class="btn btn-default" style="float:right;" type="button">Panggil Antrian</button>
 
                 <div class="table-responsive">
                   <table id="tableHarusDilayani" class="table table-striped table-hover">
@@ -606,7 +1853,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var belas = document.getElementById("myAudio2");
     var puluhan = document.getElementById("myAudio5");
     var d = document.getElementById("myAudio6");
-     
+    var e = document.getElementById("myAudio7"); 
     
 
     function playAudio() { 
@@ -626,6 +1873,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     setTimeout(()=>{
       d.play();
     },10000);
+    setTimeout(()=>{
+      e.play();
+    },10100);
     //   x.play(); 
     // setTimeout(()=>{
     // y.play();

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class cetakAntrian extends CI_Controller {
+class cetakKartu extends CI_Controller {
 
 	private $userData;
 	
@@ -9,7 +9,7 @@ class cetakAntrian extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('login_model', 'login');
-		 $this->load->model('CetakAntrian_model');
+		 $this->load->model('CetakKartu_model');
 
 
 		$this->userData = array(
@@ -28,7 +28,7 @@ class cetakAntrian extends CI_Controller {
 
 	public function index()
 	{
-		$data['cetak'] = $this->CetakAntrian_model->cetak();
+		$data['cetak'] = $this->CetakKartu_model->cetakAntrian();
 		$this->load->view('cetakAntrian',$data);
 
     }
