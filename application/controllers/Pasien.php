@@ -681,7 +681,8 @@ class Pasien extends CI_Controller {
 				//script pake print kartu berobat
 					$getId = $this->input->post('idPasien');
 					$idPasien= $getId + 1;
-                    $url = base_url('index.php/CetakKartuPasien');
+                    // $url = base_url('index.php/CetakKartuPasien');
+                    $url = base_url('CetakKartu/CetakKartuPasien');
 					$urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
                     echo "<script>window.open('".$url."','_blank');</script>";
                     // echo "<script>history.go(-2);</script>";

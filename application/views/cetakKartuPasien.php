@@ -1,6 +1,7 @@
 <html>
 <head>
-    <title></title>
+    <title>Klinik Utama Nur Khadijah | Cetak Kartu Pasien</title>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
     <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/core/jquery.min.js');?>"></script>
     <script src="<?php echo base_url('assets/js/core/bootstrap.min.js');?>"></script>
@@ -59,22 +60,40 @@
         <img src="<?php echo base_url('assets/img/icd.png');?>" style="width:110px;float:right;">
 
         <table border="0" class="col-sm-12 jarak-vertikal-bawah" style="margin-left:20px;">
+            <?php foreach ($cetakKP->result() as $ckp ) { ?>
             <tr>
                 <th style="width:70px;font-size:15px;">No.RM</th>
-                <td style="font-size:17px">: 123</td>  
+                <td style="font-size:17px">: <?php echo $ckp->no_registrasi;?></td>  
             </tr>
             <tr>
                 <th style="width:70px;font-size:15px;">Nama</th>
-                 <td style="font-size:17px">: Pasien</td>
+                 <td style="font-size:17px">: <?php echo $ckp->nama_pasien;?></td>
             </tr>
             <tr>
                 <th style="width:70px;font-size:15px;">Umur</th>
-                 <td style="font-size:17px">: 123</td>
+                 <td style="font-size:17px">
+                    <?php
+                        //waktu sekarang
+                        $tglSekarang = date('yy-m-d');
+                        $waktuSekarang = explode('-', $tglSekarang);
+                        //tgl lahir pasien
+                        $tglPasien= $ckp->tgl_lahir;
+                        $waktuPasien = explode('-',$tglPasien);
+                        //hitung umur
+                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
+                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+                        //hasil umur
+                        $umurPasien=abs($getTahun)." Tahun ";
+                        echo ": ".$umurPasien; 
+                    ?>
+                 </td>
             </tr>
             <tr>
                 <th style="width:70px;font-size:15px; ">Alamat</th>
-                <td style="font-size:17px">: Cimahi</td>
+                <td style="font-size:17px">: <?php echo $ckp->alamat_ktp_istri;?></td>
             </tr>
+            <?php } ?>
 
         </table>
         

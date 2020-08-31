@@ -128,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td>
                           <?php  echo anchor('Pasien/getDataKunjungan/'.$tp->id,'<button class="btn btn-success btn-sm" title="Layani"><i class="fa fa-check"></i></button>'); ?>
                           <button class="btn btn-default btn-sm" title="Lihat Detail"><i class="fa fa-search"></i></button> 
-                          <button class="btn btn-warning btn-sm" title="Cetak Karu Berobat"><i class="fa fa-print"></i></button>
+                          <a href="<?php echo base_url('CetakKartu/CetakKartuPasien/'.$tp->id.'');?>"target="_blank"><button class="btn btn-warning btn-sm" title="Cetak Karu Pasien"><i class="fa fa-print"></i></button></a>
                           <button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>
                           <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button></td>
                         </td>

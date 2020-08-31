@@ -10,4 +10,15 @@ class CetakKartu_model extends CI_Model {
 								 JOIN jenis_pelayanans as jp ON jp.id=a.id_jenis_pelayanan ORDER BY a.id DESC LIMIT 1');
 		return $cetak;
 	}
+	public function cetakKartuPasien($id){
+		if (!$id == null) {
+			$cetakKP = $this->db->query("SELECT * FROM pasiens WHERE id = '$id'");
+			return $cetakKP;
+		} else{
+			$cetakKP = $this->db->query("SELECT * FROM pasiens ORDER by id DESC LIMIT 1");
+			return $cetakKP;
+		}
+		
+
+	}
 }
