@@ -99,5 +99,8 @@ class Pasien_model extends CI_Model {
     public function simpanDataPasien($data){
         $sPasien=$this->db->insert('pasiens',$data);
     }
-
+    public function getDataPasien($id){
+        $gDataPasien = $this->db->query("SELECT * FROM pasiens WHERE id='$id'");
+        return $gDataPasien;
+    }
 }

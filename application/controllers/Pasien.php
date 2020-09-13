@@ -706,7 +706,11 @@ class Pasien extends CI_Controller {
     	$this->load->view('form_pendaftaran',$data);
     }
     
-
-
+    public function detailPasien($id){
+   
+      $id=$this->uri->segment(3);
+      $data['gDataPasien'] = $this->Pasien_model->getDataPasien($id);
+      $this->load->view('pasien_detail',$data);
+    }
 
 }
