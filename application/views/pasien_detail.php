@@ -195,6 +195,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
     </div>
   </div>
+
+  <!-- Histori Kunjungan -->
+      <div class="content">
+        <div class="row">
+          <div id="table" class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-12">
+                    <h2 class="card-title"><center> Histori Kunjungan </center></h4>
+                  </div>
+                </div>
+  
+        <div class="card-body">
+        <div class="table-responsive">
+        <table  class="table table-striped table-hover" id="dataTables-example">        
+            <tr>
+              <th> Waktu Kunjungan </th>
+              <th> Jenis Pelayanan </th>
+          
+            </tr>
+             <?php foreach ($gDataHistory->result() as $tdatahistory) {?>
+            <tr>
+               <td><?php echo $tdatahistory->tgl_antrian?></td>
+                <td><?php echo $tdatahistory->nama_pelayanan?></td>
+            </tr>
+            <?php } ?>
+      </table>
+              </div>
+           </div           
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Table -->
+
   <!--   Core JS Files   -->
   <script src="<?php echo base_url('assets/js/core/jquery.min.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/core/popper.min.js'); ?>"></script>
