@@ -187,10 +187,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <td><?php echo $tdatapasien->medsos ?></td>
             </tr>
             <?php } ?>
-      </table>
+        </table>
               </div>
            </div>
-          
         </div>
       </div>
     </div>
@@ -214,17 +213,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <tr>
               <th> Waktu Kunjungan </th>
               <th> Jenis Pelayanan </th>
-          
             </tr>
-             <?php foreach ($gDataHistory->result() as $tdatahistory) {?>
+
+            <?php foreach ($gDataHistory->result() as $tdatahistory) {?>
             <tr>
                <td><?php echo $tdatahistory->tgl_antrian?></td>
                 <td><?php echo $tdatahistory->nama_pelayanan?></td>
             </tr>
             <?php } ?>
-      </table>
-              </div>
-           </div           
+        </table>
+            </div>
+          </div>           
         </div>
       </div>
     </div>
