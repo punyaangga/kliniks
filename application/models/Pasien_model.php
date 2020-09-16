@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pasien_model extends CI_Model {
 
 	public function tampilDataPasien(){
-        $tPasien = $this->db->get('pasiens');
+        $tPasien = $this->db->query("SELECT * FROM pasiens WHERE deleted_at IS NULL");
         return $tPasien;
     }
     public function getDataKunjungan($id){
@@ -98,6 +98,11 @@ class Pasien_model extends CI_Model {
     }
     public function simpanDataPasien($data){
         $sPasien=$this->db->insert('pasiens',$data);
+    }
+
+    public function hapusDataPasien($id,$data)
+    {
+        $this->db->update('pasiens',$data, array('id' => $id));
     }
 
 }

@@ -93,7 +93,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       </div>
       <div class="content">
         <div class="row">
-          <div id="table" class="col-md-8">
+          <div id="table" class="col-md-12">
             <div class="card">
               <div class="card-header">
                 <div class="row">
@@ -127,10 +127,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><?php echo $tp->nama_pasien;?></td>
                         <td>
                           <?php  echo anchor('Pasien/getDataKunjungan/'.$tp->id,'<button class="btn btn-success btn-sm" title="Layani"><i class="fa fa-check"></i></button>'); ?>
-                          <button class="btn btn-default btn-sm" title="Lihat Detail"><i class="fa fa-search"></i></button> 
                           <a href="<?php echo base_url('CetakKartu/CetakKartuPasien/'.$tp->id.'');?>"target="_blank"><button class="btn btn-warning btn-sm" title="Cetak Karu Pasien"><i class="fa fa-print"></i></button></a>
+                          <button class="btn btn-default btn-sm" title="Lihat Detail"><i class="fa fa-search"></i></button> 
                           <button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>
-                          <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button></td>
+                          <?php echo anchor('Pasien/hapusDataPasien/'.$tp->id,
+                           '<button onclick="return confirm(`Apakah anda yakin akan menghapus data pasien?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
+                            </button>'); ?>
+                          <!-- <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button></td> -->
                         </td>
                       </tr>
                       <?php } ?>
@@ -141,7 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
 
-          <div class="col-md-4 table-detail">
+          <!-- <div class="col-md-4 table-detail">
             <div class="card">
               <div class="card-body">
                 <div class="table-responsive">
@@ -242,7 +245,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           
         </div>

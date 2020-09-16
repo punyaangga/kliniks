@@ -705,6 +705,22 @@ class Pasien extends CI_Controller {
     	$data['tDesa'] = $this->Pasien_model->getDesa();
     	$this->load->view('form_pendaftaran',$data);
     }
+
+    public function hapusDataPasien(){
+
+      $id = $this->uri->segment(3);
+      $dateNow = gmdate("Y-m-d H:i:s", time()+60*60*7);
+      
+      $data = array('deleted_at'=> $dateNow);
+      
+      $proses = $this->Pasien_model->hapusDataPasien($id, $data);
+        if (!$proses) {
+          echo "<script>alert('Data Berhasil Di Hapus');history.go(-1)</script>";
+        } else {
+          echo "<script>alert('Data Gagal Di Hapus');history.go(-1)</script>";
+        }
+    
+    }
     
 
 
