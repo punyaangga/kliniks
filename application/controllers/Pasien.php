@@ -722,7 +722,12 @@ class Pasien extends CI_Controller {
     
     }
     
-
-
+    public function detailPasien($id){
+   
+      $id=$this->uri->segment(3);
+      $data['gDataPasien'] = $this->Pasien_model->getDataPasien($id);
+       $data['gDataHistory'] = $this->Pasien_model->getDataHistory($id);
+      $this->load->view('pasien_detail',$data);
+    }
 
 }

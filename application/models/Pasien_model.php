@@ -99,10 +99,19 @@ class Pasien_model extends CI_Model {
     public function simpanDataPasien($data){
         $sPasien=$this->db->insert('pasiens',$data);
     }
+    public function getDataPasien($id){
+        $gDataPasien = $this->db->query("SELECT * FROM pasiens WHERE id='$id'");
+        return $gDataPasien;
+    }
 
     public function hapusDataPasien($id,$data)
     {
         $this->db->update('pasiens',$data, array('id' => $id));
     }
 
+}
+    public function getDataHistory($id){
+        $gDataHistory = $this->db->query("SELECT a.id pasien, a.tgl_antrian, jp.nama_pelayanan, a.id_jenis_pelayanan FROM antrians as a INNER JOIN jenis_pelayanans as jp ON a.id_jenis_pelayanan =jp.id where a.id_pasien ='$id'");
+        return $gDataHistory;
+    }
 }
