@@ -647,7 +647,23 @@ class Pasien extends CI_Controller {
 			
     }
     public function simpanPendaftaranBaru(){
-    	$dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+    	
+      $dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+      //get foto
+      $img = $this->input->post('image');
+      $folderPath = "upload/";
+  
+      $image_parts = explode(";base64,", $img);
+      $image_type_aux = explode("image/", $image_parts[0]);
+      $image_type = $image_type_aux[1];
+    
+      $image_base64 = base64_decode($image_parts[1]);
+      $fileName = uniqid() . '.png';
+    
+      $file = $folderPath . $fileName;
+      file_put_contents($file, $image_base64);
+      
+      // simpan data
 
     	$data = array('created_at'=>$dateNow,
                 'no_kk'=>$this->input->post('nokk'),
@@ -675,7 +691,8 @@ class Pasien extends CI_Controller {
                 'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
                 'email'=>$this->input->post('email'),
                 'medsos'=>$this->input->post('medsos'),
-                'catatan_bidan'=>$this->input->post('catatan_bidan'));
+                'catatan_bidan'=>$this->input->post('catatan_bidan'),
+                'image'=>$fileName);
 		$proses=$this->Pasien_model->simpanDataPasien($data);
 			if (!$proses) {
 				//script pake print kartu berobat

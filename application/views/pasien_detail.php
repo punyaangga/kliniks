@@ -103,9 +103,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   
         <div class="card-body">
         <div class="table-responsive">
+        <!-- foto -->
+        <?php foreach ($gDataPasien->result() as $tdatapasien) {
+              if ($tdatapasien->image == '0') {
+                 echo " " ;
+        ?>
+        <?php } else { ?>
+             <div class="col-md-12">
+              <center><img src="<?php echo base_url('upload/'.$tdatapasien->image.'');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+              <br>
+            <?php } ?>
+            </div> 
+        <?php } ?>
+       
+        <!-- foto -->
+
         <table  class="table table-striped table-hover" id="dataTables-example">
         <?php foreach ($gDataPasien->result() as $tdatapasien) {?>
-        
+          
             <tr>
               <th>No. RM</th>
               <td></td>

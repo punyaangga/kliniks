@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" />   
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -26,6 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript">
     var baseurl = "<?php echo base_url(); ?>";
   </script>
+  <!-- webcame -->
+  <script src="<?php echo base_url('assets/js/plugins/webcam.min.js'); ?>"></script>
+
 </head>
 
 <body class="">
@@ -109,6 +112,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <h1>Data Umum</h1>
 		                    </div>
+
+		                    <!-- gambar -->
+		                    <div class="col-md-6">
+		                    	<center><h3><u>Ambil Foto</u></h3></center>
+		                    	<div id="my_camera"></div>
+		                    	<br>
+		                    	<center><input type="button" value="Ambil Gambar" class="btn btn-sm btn-success" onClick="take_snapshot()"></center>
+                				<input type="hidden" name="image" class="image-tag">
+		                    </div>
+		                    <div class="col-md-6">
+		                    	<center><h3><u>Hasil Foto</u></h3></center>
+				                <div id="results"></div>
+				            </div>
+		                    <!-- end gambar -->
+
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>No. Rekam Medis (RM)</label>
@@ -432,8 +450,28 @@ function copytextbox() {
     document.getElementById('domisiliPj').value = document.getElementById('ktpPj').value;    
 }
 </script>
-
 <!-- js untuk copy text -->
+
+<!-- untuk foto  -->
+<!-- Configure a few settings and attach camera -->
+<script language="JavaScript">
+    Webcam.set({
+        width: 490,
+        height: 390,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+  
+    Webcam.attach( '#my_camera' );
+  
+    function take_snapshot() {
+        Webcam.snap( function(data_uri) {
+            $(".image-tag").val(data_uri);
+            document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
+        } );
+    }
+</script>
+<!-- untuk foto -->
  
 
 

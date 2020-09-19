@@ -24,6 +24,7 @@ class Dashboard extends CI_Controller {
 		if(!$auth){
 			redirect();
 		}
+     
 	}
 
 	public function index()
