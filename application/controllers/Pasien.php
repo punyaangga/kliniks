@@ -694,11 +694,13 @@ class Pasien extends CI_Controller {
                 'catatan_bidan'=>$this->input->post('catatan_bidan'),
                 'image'=>$fileName);
 		$proses=$this->Pasien_model->simpanDataPasien($data);
+
 			if (!$proses) {
 				//script pake print kartu berobat
 					$getId = $this->input->post('idPasien');
 					$idPasien= $getId + 1;
                     // $url = base_url('index.php/CetakKartuPasien');
+                    // $getIdPasien = $this->db->query('SELECT * FROM Pasiens ORDER BY id DESC LIMIT 1')
                     $url = base_url('CetakKartu/CetakKartuPasien');
 					$urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
                     echo "<script>window.open('".$url."','_blank');</script>";
@@ -732,7 +734,9 @@ class Pasien extends CI_Controller {
       
       $proses = $this->Pasien_model->hapusDataPasien($id, $data);
         if (!$proses) {
-          echo "<script>alert('Data Berhasil Di Hapus');history.go(-1)</script>";
+           $_SESSION['pesan'] = 'Data Berhasil Dihapus';
+           echo "<script>history.go(-1)</script>";
+          // echo "<script>alert('Data Berhasil Di Hapus');history.go(-1)</script>";
         } else {
           echo "<script>alert('Data Gagal Di Hapus');history.go(-1)</script>";
         }

@@ -27,6 +27,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript">
     var baseurl = "<?php echo base_url(); ?>";
   </script>
+  <style>
+    .pesan{
+      display: none;
+      border: 1px solid #18ce0f;
+      width: 200px;
+      margin: auto;
+      background-color: #18ce0f;
+      color: white;
+      text-align: center;
+    }
+  </style>
+
 </head>
 
 <body class="">
@@ -96,6 +108,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div id="table" class="col-md-12">
             <div class="card">
               <div class="card-header">
+                <?php
+                  //menampilkan pesan jika ada pesan
+                    if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
+                        echo '<div class="pesan"><center>'.$_SESSION['pesan'].'</center></div>';
+                       }
+                  //mengatur session pesan menjadi kosong
+                    $_SESSION['pesan'] = '';
+                ?>
                 <div class="row">
                 	<div class="col-6">
                 		<h4 class="card-title"> Tabel Pasien</h4>
@@ -130,10 +150,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <a href="<?php echo base_url('Pasien/detailPasien/'.$tp->id.'');?>"><button class="btn btn-default btn-sm" title="Lihat Detail"><i class="fa fa-search"></i></button> 
                           <a href="<?php echo base_url('CetakKartu/CetakKartuPasien/'.$tp->id.'');?>"target="_blank"><button class="btn btn-warning btn-sm" title="Cetak Karu Pasien"><i class="fa fa-print"></i></button></a>
                           <button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>
-                          <?php echo anchor('Pasien/hapusDataPasien/'.$tp->id,
-                           '<button onclick="return confirm(`Apakah anda yakin akan menghapus data pasien?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                            </button>'); ?>
-                          <!-- <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button></td> -->
+                           <?php
+                            echo '<a href="'.site_url('Pasien/hapusDataPasien/'.$tp->id).'" data-confirm="Anda yakin akan menghapus pasien atas nama '.$tp->nama_pasien.' ?" class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i></a>'
+                           ?>
+                           <!-- <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button></td> -->
                         </td>
                       </tr>
                       <?php } ?>
@@ -165,12 +185,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript" src="<?php echo base_url('assets/DataTables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/select2/js/select2.min.js'); ?>"></script>
 
-    <!-- untuk table -->
   <script>
-            $(document).ready(function () {
-                $('#dataTables-example').dataTable({"ordering": false});
-            });
-    </script>
+    //untuk pesan
+      // angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
+      $(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
+      // angka 3000 dibawah ini artinya pesan akan hilang dalam 3 detik setelah muncul
+      setTimeout(function(){$(".pesan").fadeOut('slow');}, 3000);
+    
+    // untuk table
+    $(document).ready(function () {
+      $('#dataTables-example').dataTable({"ordering": false});
+    });
+    // untuk form comfirmation
+    $(document).ready(function() {
+      $('a[data-confirm]').click(function(ev) {
+          var href = $(this).attr('href');
+
+          if(!$('#dataConfirmModal').length) {
+           $('body').append('<div id="dataConfirmModal" class="modal fade bs-modal-sm" tableindex="-1" role="dialog" aria-labelledby="dataConfirmLabel" aria-hiden="true"><div class="modal-dialog modal-sm-6"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="dataConfrimLabel">Konfirmasi</h4><button type="button" class="close" data-dismiss="modal" aria-hiden="ture">&times;</button></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default btn-sx" data-dismiss="modal" aria-hiden=""true"> Tidak </button><a class="btn btn-danger btn-sx" aria-hiden="true" id="dataConfirmOK"> Ya </a></div></div></div></div>');
+           }
+
+          $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+
+          $('#dataConfirmOK').attr('href',href);
+
+          $('#dataConfirmModal').modal({show:true});
+          return false;
+         });
+        
+      });
+  </script>
+  
+  
 </body>
 
 </html>
