@@ -699,16 +699,14 @@ class Pasien extends CI_Controller {
 				//script pake print kartu berobat
 					$getId = $this->input->post('idPasien');
 					$idPasien= $getId + 1;
-                    // $url = base_url('index.php/CetakKartuPasien');
-                    // $getIdPasien = $this->db->query('SELECT * FROM Pasiens ORDER BY id DESC LIMIT 1')
-                    $url = base_url('CetakKartu/CetakKartuPasien');
+          $url = base_url('CetakKartu/CetakKartuPasien/'.$idPasien.'/1'.'');
+
 					$urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
-                    echo "<script>window.open('".$url."','_blank');</script>";
-                    // echo "<script>history.go(-2);</script>";
-				    
-                	echo "<script>window.location='".$urlKunjungan."'</script>";
-                //script ga pake print kartu berobat
-                // echo "<script>alert('Data Berhasil Di Simpan');history.go(-2);</script>";
+          echo "<script>window.open('".$url."','_blank');</script>";
+          // echo "<script>history.go(-2);</script>";  
+          echo "<script>window.location='".$urlKunjungan."'</script>";
+          //script ga pake print kartu berobat
+          // echo "<script>alert('Data Berhasil Di Simpan');history.go(-2);</script>";
 				
 			} else {
 				echo "Data Gagal Disimpan";

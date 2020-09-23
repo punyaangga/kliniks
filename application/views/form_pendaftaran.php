@@ -186,7 +186,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pendidikan Pasien</label>
-		                        <select name="pendidikan_istri" id="pendidikanPasien" class="form-control">
+		                        <select name="pendidikan_istri" id="pendidikanPasien" class="form-control" required>
 		                          <option value="SD" >SD</option>
 		                          <option value="SMP">SMP</option>
 		                          <option value="SLTA" selected="selected">SLTA</option>
@@ -218,7 +218,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Pekerjaan Pasien</label>
 		                        <select name="pekerjaan_istri" id="pekerjaanPasien" class="form-control" required>
-		                        	<option>- Pilih Pekerjaan -</option>
+		                        	<option value="">- Pilih Pekerjaan -</option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
 		                        	?>
@@ -232,13 +232,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat KTP</label>
-		                        <input type="text" name="alamat_ktp_istri" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien">
+		                        <input type="text" name="alamat_ktp_istri" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat Domisili</label>
-		                        <input type="text" name="alamat_istri" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien">
+		                        <input type="text" name="alamat_istri" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien" required>
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -269,10 +269,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Pendidikan</label>
 		                        <select name="pendidikan_suami" id="pendidikanPj" class="form-control">
-		                          <option value="Tidak Tamat" selected="selected">Tidak Tamat</option>
+		                          <option value="Tidak Tamat">Tidak Tamat</option>
 		                          <option value="SD">SD</option>
 		                          <option value="SMP">SMP</option>
-		                          <option value="SLTA">SLTA</option>
+		                          <option value="SLTA" selected>SLTA</option>
 		                          <option value="D1">D1</option>
 		                          <option value="D3">D3</option>
 		                          <option value="D4">D4</option>
@@ -299,7 +299,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Pekerjaan</label>
 		                         <select name="pekerjaan_suami" id="pekerjaanPj" class="form-control" required>
-		                        	<option>- Pilih Pekerjaan -</option>
+		                        	<option value="">- Pilih Pekerjaan -</option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
 		                        	?>
@@ -427,8 +427,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript" src="<?php echo base_url('assets/DataTables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/select2/js/select2.min.js'); ?>"></script>
 </body>
-<!-- js untuk pencarian di inputan select -->
+
   <script type="text/javascript">
+  // js untuk pencarian inputan select
    $(document).ready(function() {
        $('#pendidikanPasien').select2({'theme': 'bootstrap4'});
        $('#agama').select2({'theme': 'bootstrap4'});
@@ -440,22 +441,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        $('#pendidikanPj').select2({'theme': 'bootstrap4'});
        $('#golDarah').select2({'theme': 'bootstrap4'});
    });
-  </script>
-<!-- js untuk pencarian di inputan select -->
+   // js untuk pencarian inputan select
 
-<!-- js untuk copy text -->
-<script>
-function copytextbox() {
-    document.getElementById('domisiliPasien').value = document.getElementById('ktpPasien').value;
-    document.getElementById('domisiliPj').value = document.getElementById('ktpPj').value;    
-}
-</script>
-<!-- js untuk copy text -->
+   // js untuk copy text 
+	function copytextbox() {
+	    document.getElementById('domisiliPasien').value = document.getElementById('ktpPasien').value;
+	    document.getElementById('domisiliPj').value = document.getElementById('ktpPj').value;    
+	}
+    // js untuk copy text 
 
-<!-- untuk foto  -->
-<!-- Configure a few settings and attach camera -->
-<script language="JavaScript">
-    Webcam.set({
+    //untuk foto
+    // Configure a few settings and attach camera 
+     Webcam.set({
         width: 490,
         height: 390,
         image_format: 'jpeg',
@@ -470,12 +467,6 @@ function copytextbox() {
             document.getElementById('results').innerHTML = '<img src="'+data_uri+'"/>';
         } );
     }
-</script>
-<!-- untuk foto -->
- 
 
-
-
- 
-
+  </script>
 </html>

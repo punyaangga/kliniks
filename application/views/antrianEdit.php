@@ -100,7 +100,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="card-header">
                 <div class="row">
                   <div class="col-12">
-                    <h4 class="card-title"> Tambah kunjungan </h4>
+                    <h4 class="card-title"> Ubah Data kunjungan </h4>
                     <hr>
                   </div>
                 </div>

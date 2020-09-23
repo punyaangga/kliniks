@@ -34,7 +34,6 @@ class cetakKartu extends CI_Controller {
     }
     public function cetakKartuPasien(){
 		$id=$this->uri->segment(3);
-    	echo $id;
     	$data['cetakKP'] = $this->CetakKartu_model->cetakKartuPasien($id);
     	$this->load->view('cetakKartuPasien',$data);
     }

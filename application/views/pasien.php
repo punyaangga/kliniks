@@ -150,8 +150,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <a href="<?php echo base_url('Pasien/detailPasien/'.$tp->id.'');?>"><button class="btn btn-default btn-sm" title="Lihat Detail"><i class="fa fa-search"></i></button> 
                           <a href="<?php echo base_url('CetakKartu/CetakKartuPasien/'.$tp->id.'');?>"target="_blank"><button class="btn btn-warning btn-sm" title="Cetak Karu Pasien"><i class="fa fa-print"></i></button></a>
                           <button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>
+                           <?php echo anchor('Pasien/hapusDataPasien/'.$tp->id,
+                           '<button onclick="return confirm(`Apakah anda yakin akan menghapus data pasien ?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
+                            </button>'); ?>
                            <?php
-                            echo '<a href="'.site_url('Pasien/hapusDataPasien/'.$tp->id).'" data-confirm="Anda yakin akan menghapus pasien atas nama '.$tp->nama_pasien.' ?" class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i></a>'
+                            // echo '<a href="'.site_url('Pasien/hapusDataPasien/'.$tp->id).'" data-confirm="Anda yakin akan menghapus pasien atas nama '.$tp->nama_pasien.' ?" class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i></a>'
                            ?>
                            <!-- <button class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i></button></td> -->
                         </td>
@@ -185,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script type="text/javascript" src="<?php echo base_url('assets/DataTables/datatables.min.js'); ?>"></script>
   <script type="text/javascript" src="<?php echo base_url('assets/select2/js/select2.min.js'); ?>"></script>
 
-  <script>
+   <script>
     //untuk pesan
       // angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
       $(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
@@ -197,23 +200,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       $('#dataTables-example').dataTable({"ordering": false});
     });
     // untuk form comfirmation
-    $(document).ready(function() {
-      $('a[data-confirm]').click(function(ev) {
-          var href = $(this).attr('href');
+    // $(document).ready(function() {
+    //   $('a[data-confirm]').click(function(ev) {
+    //       var href = $(this).attr('href');
 
-          if(!$('#dataConfirmModal').length) {
-           $('body').append('<div id="dataConfirmModal" class="modal fade bs-modal-sm" tableindex="-1" role="dialog" aria-labelledby="dataConfirmLabel" aria-hiden="true"><div class="modal-dialog modal-sm-6"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="dataConfrimLabel">Konfirmasi</h4><button type="button" class="close" data-dismiss="modal" aria-hiden="ture">&times;</button></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default btn-sx" data-dismiss="modal" aria-hiden=""true"> Tidak </button><a class="btn btn-danger btn-sx" aria-hiden="true" id="dataConfirmOK"> Ya </a></div></div></div></div>');
-           }
+    //       if(!$('#dataConfirmModal').length) {
+    //        $('body').append('<div id="dataConfirmModal" class="modal fade bs-modal-sm" tableindex="-1" role="dialog" aria-labelledby="dataConfirmLabel" aria-hiden="true"><div class="modal-dialog modal-sm-6"><div class="modal-content"><div class="modal-header"><h4 class="modal-title" id="dataConfrimLabel">Konfirmasi</h4><button type="button" class="close" data-dismiss="modal" aria-hiden="ture">&times;</button></div><div class="modal-body"></div><div class="modal-footer"><button type="button" class="btn btn-default btn-sx" data-dismiss="modal" aria-hiden=""true"> Tidak </button><a class="btn btn-danger btn-sx" aria-hiden="true" id="dataConfirmOK"> Ya </a></div></div></div></div>');
+    //        }
 
-          $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+    //       $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
 
-          $('#dataConfirmOK').attr('href',href);
+    //       $('#dataConfirmOK').attr('href',href);
 
-          $('#dataConfirmModal').modal({show:true});
-          return false;
-         });
+    //       $('#dataConfirmModal').modal({show:true});
+    //       return false;
+    //      });
         
-      });
+    //   });
   </script>
   
   
