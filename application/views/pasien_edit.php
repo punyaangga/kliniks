@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     var baseurl = "<?php echo base_url(); ?>";
   </script>
   <!-- webcame -->
-  <script src="<?php echo base_url('assets/js/plugins/webcam.min.js'); ?>"></script>
+   <script src="<?php echo base_url('assets/js/plugins/webcam.min.js'); ?>"></script>
 
 </head>
 
@@ -99,45 +99,67 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-6">
-                    <h4 class="card-title">Form Tambah Pasien Baru</h4>
+                  <div class="col-12">
+                    <h4 class="card-title"><center>Edit Data Pasien</center></h4>
                   </div>
                 </div>
               </div>
               <div class="card-body">
 	              <div class="modal-body">
 	                <!-- <form id="formDataTambahPasien"> -->
-	                <form action="<?php echo base_url('Pasien/simpanPendaftaranBaru');?>" method="POST">
+	                <form action="<?php echo base_url('Pasien/editDataPasien');?>" method="POST">
 	  	                <div class="row">
 		                    <div class="col-md-12">
 		                      <h1>Data Umum</h1>
 		                    </div>
-
-		                    <!-- gambar -->
-		                    <div class="col-md-6">
-		                    	<center><h3><u>Ambil Foto</u></h3></center>
-		                    	<div id="my_camera"></div>
-		                    	<br>
-		                    	<center><input type="button" value="Ambil Gambar" class="btn btn-sm btn-success" onClick="take_snapshot()"></center>
-                				<input type="hidden" name="image" class="image-tag">
-		                    </div>
-		                    <div class="col-md-6">
-		                    	<center><h3><u>Hasil Foto</u></h3></center>
-				                <div id="results"></div>
-				            </div>
-		                    <!-- end gambar -->
-
+		                    
+ 
+							<!-- Modal -->
+							<div id="myModal" class="modal fade" role="dialog">
+								<div class="modal-dialog">
+									<!-- konten modal-->
+									<div class="modal-content">
+										<div class="modal-body">
+											<div class="col-md-12">
+						                    	<center><h3><u>Ambil Foto</u></h3></center>
+						                    	<div id="my_camera"></div>
+						                    	<br>
+						                    	<center><input type="button" value="Ambil Gambar" class="btn btn-sm btn-success" onClick="take_snapshot()"></center>
+				                				<input type="hidden" name="image" class="image-tag">
+						                    </div>
+						                    <div class="col-md-12">
+						                    	<center><h3><u>Hasil Foto</u></h3></center>
+								                <div id="results"></div>
+								            </div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+		                    <!-- foto -->
+					        <?php foreach ($gDataPasien->result() as $tdatapasien) {
+					              if ($tdatapasien->image == '0') { ?>
+					              <div class="col-md-12">
+					              <center><img src="<?php echo base_url('assets/img/user.png');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+					              <br>
+					              <center><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Edit Foto</button></center>
+					        	  </div>
+					        <?php } else { ?>
+					             <div class="col-md-12">
+					              <center><img src="<?php echo base_url('upload/'.$tdatapasien->image.'');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+					              <br>
+					              <center><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Edit Foto</button></center>
+					            <?php } ?>
+					            </div> 
+					        <?php } ?>
+					        <!-- foto -->
+		                    
+					        <?php foreach ($gDataPasien->result() as $tdatapasien) {?>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>No. Rekam Medis (RM)</label>
-		                        
-		                        <?php foreach ($tNoRegis->result() as $tn) { 
-		                        	$noRegis = $tn->no_registrasi + 1;
-		                        	$counter=sprintf("%06d",$noRegis) ;
-		                        ?>
-		                        	<input type="text" name="idPasien" value="<?php echo $tn->id;?>" hidden>
-		                        	<input type="text" name="no_registrasi" value="<?php echo $counter;?>" class="form-control" placeholder="No. Buku / No. Reg" readonly>
-		                        <?php }?>
+		                        	<input type="text" name="id" value="<?php echo $this->uri->segment(3);?>" hidden>
+		                        	<input type="text" name="no_registrasi" value="<?php echo $tdatapasien->no_registrasi;?>" class="form-control" placeholder="No. Buku / No. Reg" readonly>
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -147,46 +169,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                     <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>NO. Kartu Keluarga</label>
-		                        <input type="number" name="nokk" class="form-control" placeholder="Masukan Nomor KK">
+		                        <input type="number" name="noKk" value="<?php echo $tdatapasien->no_kk;?>" class="form-control" placeholder="Masukan Nomor KK">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>NIK</label>
-		                        <input type="number" name="nik" class="form-control" placeholder="NIK" required>
+		                        <input type="number" name="nik" value="<?php echo $tdatapasien->nik;?>" class="form-control" placeholder="NIK" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Nama Pasien</label>
-		                        <input type="text" name="nama_pasien" class="form-control" placeholder="Nama Pasien" required>
+		                        <input type="text" name="nama_pasien" value="<?php echo $tdatapasien->nama_pasien;?>" class="form-control" placeholder="Nama Pasien" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Tanggal Lahir</label>
-		                        <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir" required>
+		                        <input type="date" name="tgl_lahir" value="<?php echo $tdatapasien->tgl_lahir;?>" class="form-control" placeholder="Tanggal Lahir" required>
 		                      </div>
 		                    </div>
 		                     <div class="col-md-12">
 		                      <label>Jenis Kelamin : </label>
-		                    </div>
-		                    <div class="col-md-2">
-		                      <div class="form-check">
-		                        <input class="form-check-input" type="radio" name="jk_pasien" value="Laki-Laki" checked>
-		                        <label>Laki-Laki</label> 
-		                      </div>
-		                    </div>
-		                    <div class="col-md-2">
-		                      <div class="form-check">
-		                        <input class="form-check-input" type="radio" name="jk_pasien" value="Perempuan"> 
-		                        <label>Perempuan</label>
-		                      </div>
+		                      <select name="jk_pasien" class="form-control" id="jenisKelamin">
+		                      	<option><?php echo $tdatapasien->jk_pasien;?></option>
+		                      	<option value="Laki-Laki">Laki-Laki</option>
+		                      	<option value="Perempuan">Perempuan</option>
+		                      </select>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pendidikan Pasien</label>
 		                        <select name="pendidikan_istri" id="pendidikanPasien" class="form-control" required>
+		                          <option valeu="<?php echo $tdatapasien->pendidikan_istri;?>"><?php echo $tdatapasien->pendidikan_istri;?></option>
 		                          <option value="SD" >SD</option>
 		                          <option value="SMP">SMP</option>
 		                          <option value="SLTA" selected="selected">SLTA</option>
@@ -205,7 +221,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Agama Pasien</label>
 		                        <select name="agama_istri" id="agama" class="form-control">
-		                          <option value="Islam" selected="selected">Islam</option>
+		                          <option value="<?php echo $tdatapasien->agama_istri;?>"><?php echo $tdatapasien->agama_istri;?></option>
+		                          <option value="Islam">Islam</option>
 		                          <option value="Kristen">Kristen</option>
 		                          <option value="Hindu">Hindu</option>
 		                          <option value="Budha">Budha</option>
@@ -218,11 +235,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Pekerjaan Pasien</label>
 		                        <select name="pekerjaan_istri" id="pekerjaanPasien" class="form-control" required>
-		                        	<option value="">- Pilih Pekerjaan -</option>
+		                        	<option value="<?php echo $tdatapasien->pekerjaan_istri;?>"><?php echo $tdatapasien->pekerjaan_istri;?></option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
 		                        	?>
-		                        		<option value="<?php echo $tp->nama_pekerjaan; ?>"><?php echo $tp->nama_pekerjaan;?></option>
+		                        		<option value="<?php echo $tp->id; ?>"><?php echo $tp->nama_pekerjaan;?></option>
 		                        	<?php	
 		                        		}
 		                        	?>
@@ -232,13 +249,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat KTP</label>
-		                        <input type="text" name="alamat_ktp_istri" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien" required>
+		                        <input type="text" name="alamat_ktp_istri" value="<?php echo $tdatapasien->alamat_ktp_istri;?>" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat Domisili</label>
-		                        <input type="text" name="alamat_istri" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien" required>
+		                        <input type="text" name="alamat_istri" value="<?php echo $tdatapasien->alamat_istri;?>" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien" required>
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -249,19 +266,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Nama Ayah Kandung</label>
-		                        <input type="text" name="nama_ayah_kandung" class="form-control" placeholder="Nama Ayah Kandung">
+		                        <input type="text" value="<?php echo $tdatapasien->nama_ayah_kandung;?>"name="nama_ayah_kandung" class="form-control" placeholder="Nama Ayah Kandung">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Penanggung Jawab</label>
-		                        <input type="text" name="nama_suami" class="form-control" placeholder="Penanggung Jawab" required>
+		                        <input type="text" name="nama_suami" value="<?php echo $tdatapasien->nama_suami;?>" class="form-control" placeholder="Penanggung Jawab" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Tanggal Lahir</label>
-		                        <input type="date" name="tgl_lahir_suami" class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
+		                        <input type="date" name="tgl_lahir_suami" value="<?php echo $tdatapasien->tgl_lahir_suami;?>"class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
 		                      </div>
 		                    </div>
 
@@ -269,10 +286,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Pendidikan</label>
 		                        <select name="pendidikan_suami" id="pendidikanPj" class="form-control">
+		                          <option value="<?php echo $tdatapasien->pendidikan_suami;?>"><?php echo $tdatapasien->pendidikan_suami;?></option>
 		                          <option value="Tidak Tamat">Tidak Tamat</option>
 		                          <option value="SD">SD</option>
 		                          <option value="SMP">SMP</option>
-		                          <option value="SLTA" selected>SLTA</option>
+		                          <option value="SLTA">SLTA</option>
 		                          <option value="D1">D1</option>
 		                          <option value="D3">D3</option>
 		                          <option value="D4">D4</option>
@@ -286,6 +304,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Agama</label>
 		                        <select name="agama_suami" id="agamaPj" class="form-control">
+		                          <option value="<?php echo $tdatapasien->agama_suami;?>"><?php echo $tdatapasien->agama_suami;?></option>
 		                          <option value="Islam" selected="selected">Islam</option>
 		                          <option value="Kristen">Kristen</option>
 		                          <option value="Hindu">Hindu</option>
@@ -299,11 +318,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Pekerjaan</label>
 		                         <select name="pekerjaan_suami" id="pekerjaanPj" class="form-control" required>
-		                        	<option value="">- Pilih Pekerjaan -</option>
+		                        	<option value="<?php echo $tdatapasien->pekerjaan_suami;?>"><?php echo $tdatapasien->pekerjaan_suami;?></option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
 		                        	?>
-		                        		<option value="<?php echo $tp->nama_pekerjaan; ?>"><?php echo $tp->nama_pekerjaan;?></option>
+		                        		<option value="<?php echo $tp->id; ?>"><?php echo $tp->nama_pekerjaan;?></option>
 		                        	<?php	
 		                        		}
 		                        	?>
@@ -313,13 +332,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat KTP</label>
-		                        <input type="text" name="alamat_ktp_suami" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPj">
+		                        <input type="text" name="alamat_ktp_suami" value="<?php echo $tdatapasien->alamat_ktp_suami;?>" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPj">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat Domisili</label>
-		                        <input type="text" name="alamat_suami" class="form-control" placeholder="Alamat Domisili" id="domisiliPj">
+		                        <input type="text" name="alamat_suami" value="<?php echo $tdatapasien->alamat_suami;?>"class="form-control" placeholder="Alamat Domisili" id="domisiliPj">
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -334,12 +353,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Kota</label>
 		                        <select name="id_kota" id="kota" class="form-control">
-		                        	<option value=" ">-- Pilih Kota --</option>
+		                        	<option value="<?php echo $tdatapasien->id_kota;?>"><?php echo $tdatapasien->id_kota;?></option>
 		                        	<?php
 		                        		foreach ($tKota->result() as $tk ) { ?>
 		                        		<option value="<?php echo $tk->nama_kota;?>"><?php echo $tk->nama_kota;?></option>		
 		                        	<?php } ?>
-		                        	
 		                        </select>
 		                      </div>
 		                    </div>
@@ -347,7 +365,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Desa</label>
 		                        <select name="id_desa" id="desa" class="form-control">
-		                        	<option value="">-- Pilih Desa --</option>
+		                        	<option value="<?php echo $tdatapasien->id_desa;?>"><?php echo $tdatapasien->id_desa;?></option>
 		                        	<?php
 		                        		foreach ($tDesa->result() as $td ) {
 		                        	?>
@@ -361,44 +379,48 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                      <div class="form-group">
 		                        <label>Golongan Darah</label>
 		                        <select name="gol_darah" id="golDarah" class="form-control">
+		                          <option value="<?php echo $tdatapasien->gol_darah;?>"><?php echo $tdatapasien->gol_darah;?></option>
 		                          <option value="A">A</option>
 		                          <option value="B">B</option>
 		                          <option value="AB">AB</option>
 		                          <option value="O">O</option>
-		                          <option value="-" selected="selected">-</option>
 		                        </select>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>No Telp / WA</label>
-		                        <input type="text" name="no_telp_pasien" class="form-control" placeholder="No Telepon">
+		                        <input type="text" name="no_telp_pasien" value="<?php echo $tdatapasien->no_telp_pasien;?>" class="form-control" placeholder="No Telepon">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Alamat Email</label>
-		                        <input type="email" name="email" class="form-control" placeholder="Alamat Email">
+		                        <input type="email" name="email" value="<?php echo $tdatapasien->email;?>"class="form-control" placeholder="Alamat Email">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Medsos</label>
-		                        <input type="text" name="medsos" class="form-control" placeholder="Medsos">
+		                        <input type="text" name="medsos" class="form-control" value="<?php echo $tdatapasien->medsos;?>"placeholder="Medsos">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Catatan Bidan</label>
-		                        <textarea class="form-control" name="catatan_bidan"></textarea>
+		                        <textarea class="form-control" value="<?php echo $tdatapasien->catatan_bidan;?>" name="catatan_bidan"></textarea>
 		                      </div>
 		                    </div>
+		                    <?php } ?>
 		                </div>
 		                  <div class="modal-footer">
 		                  <!-- <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button> -->
-		                  <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
+		                  <a href="<?php echo base_url('Pasien');?>" class="btn btn-sm btn-danger"><i class="fa fa-times"></i> Cancel</a>
+		                  <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Simpan</button>
+
 		                </div>
 		                </form>
+
 		              </div>
              
               </div>
@@ -440,6 +462,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        $('#desa').select2({'theme': 'bootstrap4'});
        $('#pendidikanPj').select2({'theme': 'bootstrap4'});
        $('#golDarah').select2({'theme': 'bootstrap4'});
+       $('#jenisKelamin').select2({'theme': 'bootstrap4'});
    });
    // js untuk pencarian inputan select
 
@@ -453,8 +476,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     //untuk foto
     // Configure a few settings and attach camera 
      Webcam.set({
-        width: 490,
-        height: 390,
+        width: 436,
+        height: 347,
         image_format: 'jpeg',
         jpeg_quality: 90
     });

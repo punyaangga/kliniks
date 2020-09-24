@@ -740,13 +740,81 @@ class Pasien extends CI_Controller {
         }
     
     }
+
+    public function editDataPasien(){
+      $id=$this->input->post('id');
+      $dateNow = gmdate("Y-m-d H:i:s", time()+60*60*7);
+      //get foto
+      $img = $this->input->post('image');
+      $folderPath = "upload/";
+  
+      $image_parts = explode(";base64,", $img);
+      $image_type_aux = explode("image/", $image_parts[0]);
+      $image_type = $image_type_aux[1];
+    
+      $image_base64 = base64_decode($image_parts[1]);
+      $fileName = uniqid() . '.png';
+    
+      $file = $folderPath . $fileName;
+      file_put_contents($file, $image_base64);
+      
+      $data = array('updated_at'=> $dateNow,
+                    'image'=>$fileName,
+                    'no_kk'=>$this->input->post('noKk'),
+                    'nik'=>$this->input->post('nik'),
+                    'nama_pasien'=>$this->input->post('nama_pasien'),
+                    'tgl_lahir'=>$this->input->post('tgl_lahir'),
+                    'jk_pasien'=>$this->input->post('jk_pasien'),
+                    'pendidikan_istri'=>$this->input->post('pendidikan_istri'),
+                    'agama_istri'=>$this->input->post('agama_istri'),
+                    'pekerjaan_istri'=>$this->input->post('pekerjaan_istri'),
+                    'alamat_ktp_istri'=>$this->input->post('alamat_ktp_istri'),
+                    'alamat_istri'=>$this->input->post('alamat_istri'),
+                    'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),
+                    'nama_suami'=>$this->input->post('nama_suami'),
+                    'tgl_lahir_suami'=>$this->input->post('tgl_lahir_suami'),
+                    'pendidikan_suami'=>$this->input->post('nik'),
+                    'agama_suami'=>$this->input->post('agama_suami'),
+                    'pekerjaan_suami'=>$this->input->post('pekerjaan_suami'),
+                    'alamat_ktp_suami'=>$this->input->post('alamat_ktp_suami'),
+                    'alamat_suami'=>$this->input->post('alamat_suami'),
+                    'id_kota'=>$this->input->post('id_kota'),
+                    'id_desa'=>$this->input->post('id_desa'),
+                    'gol_darah'=>$this->input->post('gol_darah'),
+                    'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
+                    'email'=>$this->input->post('email'),
+                    'medsos'=>$this->input->post('medsos'),
+                    'catatan_bidan'=>$this->input->post('catatan_bidan'));
+      $proses = $this->Pasien_model->editDataPasien($id, $data);
+        if (!$proses) {
+           $_SESSION['pesan'] = 'Data Berhasil Diperbarui';
+           echo "<script>history.go(-2)</script>";
+          // echo "<script>alert('Data Berhasil Di Hapus');history.go(-1)</script>";
+        } else {
+          echo "<script>alert('Data Gagal Di Hapus');history.go(-1)</script>";
+        }
+    
+    }
     
     public function detailPasien($id){
    
       $id=$this->uri->segment(3);
-      $data['gDataPasien'] = $this->Pasien_model->getDataPasien($id);
-       $data['gDataHistory'] = $this->Pasien_model->getDataHistory($id);
-      $this->load->view('pasien_detail',$data);
+      
+      if ($this->uri->segment(4) == null) {
+        $data['tKota'] = $this->Pasien_model->getKota();
+        $data['tDesa'] = $this->Pasien_model->getDesa();
+        $data['tPekerjaan']=$this->Pasien_model->getPekerjaan();
+        $data['gDataPasien'] = $this->Pasien_model->getDataPasien($id);
+        $data['gDataHistory'] = $this->Pasien_model->getDataHistory($id);
+        $this->load->view('pasien_detail',$data);
+      } else {
+        $data['tKota'] = $this->Pasien_model->getKota();
+        $data['tDesa'] = $this->Pasien_model->getDesa();
+        $data['tPekerjaan']=$this->Pasien_model->getPekerjaan();
+        $data['gDataPasien'] = $this->Pasien_model->getDataPasien($id);
+        $this->load->view('pasien_edit',$data);
+      }
+      
     }
 
 }

@@ -149,10 +149,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <?php  echo anchor('Pasien/getDataKunjungan/'.$tp->id,'<button class="btn btn-success btn-sm" title="Layani"><i class="fa fa-check"></i></button>'); ?>
                           <a href="<?php echo base_url('Pasien/detailPasien/'.$tp->id.'');?>"><button class="btn btn-default btn-sm" title="Lihat Detail"><i class="fa fa-search"></i></button> 
                           <a href="<?php echo base_url('CetakKartu/CetakKartuPasien/'.$tp->id.'');?>"target="_blank"><button class="btn btn-warning btn-sm" title="Cetak Karu Pasien"><i class="fa fa-print"></i></button></a>
-                          <button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>
-                           <?php echo anchor('Pasien/hapusDataPasien/'.$tp->id,
+                          <a href="<?php echo base_url('Pasien/detailPasien/'.$tp->id.'/Edit');?>"><button class="btn btn-info btn-sm" title="Edit Data"><i class="fa fa-edit"></i></button>  
+                          <?php echo anchor('Pasien/hapusDataPasien/'.$tp->id,
                            '<button onclick="return confirm(`Apakah anda yakin akan menghapus data pasien ?`)" class="btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash"></i>
-                            </button>'); ?>
+                            </button>'); 
+                          ?>
+                          
                            <?php
                             // echo '<a href="'.site_url('Pasien/hapusDataPasien/'.$tp->id).'" data-confirm="Anda yakin akan menghapus pasien atas nama '.$tp->nama_pasien.' ?" class="btn btn-danger btn-sm" ><i class="fa fa-trash"></i></a>'
                            ?>

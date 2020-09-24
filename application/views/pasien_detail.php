@@ -105,9 +105,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="table-responsive">
         <!-- foto -->
         <?php foreach ($gDataPasien->result() as $tdatapasien) {
-              if ($tdatapasien->image == '0') {
-                 echo " " ;
-        ?>
+              if ($tdatapasien->image == '0') { ?>
+              <div class="col-md-12">
+              <center><img src="<?php echo base_url('assets/img/user.png');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+              <br>
         <?php } else { ?>
              <div class="col-md-12">
               <center><img src="<?php echo base_url('upload/'.$tdatapasien->image.'');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
@@ -123,7 +124,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           
             <tr>
               <th>No. RM</th>
-              <td></td>
+              <td><?php echo $tdatapasien->no_registrasi ?></td>
             </tr>
             <tr>
               <th>NIK</th>
