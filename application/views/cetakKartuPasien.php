@@ -55,7 +55,7 @@ $par=$this->uri->segment(4);
 if (is_null($par)) {
     echo " ";
 } else { ?>
-<div class="pesan"><center>Data Berhasil Disimpan</center></div>
+<div class="pesan d-print-none" ><center>Data Berhasil Disimpan</center></div>
 <?php } ?>
 <!-- end modal notif -->
 
@@ -98,7 +98,7 @@ if (is_null($par)) {
             </tr>
             <tr>
                 <th style="width:70px;font-size:15px; ">Alamat</th>
-                <td style="font-size:17px">: <?php echo $ckp->alamat_ktp_istri;?></td>
+                <td style="font-size:17px">: <?php echo $ckp->alamat_ktp_pasien;?></td>
             </tr>
             <?php } ?>
 

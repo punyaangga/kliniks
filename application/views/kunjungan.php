@@ -213,13 +213,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>Nama Suami</label>
-		                        <input type="text" value="<?php echo $tp->nama_suami;?>"name="namaSuamiKb" class="form-control" placeholder="Nama Suami" readonly>
+		                        <input type="text" value="<?php echo $tp->nama_pj;?>"name="namaPjKb" class="form-control" placeholder="Nama Suami" readonly>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>Alamat</label>
-		                        <textarea name="alamatPasienKb" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_istri;?></textarea>
+		                        <textarea name="alamatPasienKb" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_pasien;?></textarea>
 		                      </div>
 		                    </div>
 		                    <?php } ?>
@@ -538,7 +538,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    </div>
 		                    <div class="col-md-6">
 		                    	<label>Nama Orang Tua</label>
-		                    	<input type="text" value="<?php echo $tp->nama_suami;?>" class="form-control" readonly>
+		                    	<input type="text" value="<?php echo $tp->nama_pj;?>" class="form-control" readonly>
 		                    </div>
 		                     <div class="col-md-6">
 		                      <div class="form-group">
@@ -558,7 +558,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>Alamat</label>
-		                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_istri; ?></textarea>
+		                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_pasien; ?></textarea>
 		                      </div>
 		                    </div>
 
@@ -781,7 +781,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                    <div class="col-md-6">
 	                      <div class="form-group">
 	                        <label>Alamat</label>
-	                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_istri;?></textarea>
+	                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_pasien;?></textarea>
 	                      </div>
 	                    </div>
 	                     <?php } ?>
@@ -794,7 +794,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                    <div class="col-md-6">
 	                      <div class="form-group">
 	                        <label>BB (kg)</label>
-	                        <input type="number" name="bb" class="form-control" placeholder="Berat Badan" >
+	                        <input type="number" name="bbPersalinan" class="form-control" placeholder="Berat Badan" >
 	                      </div>
 	                    </div>
 	                    <div class="col-md-6">
@@ -913,7 +913,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                    <div class="col-md-6">
 			                      <div class="form-group">
 			                        <label>Nama Suami</label>
-			                        <input type="text" name="namaSuami" value="<?php echo $tp->nama_suami;?>"class="form-control" placeholder="Nama Suami" readonly >
+			                        <input type="text" name="namaPj" value="<?php echo $tp->nama_pj;?>"class="form-control" placeholder="Nama Suami" readonly >
 			                      </div>
 			                    </div>
 			                    <div class="col-md-6">
@@ -936,7 +936,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                    <div class="col-md-6">
 			                      <div class="form-group">
 			                        <label>Alamat</label>
-			                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_istri;?>  </textarea>
+			                        <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $tp->alamat_ktp_pasien;?>  </textarea>
 			                      </div>
 			                    </div>
 			                    <div class="col-md-6">
