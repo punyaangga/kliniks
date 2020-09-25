@@ -203,7 +203,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="card">
                 <h4 class="card-title"> <center>Histori Kunjungan </center></h4>
                 <div class="card-body">             
-                <div class="table-responsive" style="max-height: 500px;">
+                <div class="table-responsive" style="max-height: 940px;">
                   <table id="tableHistori" class="table table-striped table-hover">
                     <div class="scroll" style="hight=100%; overflow=auto;">
                     
