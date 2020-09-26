@@ -649,71 +649,126 @@ class Pasien extends CI_Controller {
     public function simpanPendaftaranBaru(){
       
       $dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+      $null = "0";
       //get foto
       $img = $this->input->post('image');
-      $folderPath = "upload/";
-  
-      $image_parts = explode(";base64,", $img);
-      $image_type_aux = explode("image/", $image_parts[0]);
-      $image_type = $image_type_aux[1];
-    
-      $image_base64 = base64_decode($image_parts[1]);
-      $fileName = uniqid() . '.png';
-    
-      $file = $folderPath . $fileName;
-      file_put_contents($file, $image_base64);
+      if ($img == null) 
+      {
+        $data = array('created_at'=>$dateNow,
+                  'no_kk'=>$this->input->post('nokk'),
+                  'jk_pasien'=>$this->input->post('jk_pasien'),
+                  'no_registrasi'=>$this->input->post('no_registrasi'),
+                  'nik'=>$this->input->post('nik'),
+                  'nama_pasien'=>$this->input->post('nama_pasien'),
+                  'tgl_lahir'=>$this->input->post('tgl_lahir'),
+                  'pendidikan_pasien'=>$this->input->post('pendidikan_pasien'),
+                  'agama_pasien'=>$this->input->post('agama_pasien'),
+                  'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
+                  'alamat_ktp_pasien'=>$this->input->post('alamat_ktp_pasien'),
+                  'alamat_pasien'=>$this->input->post('alamat_pasien'),
+                  'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),
+                  'nama_pj'=>$this->input->post('nama_pj'),
+                  'tgl_lahir_pj'=>$this->input->post('tgl_lahir_pj'),
+                  'pendidikan_pj'=>$this->input->post('pendidikan_pj'),
+                  'agama_pj'=>$this->input->post('agama_pj'),
+                  'pekerjaan_pj'=>$this->input->post('pekerjaan_pj'),
+                  'alamat_ktp_pj'=>$this->input->post('alamat_ktp_pj'),
+                  'alamat_pj'=>$this->input->post('alamat_pj'),
+                  'kota'=>$this->input->post('kota'),
+                  'desa'=>$this->input->post('desa'),
+                  'gol_darah'=>$this->input->post('gol_darah'),
+                  'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
+                  'email'=>$this->input->post('email'),
+                  'medsos'=>$this->input->post('medsos'),
+                  'catatan_bidan'=>$this->input->post('catatan_bidan'),
+                  'image'=>$null);
+                  $proses=$this->Pasien_model->simpanDataPasien($data);
+
+                    if (!$proses) {
+                      //script pake print kartu berobat
+                        $getId = $this->input->post('idPasien');
+                        $idPasien= $getId + 1;
+                        $url = base_url('CetakKartu/CetakKartuPasien/'.$idPasien.'/1'.'');
+
+                        $urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
+                        echo "<script>window.open('".$url."','_blank');</script>";
+                        // echo "<script>history.go(-2);</script>";  
+                        echo "<script>window.location='".$urlKunjungan."'</script>";
+                        //script ga pake print kartu berobat
+                        // echo "<script>alert('Data Berhasil Di Simpan');history.go(-2);</script>";
+                      
+                    } else {
+                      echo "Data Gagal Disimpan";
+                      echo "<br>";
+                      echo "<a href='".base_url('index.php/DataDokter/index/')."'>Kembali ke form</a>";
+                    }
+      } 
+      else 
+      {
+        $folderPath = "upload/";
+        $image_parts = explode(";base64,", $img);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
       
-      // simpan data
-
-      $data = array('created_at'=>$dateNow,
-                'no_kk'=>$this->input->post('nokk'),
-                'jk_pasien'=>$this->input->post('jk_pasien'),
-                'no_registrasi'=>$this->input->post('no_registrasi'),
-                'nik'=>$this->input->post('nik'),
-                'nama_pasien'=>$this->input->post('nama_pasien'),
-                'tgl_lahir'=>$this->input->post('tgl_lahir'),
-                'pendidikan_pasien'=>$this->input->post('pendidikan_pasien'),
-                'agama_pasien'=>$this->input->post('agama_pasien'),
-                'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
-                'alamat_ktp_pasien'=>$this->input->post('alamat_ktp_pasien'),
-                'alamat_pasien'=>$this->input->post('alamat_pasien'),
-                'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),
-                'nama_pj'=>$this->input->post('nama_pj'),
-                'tgl_lahir_pj'=>$this->input->post('tgl_lahir_pj'),
-                'pendidikan_pj'=>$this->input->post('pendidikan_pj'),
-                'agama_pj'=>$this->input->post('agama_pj'),
-                'pekerjaan_pj'=>$this->input->post('pekerjaan_pj'),
-                'alamat_ktp_pj'=>$this->input->post('alamat_ktp_pj'),
-                'alamat_pj'=>$this->input->post('alamat_pj'),
-                'kota'=>$this->input->post('kota'),
-                'desa'=>$this->input->post('desa'),
-                'gol_darah'=>$this->input->post('gol_darah'),
-                'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
-                'email'=>$this->input->post('email'),
-                'medsos'=>$this->input->post('medsos'),
-                'catatan_bidan'=>$this->input->post('catatan_bidan'),
-                'image'=>$fileName);
-    $proses=$this->Pasien_model->simpanDataPasien($data);
-
-      if (!$proses) {
-        //script pake print kartu berobat
-          $getId = $this->input->post('idPasien');
-          $idPasien= $getId + 1;
-          $url = base_url('CetakKartu/CetakKartuPasien/'.$idPasien.'/1'.'');
-
-          $urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
-          echo "<script>window.open('".$url."','_blank');</script>";
-          // echo "<script>history.go(-2);</script>";  
-          echo "<script>window.location='".$urlKunjungan."'</script>";
-          //script ga pake print kartu berobat
-          // echo "<script>alert('Data Berhasil Di Simpan');history.go(-2);</script>";
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = uniqid() . '.png';
+      
+        $file = $folderPath . $fileName;
+        file_put_contents($file, $image_base64);
         
-      } else {
-        echo "Data Gagal Disimpan";
-        echo "<br>";
-        echo "<a href='".base_url('index.php/DataDokter/index/')."'>Kembali ke form</a>";
-      }
+        // simpan data
 
+        $data = array('created_at'=>$dateNow,
+                  'no_kk'=>$this->input->post('nokk'),
+                  'jk_pasien'=>$this->input->post('jk_pasien'),
+                  'no_registrasi'=>$this->input->post('no_registrasi'),
+                  'nik'=>$this->input->post('nik'),
+                  'nama_pasien'=>$this->input->post('nama_pasien'),
+                  'tgl_lahir'=>$this->input->post('tgl_lahir'),
+                  'pendidikan_pasien'=>$this->input->post('pendidikan_pasien'),
+                  'agama_pasien'=>$this->input->post('agama_pasien'),
+                  'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
+                  'alamat_ktp_pasien'=>$this->input->post('alamat_ktp_pasien'),
+                  'alamat_pasien'=>$this->input->post('alamat_pasien'),
+                  'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),
+                  'nama_pj'=>$this->input->post('nama_pj'),
+                  'tgl_lahir_pj'=>$this->input->post('tgl_lahir_pj'),
+                  'pendidikan_pj'=>$this->input->post('pendidikan_pj'),
+                  'agama_pj'=>$this->input->post('agama_pj'),
+                  'pekerjaan_pj'=>$this->input->post('pekerjaan_pj'),
+                  'alamat_ktp_pj'=>$this->input->post('alamat_ktp_pj'),
+                  'alamat_pj'=>$this->input->post('alamat_pj'),
+                  'kota'=>$this->input->post('kota'),
+                  'desa'=>$this->input->post('desa'),
+                  'gol_darah'=>$this->input->post('gol_darah'),
+                  'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
+                  'email'=>$this->input->post('email'),
+                  'medsos'=>$this->input->post('medsos'),
+                  'catatan_bidan'=>$this->input->post('catatan_bidan'),
+                  'image'=>$fileName);
+                  $proses=$this->Pasien_model->simpanDataPasien($data);
+
+                    if (!$proses) {
+                      //script pake print kartu berobat
+                        $getId = $this->input->post('idPasien');
+                        $idPasien= $getId + 1;
+                        $url = base_url('CetakKartu/CetakKartuPasien/'.$idPasien.'/1'.'');
+
+                        $urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
+                        echo "<script>window.open('".$url."','_blank');</script>";
+                        // echo "<script>history.go(-2);</script>";  
+                        echo "<script>window.location='".$urlKunjungan."'</script>";
+                        //script ga pake print kartu berobat
+                        // echo "<script>alert('Data Berhasil Di Simpan');history.go(-2);</script>";
+                      
+                    } else {
+                      echo "Data Gagal Disimpan";
+                      echo "<br>";
+                      echo "<a href='".base_url('index.php/DataDokter/index/')."'>Kembali ke form</a>";
+                    }
+
+      }
+      
     }
     public function pendaftaranBaru(){
       $data['tNoRegis']=$this->Pasien_model->getNoRegis();

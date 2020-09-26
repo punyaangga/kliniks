@@ -107,7 +107,7 @@ if (is_null($par)) {
     </div>
 </div>
 <br>
-<a href="<?php echo base_url('index.php/dashboard');?>"><button class="btn btn-primary d-print-none">Kembali</button></a>
+<a href="<?php echo base_url('index.php/Pasien');?>"><button class="btn btn-primary d-print-none">Kembali</button></a>
 <button onClick="cetak()" class="btn btn-primary d-print-none" >Print</button>
 </center>
 
