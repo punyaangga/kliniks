@@ -186,7 +186,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pendidikan Pasien</label>
-		                        <select name="pendidikan_istri" id="pendidikanPasien" class="form-control" required>
+		                        <select name="pendidikan_pasien" id="pendidikanPasien" class="form-control" required>
 		                          <option value="SD" >SD</option>
 		                          <option value="SMP">SMP</option>
 		                          <option value="SLTA" selected="selected">SLTA</option>
@@ -204,7 +204,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Agama Pasien</label>
-		                        <select name="agama_istri" id="agama" class="form-control">
+		                        <select name="agama_pasien" id="agama" class="form-control">
 		                          <option value="Islam" selected="selected">Islam</option>
 		                          <option value="Kristen">Kristen</option>
 		                          <option value="Hindu">Hindu</option>
@@ -217,7 +217,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pekerjaan Pasien</label>
-		                        <select name="pekerjaan_istri" id="pekerjaanPasien" class="form-control" required>
+		                        <select name="pekerjaan_pasien" id="pekerjaanPasien" class="form-control" required>
 		                        	<option value="">- Pilih Pekerjaan -</option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
@@ -232,13 +232,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat KTP</label>
-		                        <input type="text" name="alamat_ktp_istri" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien" required>
+		                        <input type="text" name="alamat_ktp_pasien" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat Domisili</label>
-		                        <input type="text" name="alamat_istri" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien" required>
+		                        <input type="text" name="alamat_pasien" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien" required>
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -255,20 +255,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Penanggung Jawab</label>
-		                        <input type="text" name="nama_suami" class="form-control" placeholder="Penanggung Jawab" required>
+		                        <input type="text" name="nama_pj" class="form-control" placeholder="Penanggung Jawab" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Tanggal Lahir</label>
-		                        <input type="date" name="tgl_lahir_suami" class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
+		                        <input type="date" name="tgl_lahir_pj" class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
 		                      </div>
 		                    </div>
 
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pendidikan</label>
-		                        <select name="pendidikan_suami" id="pendidikanPj" class="form-control">
+		                        <select name="pendidikan_pj" id="pendidikanPj" class="form-control">
 		                          <option value="Tidak Tamat">Tidak Tamat</option>
 		                          <option value="SD">SD</option>
 		                          <option value="SMP">SMP</option>
@@ -285,7 +285,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Agama</label>
-		                        <select name="agama_suami" id="agamaPj" class="form-control">
+		                        <select name="agama_pj" id="agamaPj" class="form-control">
 		                          <option value="Islam" selected="selected">Islam</option>
 		                          <option value="Kristen">Kristen</option>
 		                          <option value="Hindu">Hindu</option>
@@ -298,7 +298,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pekerjaan</label>
-		                         <select name="pekerjaan_suami" id="pekerjaanPj" class="form-control" required>
+		                         <select name="pekerjaan_pj" id="pekerjaanPj" class="form-control" required>
 		                        	<option value="">- Pilih Pekerjaan -</option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
@@ -313,13 +313,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat KTP</label>
-		                        <input type="text" name="alamat_ktp_suami" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPj">
+		                        <input type="text" name="alamat_ktp_pj" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPj">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat Domisili</label>
-		                        <input type="text" name="alamat_suami" class="form-control" placeholder="Alamat Domisili" id="domisiliPj">
+		                        <input type="text" name="alamat_pj" class="form-control" placeholder="Alamat Domisili" id="domisiliPj">
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -333,7 +333,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Kota</label>
-		                        <select name="id_kota" id="kota" class="form-control">
+		                        <select name="kota" id="kota" class="form-control">
 		                        	<option value=" ">-- Pilih Kota --</option>
 		                        	<?php
 		                        		foreach ($tKota->result() as $tk ) { ?>
@@ -346,7 +346,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Desa</label>
-		                        <select name="id_desa" id="desa" class="form-control">
+		                        <select name="desa" id="desa" class="form-control">
 		                        	<option value="">-- Pilih Desa --</option>
 		                        	<?php
 		                        		foreach ($tDesa->result() as $td ) {
@@ -372,7 +372,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>No Telp / WA</label>
-		                        <input type="text" name="no_telp_pasien" class="form-control" placeholder="No Telepon">
+		                        <input type="number" name="no_telp_pasien" class="form-control" placeholder="No Telepon">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12 formTambahan">

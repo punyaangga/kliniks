@@ -29,7 +29,7 @@ class Antrian_model extends CI_Model {
     public function getDataAntrian($id)
     {
         $query = $this->db->query(" SELECT jp.id as idPelayanan,jp.nama_pelayanan, p.id as idPasien,
-                                    p.nama_pasien,p.tgl_lahir,p.nik,p.nama_suami,p.alamat_ktp_istri,p.no_kk,d.id as idDokter,
+                                    p.nama_pasien,p.tgl_lahir,p.nik,p.nama_pj,p.alamat_ktp_pasien,p.no_kk,d.id as idDokter,
                                     d.nama_dokter, a.no_antrian, a.kode_antrian, a.tgl_antrian
                                     FROM antrians as a 
                                     JOIN jenis_pelayanans as jp  ON a.id_jenis_pelayanan = jp.id 

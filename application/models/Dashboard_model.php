@@ -39,7 +39,7 @@ class Dashboard_model extends CI_Model {
             FROM `antrians` a LEFT JOIN `dokters` b ON a.`id_dokter` = b.`id` 
             LEFT JOIN `pasiens` c ON a.`id_pasien` = c.`id` 
             LEFT JOIN `jenis_pelayanans` d ON a.`id_jenis_pelayanan` = d.`id` 
-            where status_antrian='selesai' && SUBSTRING(a.tgl_antrian,1,10)='$tanggalSekarang'");
+            where status_antrian='selesai' && SUBSTRING(a.tgl_antrian,1,10)='$tanggalSekarang'  ");
           // $query = $this->db->query("SELECT a.*, b.`nama_dokter`, c.`nama_pasien`, d.`nama_pelayanan` FROM `antrians` a LEFT JOIN `dokters` b ON a.`id_dokter` = b.`id` LEFT JOIN `pasiens` c ON a.`id_pasien` = c.`id` LEFT JOIN `jenis_pelayanans` d ON a.`id_jenis_pelayanan` = d.`id` where status_antrian='selesai' ");
         return $query;
     }
@@ -51,7 +51,7 @@ class Dashboard_model extends CI_Model {
                                             JOIN pasiens AS p ON a.id_pasien = p.id 
                                             JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 
                                             where a.status_antrian ='proses' && SUBSTRING(a.tgl_antrian,1,10)='$tanggalSekarang'
-                                            order by a.no_antrian ASC ");
+                                            order by a.id ASC ");
 
         //codingan dibawah digunakan untuk menampilkan semua data yang berstatus proses
         // $harusDilayani = $this->db->query("SELECT a.id,a.id_pasien,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter, p.nama_pasien, j.nama_pelayanan 
@@ -65,7 +65,7 @@ class Dashboard_model extends CI_Model {
     public function tampilPasienSedangDilayani(){
         //codingan dibawah digunakan untuk menampilkan semua data yang berstatus Sedang Dilayani serta tanggal nya hari ini
         $tanggalSekarang = date('Y-m-d');
-        $sedangDilayani = $this->db->query("SELECT p.id as id_pasien,p.no_kk,p.nama_suami,p.alamat_istri,p.tgl_lahir,p.jk_pasien,a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter,p.nik, p.nama_pasien, j.nama_pelayanan 
+        $sedangDilayani = $this->db->query("SELECT p.id as id_pasien,p.no_kk,p.nama_pj,p.alamat_pasien,p.tgl_lahir,p.jk_pasien,a.id,a.no_antrian,a.status_antrian,a.tgl_antrian,d.nama_dokter,p.nik, p.nama_pasien, j.nama_pelayanan 
                                             FROM antrians AS a JOIN dokters AS d ON a.id_dokter = d.id 
                                             JOIN pasiens AS p ON a.id_pasien = p.id 
                                             JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id 

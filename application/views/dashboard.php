@@ -1819,8 +1819,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    <!-- js untuk table by angga-->
     <script>
             $(document).ready(function () {
-                $('#dataTables-example').dataTable();
-                $('#tableHarusDilayani').dataTable();
+                $('#dataTables-example').dataTable({"ordering": false});
+                $('#tableHarusDilayani').dataTable({"ordering": false});
                 $('#tableSedangDilayani').dataTable();
             });
     </script>
@@ -1844,6 +1844,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
    });
   </script>
   <!-- js untuk pencarian di inputan select -->
+  
+
   
   <!-- js untuk suara   -->
   <script>

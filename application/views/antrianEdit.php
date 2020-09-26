@@ -212,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Nama Suami</label>
-                              <input type="text" name="namaSuami" value="<?php echo $kp->nama_suami;?>"class="form-control" placeholder="Nama Suami" readonly required>
+                              <input type="text" name="namaPj" value="<?php echo $kp->nama_pj?>"class="form-control" placeholder="Nama Suami" readonly required>
                             </div>
                           </div>
                           <div class="col-md-6">
@@ -224,7 +224,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                           <div class="col-md-6">
                             <div class="form-group">
                               <label>Alamat</label>
-                              <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $kp->alamat_ktp_istri;?>  </textarea>
+                              <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $kp->alamat_ktp_pasien;?>  </textarea>
                             </div>
                           </div>
                           <?php } ?>
@@ -346,7 +346,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                               <div class="form-group">
                                 <label>Keterangan Hamil</label>
                                 <select name="baruLama" class="form-control">
-                                  <option value="<?php $gpk->baru_lama; ?>"><?php echo $gpk->baru_lama; ?></option>
+                                  <option value="<?php echo $gpk->baru_lama; ?>"><?php echo $gpk->baru_lama; ?></option>
                                   <option value="BARU">Baru</option>
                                   <option value="LAMA">Lama</option>
                                 </select>
@@ -461,7 +461,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                       <div class="col-md-6">
                                         <div class="form-group">
                                           <label>Nama Suami</label>
-                                          <input type="text" value="<?php echo $kb->nama_suami;?>"name="namaSuamiKb" class="form-control" placeholder="Nama Suami" readonly>
+                                          <input type="text" value="<?php echo $kp->nama_pj;?>"name="namaPjKb" class="form-control" placeholder="Nama Suami" readonly>
                                         </div>
                                       </div>
                                       <div class="col-md-6">
@@ -624,7 +624,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                       <div class="col-md-6">
                                         <label>Nama Orang Tua</label>
                                         <?php foreach ($query->result() as $kp ) { ?>
-                                        <input type="text" value="<?php echo $kp->nama_suami;?>" class="form-control" readonly>
+                                        <input type="text" value="<?php echo $kp->nama_pj;?>" class="form-control" readonly>
                                         
                                       </div>
                                        <div class="col-md-6">
@@ -954,7 +954,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                   <div class="col-md-6">
                                     <div class="form-group">
                                       <label>Alamat</label>
-                                      <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $gp->alamat;?></textarea>
+                                      <textarea name="alamat" class="form-control" placeholder="Alamat" readonly><?php echo $kp->alamat_ktp_pasien;?></textarea>
                                     </div>
                                   </div>
                                   <div class="col-md-6">

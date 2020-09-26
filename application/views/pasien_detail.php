@@ -105,76 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table id="DetailPasien" class="table table-striped table-hover">
-                    <?php foreach ($gDataPasien->result() as $tdatapasien) {?>
-                      <tr>
-                        <th>No. RM</th>
-                        <td><?php echo $tdatapasien->no_registrasi ?></td>
-                      </tr>
-                      <tr>
-                        <th>NIK</th>
-                        <td><?php echo $tdatapasien->nik ?></td>
-                      </tr>
-                      <tr>
-                        <th>Nama</th>
-                        <td><?php echo $tdatapasien->nama_pasien ?></td>
-                      </tr>
-                      <tr>
-                        <th>Tgl. Lahir</th>
-                        <td><?php echo $tdatapasien->tgl_lahir ?></td>
-                      </tr>
-                      <tr>
-                        <th>Pendidikan</th>
-                        <td><?php echo $tdatapasien->pendidikan_istri ?></td>
-                      </tr>
-                      <tr>
-                        <th>Agama</th>
-                        <td><?php echo $tdatapasien->agama_istri ?></td>
-                      </tr>
-                      <tr>
-                        <th>Pekerjaan</th>
-                        <td><?php echo $tdatapasien->pekerjaan_istri ?></td>
-                      </tr>
-                      <tr>
-                        <th>Alamat KTP</th>
-                        <td><?php echo $tdatapasien->alamat_ktp_istri ?></td>
-                      </tr>
-                      <tr>
-                        <th>Domisili</th>
-                        <td><?php echo $tdatapasien->alamat_istri ?></td>
-                      </tr>
-                      <tr>
-                        <th>Ayah Kandung</th>
-                        <td><?php echo $tdatapasien->nama_ayah_kandung ?></td>
-                      </tr>
-                      <tr>
-                        <th>Suami</th>
-                        <td><?php echo $tdatapasien->nama_suami ?></td>
-                      </tr>
-                      <tr>
-                        <th>Tgl. Lahir Suami</th>
-                        <td><?php echo $tdatapasien->tgl_lahir_suami ?></td>
-                      </tr>
-                      <tr>
-                        <th>Pendidikan Suami</th>
-                        <td><?php echo $tdatapasien->pendidikan_suami ?></td>
-                      </tr>
-                      <tr>
-                        <th>Agama Suami</th>
-                        <td><?php echo $tdatapasien->agama_suami ?></td>
-                      </tr>
-                      <tr>
-                        <th>Pekerjaan Suami</th>
-                        <td><?php echo $tdatapasien->pekerjaan_suami ?></td>
-                      </tr>
-                      <tr>
-                        <th>Alamat KTP Suami</th>
-                        <td><?php echo $tdatapasien->alamat_ktp_suami ?></td>
-                      </tr>
-                      <tr>
-                        <th>Domisili Suami</th>
-                        <td><?php echo $tdatapasien->alamat_suami ?></td>
+
                       </tr>
                       <tr>
                         <th>Kontak</th>
