@@ -3,55 +3,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Pasien extends CI_Controller {
 
-	private $userData;
-	
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('login_model', 'login');
-		$this->load->model('Pasien_model');
+  private $userData;
+  
+  public function __construct()
+  {
+    parent::__construct();
+    $this->load->model('login_model', 'login');
+    $this->load->model('Pasien_model');
 
-		$this->userData = array(
-			'session'	=> $this->session->userdata('userSession'),
-			'host'		=> $this->input->get_request_header('Host', TRUE),
-			'referer'	=> $this->input->get_request_header('Referer', TRUE),
-			'agent'		=> $this->input->get_request_header('User-Agent', TRUE),
-			'ipaddr'	=> $this->input->ip_address()
-		);
+    $this->userData = array(
+      'session' => $this->session->userdata('userSession'),
+      'host'    => $this->input->get_request_header('Host', TRUE),
+      'referer' => $this->input->get_request_header('Referer', TRUE),
+      'agent'   => $this->input->get_request_header('User-Agent', TRUE),
+      'ipaddr'  => $this->input->ip_address()
+    );
 
-		$auth = $this->login->auth($this->userData);
-		if(!$auth){
-			if ($this->agent->is_browser()) {
-				redirect();
-			} else{
-				$response = array(
-					'result'	=> false,
-					'msg'		=> 'Unauthorized access.'
-				);
-				echo json_encode($response, JSON_PRETTY_PRINT);
-			}
-		}
-	}
+    $auth = $this->login->auth($this->userData);
+    if(!$auth){
+      if ($this->agent->is_browser()) {
+        redirect();
+      } else{
+        $response = array(
+          'result'  => false,
+          'msg'   => 'Unauthorized access.'
+        );
+        echo json_encode($response, JSON_PRETTY_PRINT);
+      }
+    }
+  }
 
-	public function index()
-	{
-		$data['tPasien']=$this->Pasien_model->tampilDataPasien();
-		$this->load->view('pasien',$data);
+  public function index()
+  {
+    $data['tPasien']=$this->Pasien_model->tampilDataPasien();
+    $this->load->view('pasien',$data);
     }
 
     public function getDataKunjungan(){
-    	$id=$this->uri->segment(3);
+      $id=$this->uri->segment(3);
       $data['gBb'] = $this->Pasien_model->getBbLahir($id);
       $data['gDp'] = $this->Pasien_model->getDaftarPenyakit();
       $data['gRu'] = $this->Pasien_model->getRentangUmur();
       $data['gTi'] = $this->Pasien_model->getTindakanImunisasi();
-    	$data['query'] = $this->Pasien_model->getDataKunjungan($id);
+      $data['query'] = $this->Pasien_model->getDataKunjungan($id);
       $data['jmlAnak'] = $this->Pasien_model->getJmlAnak($id);
-    	$data['pelayanan'] = $this->Pasien_model->getJenisPelayanan();
-    	$data['kdAntrian'] = $this->Pasien_model->getKodeAntrian();
-    	$data['tDokter'] = $this->Pasien_model->getDokter();
+      $data['pelayanan'] = $this->Pasien_model->getJenisPelayanan();
+      $data['kdAntrian'] = $this->Pasien_model->getKodeAntrian();
+      $data['tDokter'] = $this->Pasien_model->getDokter();
       $data['alatKontra'] = $this->Pasien_model->getAlatKontrasepsi();
-    	$this->load->view('kunjungan',$data);
+      $this->load->view('kunjungan',$data);
     }
 
 
@@ -73,7 +73,7 @@ class Pasien extends CI_Controller {
     }
 
     public function simpanKunjungan(){
-    	$dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
+      $dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
         $statusAntrian = "Proses";
         $antrian = $this->input->post('noAntrian');
         $idLayanan = $this->input->post('jenisPelayanan');
@@ -644,10 +644,10 @@ class Pasien extends CI_Controller {
         
             
         
-			
+      
     }
     public function simpanPendaftaranBaru(){
-    	
+      
       $dateNow = $waktuSekarang = gmdate("Y-m-d H:i:s", time()+60*60*7);
       //get foto
       $img = $this->input->post('image');
@@ -665,9 +665,9 @@ class Pasien extends CI_Controller {
       
       // simpan data
 
-    	$data = array('created_at'=>$dateNow,
+      $data = array('created_at'=>$dateNow,
                 'no_kk'=>$this->input->post('nokk'),
-          			'jk_pasien'=>$this->input->post('jk_pasien'),
+                'jk_pasien'=>$this->input->post('jk_pasien'),
                 'no_registrasi'=>$this->input->post('no_registrasi'),
                 'nik'=>$this->input->post('nik'),
                 'nama_pasien'=>$this->input->post('nama_pasien'),
@@ -693,34 +693,34 @@ class Pasien extends CI_Controller {
                 'medsos'=>$this->input->post('medsos'),
                 'catatan_bidan'=>$this->input->post('catatan_bidan'),
                 'image'=>$fileName);
-		$proses=$this->Pasien_model->simpanDataPasien($data);
+    $proses=$this->Pasien_model->simpanDataPasien($data);
 
-			if (!$proses) {
-				//script pake print kartu berobat
-					$getId = $this->input->post('idPasien');
-					$idPasien= $getId + 1;
+      if (!$proses) {
+        //script pake print kartu berobat
+          $getId = $this->input->post('idPasien');
+          $idPasien= $getId + 1;
           $url = base_url('CetakKartu/CetakKartuPasien/'.$idPasien.'/1'.'');
 
-					$urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
+          $urlKunjungan = base_url('index.php/Pasien/getDataKunjungan/'.$idPasien.'');
           echo "<script>window.open('".$url."','_blank');</script>";
           // echo "<script>history.go(-2);</script>";  
           echo "<script>window.location='".$urlKunjungan."'</script>";
           //script ga pake print kartu berobat
           // echo "<script>alert('Data Berhasil Di Simpan');history.go(-2);</script>";
-				
-			} else {
-				echo "Data Gagal Disimpan";
-				echo "<br>";
-				echo "<a href='".base_url('index.php/DataDokter/index/')."'>Kembali ke form</a>";
-			}
+        
+      } else {
+        echo "Data Gagal Disimpan";
+        echo "<br>";
+        echo "<a href='".base_url('index.php/DataDokter/index/')."'>Kembali ke form</a>";
+      }
 
     }
     public function pendaftaranBaru(){
-    	$data['tNoRegis']=$this->Pasien_model->getNoRegis();
-    	$data['tPekerjaan']=$this->Pasien_model->getPekerjaan();
-    	$data['tKota'] = $this->Pasien_model->getKota();
-    	$data['tDesa'] = $this->Pasien_model->getDesa();
-    	$this->load->view('form_pendaftaran',$data);
+      $data['tNoRegis']=$this->Pasien_model->getNoRegis();
+      $data['tPekerjaan']=$this->Pasien_model->getPekerjaan();
+      $data['tKota'] = $this->Pasien_model->getKota();
+      $data['tDesa'] = $this->Pasien_model->getDesa();
+      $this->load->view('form_pendaftaran',$data);
     }
 
     public function hapusDataPasien(){

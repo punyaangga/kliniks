@@ -105,7 +105,95 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
               </div>
               <div class="card-body">
-
+                <!-- foto -->
+                <?php foreach ($gDataPasien->result() as $tdatapasien) {
+                      if ($tdatapasien->image == '0') { ?>
+                      <div class="col-md-12">
+                      <center><img src="<?php echo base_url('assets/img/user.png');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+                      <br>
+                <?php } else { ?>
+                     <div class="col-md-12">
+                      <center><img src="<?php echo base_url('upload/'.$tdatapasien->image.'');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+                      <br>
+                    <?php } ?>
+                    </div> 
+                <?php } ?>
+               
+                <!-- foto -->
+                <div class="table-responsive">
+                  <table id="DetailPasien" class="table table-striped table-hover">
+                    <?php foreach ($gDataPasien->result() as $tdatapasien) {?>
+                      <tr>
+                        <th>No. RM</th>
+                        <td><?php echo $tdatapasien->no_registrasi ?></td>
+                      </tr>
+                      <tr>
+                        <th>No. Kartu Keluarga</th>
+                        <td><?php echo $tdatapasien->no_kk ?></td>
+                      </tr>
+                      <tr>
+                        <th>NIK</th>
+                        <td><?php echo $tdatapasien->nik ?></td>
+                      </tr>
+                      <tr>
+                        <th>Nama</th>
+                        <td><?php echo $tdatapasien->nama_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Tgl. Lahir</th>
+                        <td><?php echo $tdatapasien->tgl_lahir ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pendidikan</th>
+                        <td><?php echo $tdatapasien->pendidikan_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Agama</th>
+                        <td><?php echo $tdatapasien->agama_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pekerjaan</th>
+                        <td><?php echo $tdatapasien->pekerjaan_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Alamat KTP</th>
+                        <td><?php echo $tdatapasien->alamat_ktp_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Domisili</th>
+                        <td><?php echo $tdatapasien->alamat_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Ayah Kandung</th>
+                        <td><?php echo $tdatapasien->nama_ayah_kandung ?></td>
+                      </tr>
+                      <tr>
+                        <th>Suami</th>
+                        <td><?php echo $tdatapasien->nama_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Tgl. Lahir Suami</th>
+                        <td><?php echo $tdatapasien->tgl_lahir_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pendidikan Suami</th>
+                        <td><?php echo $tdatapasien->pendidikan_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Agama Suami</th>
+                        <td><?php echo $tdatapasien->agama_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pekerjaan Suami</th>
+                        <td><?php echo $tdatapasien->pekerjaan_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Alamat KTP Suami</th>
+                        <td><?php echo $tdatapasien->alamat_ktp_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Domisili Suami</th>
+                        <td><?php echo $tdatapasien->alamat_pj ?></td>
                       </tr>
                       <tr>
                         <th>Kontak</th>
