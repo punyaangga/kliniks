@@ -201,8 +201,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pendidikan Pasien</label>
-		                        <select name="pendidikan_istri" id="pendidikanPasien" class="form-control" required>
-		                          <option valeu="<?php echo $tdatapasien->pendidikan_istri;?>"><?php echo $tdatapasien->pendidikan_istri;?></option>
+		                        <select name="pendidikan_pasien" id="pendidikanPasien" class="form-control" required>
+		                          <option valeu="<?php echo $tdatapasien->pendidikan_pasien;?>"><?php echo $tdatapasien->pendidikan_pasien;?></option>
 		                          <option value="SD" >SD</option>
 		                          <option value="SMP">SMP</option>
 		                          <option value="SLTA" selected="selected">SLTA</option>
@@ -220,8 +220,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Agama Pasien</label>
-		                        <select name="agama_istri" id="agama" class="form-control">
-		                          <option value="<?php echo $tdatapasien->agama_istri;?>"><?php echo $tdatapasien->agama_istri;?></option>
+		                        <select name="agama_pasien" id="agama" class="form-control">
+		                          <option value="<?php echo $tdatapasien->agama_pasien;?>"><?php echo $tdatapasien->agama_pasien;?></option>
 		                          <option value="Islam">Islam</option>
 		                          <option value="Kristen">Kristen</option>
 		                          <option value="Hindu">Hindu</option>
@@ -234,12 +234,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pekerjaan Pasien</label>
-		                        <select name="pekerjaan_istri" id="pekerjaanPasien" class="form-control" required>
-		                        	<option value="<?php echo $tdatapasien->pekerjaan_istri;?>"><?php echo $tdatapasien->pekerjaan_istri;?></option>
+		                        <select name="pekerjaan_pasien" id="pekerjaanPasien" class="form-control" required>
+		                        	<option value="<?php echo $tdatapasien->pekerjaan_pasien;?>"><?php echo $tdatapasien->pekerjaan_pasien;?></option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
 		                        	?>
-		                        		<option value="<?php echo $tp->id; ?>"><?php echo $tp->nama_pekerjaan;?></option>
+		                        		<option value="<?php echo $tp->nama_pekerjaan; ?>"><?php echo $tp->nama_pekerjaan;?></option>
 		                        	<?php	
 		                        		}
 		                        	?>
@@ -249,13 +249,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat KTP</label>
-		                        <input type="text" name="alamat_ktp_istri" value="<?php echo $tdatapasien->alamat_ktp_istri;?>" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien" required>
+		                        <input type="text" name="alamat_ktp_pasien" value="<?php echo $tdatapasien->alamat_ktp_pasien;?>" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPasien" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat Domisili</label>
-		                        <input type="text" name="alamat_istri" value="<?php echo $tdatapasien->alamat_istri;?>" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien" required>
+		                        <input type="text" name="alamat_pasien" value="<?php echo $tdatapasien->alamat_pasien;?>" class="form-control" placeholder="Alamat Domisili"  id="domisiliPasien" required>
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -272,21 +272,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Penanggung Jawab</label>
-		                        <input type="text" name="nama_suami" value="<?php echo $tdatapasien->nama_suami;?>" class="form-control" placeholder="Penanggung Jawab" required>
+		                        <input type="text" name="nama_pj" value="<?php echo $tdatapasien->nama_pj;?>" class="form-control" placeholder="Penanggung Jawab" required>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Tanggal Lahir</label>
-		                        <input type="date" name="tgl_lahir_suami" value="<?php echo $tdatapasien->tgl_lahir_suami;?>"class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
+		                        <input type="date" name="tgl_lahir_pj" value="<?php echo $tdatapasien->tgl_lahir_pj;?>"class="form-control" placeholder="Tanggal Lahir Penanggung Jawab" required>
 		                      </div>
 		                    </div>
 
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pendidikan</label>
-		                        <select name="pendidikan_suami" id="pendidikanPj" class="form-control">
-		                          <option value="<?php echo $tdatapasien->pendidikan_suami;?>"><?php echo $tdatapasien->pendidikan_suami;?></option>
+		                        <select name="pendidikan_pj" id="pendidikanPj" class="form-control">
+		                          <option value="<?php echo $tdatapasien->pendidikan_pj;?>"><?php echo $tdatapasien->pendidikan_pj;?></option>
 		                          <option value="Tidak Tamat">Tidak Tamat</option>
 		                          <option value="SD">SD</option>
 		                          <option value="SMP">SMP</option>
@@ -303,8 +303,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Agama</label>
-		                        <select name="agama_suami" id="agamaPj" class="form-control">
-		                          <option value="<?php echo $tdatapasien->agama_suami;?>"><?php echo $tdatapasien->agama_suami;?></option>
+		                        <select name="agama_pj" id="agamaPj" class="form-control">
+		                          <option value="<?php echo $tdatapasien->agama_pj;?>"><?php echo $tdatapasien->agama_pj;?></option>
 		                          <option value="Islam" selected="selected">Islam</option>
 		                          <option value="Kristen">Kristen</option>
 		                          <option value="Hindu">Hindu</option>
@@ -317,12 +317,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Pekerjaan</label>
-		                         <select name="pekerjaan_suami" id="pekerjaanPj" class="form-control" required>
-		                        	<option value="<?php echo $tdatapasien->pekerjaan_suami;?>"><?php echo $tdatapasien->pekerjaan_suami;?></option>
+		                         <select name="pekerjaan_pj" id="pekerjaanPj" class="form-control" required>
+		                        	<option value="<?php echo $tdatapasien->pekerjaan_pj;?>"><?php echo $tdatapasien->pekerjaan_pj;?></option>
 		                        	<?php
 		                        		foreach ($tPekerjaan->result() as $tp ) {
 		                        	?>
-		                        		<option value="<?php echo $tp->id; ?>"><?php echo $tp->nama_pekerjaan;?></option>
+		                        		<option value="<?php echo $tp->nama_pekerjaan; ?>"><?php echo $tp->nama_pekerjaan;?></option>
 		                        	<?php	
 		                        		}
 		                        	?>
@@ -332,13 +332,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat KTP</label>
-		                        <input type="text" name="alamat_ktp_suami" value="<?php echo $tdatapasien->alamat_ktp_suami;?>" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPj">
+		                        <input type="text" name="alamat_ktp_pj" value="<?php echo $tdatapasien->alamat_ktp_pj;?>" class="form-control" placeholder="Alamat KTP" onkeyup="copytextbox();" id="ktpPj">
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>Alamat Domisili</label>
-		                        <input type="text" name="alamat_suami" value="<?php echo $tdatapasien->alamat_suami;?>"class="form-control" placeholder="Alamat Domisili" id="domisiliPj">
+		                        <input type="text" name="alamat_pj" value="<?php echo $tdatapasien->alamat_pj;?>"class="form-control" placeholder="Alamat Domisili" id="domisiliPj">
 		                      </div>
 		                    </div>
 		                    <hr>
@@ -352,8 +352,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Kota</label>
-		                        <select name="id_kota" id="kota" class="form-control">
-		                        	<option value="<?php echo $tdatapasien->id_kota;?>"><?php echo $tdatapasien->id_kota;?></option>
+		                        <select name="kota" id="kota" class="form-control">
+		                        	<option value="<?php echo $tdatapasien->kota;?>"><?php echo $tdatapasien->kota;?></option>
 		                        	<?php
 		                        		foreach ($tKota->result() as $tk ) { ?>
 		                        		<option value="<?php echo $tk->nama_kota;?>"><?php echo $tk->nama_kota;?></option>		
@@ -364,8 +364,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Desa</label>
-		                        <select name="id_desa" id="desa" class="form-control">
-		                        	<option value="<?php echo $tdatapasien->id_desa;?>"><?php echo $tdatapasien->id_desa;?></option>
+		                        <select name="desa" id="desa" class="form-control">
+		                        	<option value="<?php echo $tdatapasien->desa;?>"><?php echo $tdatapasien->desa;?></option>
 		                        	<?php
 		                        		foreach ($tDesa->result() as $td ) {
 		                        	?>

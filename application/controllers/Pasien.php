@@ -744,21 +744,63 @@ class Pasien extends CI_Controller {
     public function editDataPasien(){
       $id=$this->input->post('id');
       $dateNow = gmdate("Y-m-d H:i:s", time()+60*60*7);
-      //get foto
       $img = $this->input->post('image');
-      $folderPath = "upload/";
-  
-      $image_parts = explode(";base64,", $img);
-      $image_type_aux = explode("image/", $image_parts[0]);
-      $image_type = $image_type_aux[1];
-    
-      $image_base64 = base64_decode($image_parts[1]);
-      $fileName = uniqid() . '.png';
-    
-      $file = $folderPath . $fileName;
-      file_put_contents($file, $image_base64);
       
-      $data = array('updated_at'=> $dateNow,
+      if ($img == null) 
+      {
+        //update tanpa foto
+        $data = array('updated_at'=> $dateNow,
+                    'no_kk'=>$this->input->post('noKk'),
+                    'nik'=>$this->input->post('nik'),
+                    'nama_pasien'=>$this->input->post('nama_pasien'),
+                    'tgl_lahir'=>$this->input->post('tgl_lahir'),
+                    'jk_pasien'=>$this->input->post('jk_pasien'),
+                    'pendidikan_pasien'=>$this->input->post('pendidikan_pasien'),
+                    'agama_pasien'=>$this->input->post('agama_pasien'),
+                    'pekerjaan_pasien'=>$this->input->post('pekerjaan_pasien'),
+                    'alamat_ktp_pasien'=>$this->input->post('alamat_ktp_pasien'),
+                    'alamat_pasien'=>$this->input->post('alamat_pasien'),
+                    'nama_ayah_kandung'=>$this->input->post('nama_ayah_kandung'),
+                    'nama_pj'=>$this->input->post('nama_pj'),
+                    'tgl_lahir_pj'=>$this->input->post('tgl_lahir_pj'),
+                    'pendidikan_pj'=>$this->input->post('nik'),
+                    'agama_pj'=>$this->input->post('agama_pj'),
+                    'pekerjaan_pj'=>$this->input->post('pekerjaan_pj'),
+                    'alamat_ktp_pj'=>$this->input->post('alamat_ktp_pj'),
+                    'alamat_pj'=>$this->input->post('alamat_pj'),
+                    'kota'=>$this->input->post('kota'),
+                    'desa'=>$this->input->post('desa'),
+                    'gol_darah'=>$this->input->post('gol_darah'),
+                    'no_telp_pasien'=>$this->input->post('no_telp_pasien'),
+                    'email'=>$this->input->post('email'),
+                    'medsos'=>$this->input->post('medsos'),
+                    'catatan_bidan'=>$this->input->post('catatan_bidan'));
+                    $proses = $this->Pasien_model->editDataPasien($id, $data);
+                    if (!$proses) 
+                    {
+                       $_SESSION['pesan'] = 'Data Berhasil Diperbarui';
+                       echo "<script>history.go(-2)</script>";
+                       // echo "<script>alert('Data Berhasil Di Hapus');history.go(-1)</script>";
+                    } 
+                    else 
+                    {
+                        echo "<script>alert('Data Gagal Di Hapus');history.go(-1)</script>";
+                    }
+
+      }
+      else
+      {
+        //update foto baru
+        $folderPath = "upload/";
+        $image_parts = explode(";base64,", $img);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = uniqid() . '.png';
+        $file = $folderPath . $fileName;
+        file_put_contents($file, $image_base64);
+        
+        $data = array('updated_at'=> $dateNow,
                     'image'=>$fileName,
                     'no_kk'=>$this->input->post('noKk'),
                     'nik'=>$this->input->post('nik'),
@@ -785,14 +827,19 @@ class Pasien extends CI_Controller {
                     'email'=>$this->input->post('email'),
                     'medsos'=>$this->input->post('medsos'),
                     'catatan_bidan'=>$this->input->post('catatan_bidan'));
-      $proses = $this->Pasien_model->editDataPasien($id, $data);
-        if (!$proses) {
-           $_SESSION['pesan'] = 'Data Berhasil Diperbarui';
-           echo "<script>history.go(-2)</script>";
-          // echo "<script>alert('Data Berhasil Di Hapus');history.go(-1)</script>";
-        } else {
-          echo "<script>alert('Data Gagal Di Hapus');history.go(-1)</script>";
-        }
+                    $proses = $this->Pasien_model->editDataPasien($id, $data);
+                    if (!$proses) 
+                    {
+                       $_SESSION['pesan'] = 'Data Berhasil Diperbarui';
+                       echo "<script>history.go(-2)</script>";
+                       // echo "<script>alert('Data Berhasil Di Hapus');history.go(-1)</script>";
+                    } 
+                    else 
+                    {
+                        echo "<script>alert('Data Gagal Di Hapus');history.go(-1)</script>";
+                    }
+      }
+      
     
     }
     

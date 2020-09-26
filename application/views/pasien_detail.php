@@ -87,166 +87,165 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
         </div>
       </nav>
+
       <!-- End Navbar -->
       <div class="panel-header panel-header-sm">
       </div>
+
+      <!-- Detail Pasien-->
       <div class="content">
         <div class="row">
-          <div id="table" class="col-md-12">
+          <div id="table" class="col-md-6">
             <div class="card">
               <div class="card-header">
                 <div class="row">
-                  <div class="col-12">
-                    <h2 class="card-title"><center> Detail Data Pasien</center></h4>
+                  <div class="col-6">
+                    <h4 class="card-title"> Detail Pasien</h4>
                   </div>
                 </div>
-  
-        <div class="card-body">
-        <div class="table-responsive">
-        <!-- foto -->
-        <?php foreach ($gDataPasien->result() as $tdatapasien) {
-              if ($tdatapasien->image == '0') { ?>
-              <div class="col-md-12">
-              <center><img src="<?php echo base_url('assets/img/user.png');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
-              <br>
-        <?php } else { ?>
-             <div class="col-md-12">
-              <center><img src="<?php echo base_url('upload/'.$tdatapasien->image.'');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
-              <br>
-            <?php } ?>
-            </div> 
-        <?php } ?>
-       
-        <!-- foto -->
-
-        <table  class="table table-striped table-hover" id="dataTables-example">
-        <?php foreach ($gDataPasien->result() as $tdatapasien) {?>
-          
-            <tr>
-              <th>No. RM</th>
-              <td><?php echo $tdatapasien->no_registrasi ?></td>
-            </tr>
-            <tr>
-              <th>NIK</th>
-              <td><?php echo $tdatapasien->nik ?></td>
-            </tr>
-            <tr>
-              <th>Nama</th>
-              <td><?php echo $tdatapasien->nama_pasien ?></td>
-            </tr>
-            <tr>
-              <th>Tgl. Lahir</th>
-              <td><?php echo $tdatapasien->tgl_lahir ?></td>
-            </tr>
-            <tr>
-              <th>Pendidikan</th>
-              <td><?php echo $tdatapasien->pendidikan_istri ?></td>
-            </tr>
-            <tr>
-              <th>Agama</th>
-              <td><?php echo $tdatapasien->agama_istri ?></td>
-            </tr>
-            <tr>
-              <th>Pekerjaan</th>
-              <td><?php echo $tdatapasien->pekerjaan_istri ?></td>
-            </tr>
-            <tr>
-              <th>Alamat KTP</th>
-              <td><?php echo $tdatapasien->alamat_ktp_istri ?></td>
-            </tr>
-            <tr>
-              <th>Domisili</th>
-              <td><?php echo $tdatapasien->alamat_istri ?></td>
-            </tr>
-            <tr>
-              <th>Ayah Kandung</th>
-              <td><?php echo $tdatapasien->nama_ayah_kandung ?></td>
-            </tr>
-            <tr>
-              <th>Suami</th>
-              <td><?php echo $tdatapasien->nama_suami ?></td>
-            </tr>
-            <tr>
-              <th>Tgl. Lahir Suami</th>
-              <td><?php echo $tdatapasien->tgl_lahir_suami ?></td>
-            </tr>
-            <tr>
-              <th>Pendidikan Suami</th>
-              <td><?php echo $tdatapasien->pendidikan_suami ?></td>
-            </tr>
-            <tr>
-              <th>Agama Suami</th>
-              <td><?php echo $tdatapasien->agama_suami ?></td>
-            </tr>
-            <tr>
-              <th>Pekerjaan Suami</th>
-              <td><?php echo $tdatapasien->pekerjaan_suami ?></td>
-            </tr>
-            <tr>
-              <th>Alamat KTP Suami</th>
-              <td><?php echo $tdatapasien->alamat_ktp_suami ?></td>
-            </tr>
-            <tr>
-              <th>Domisili Suami</th>
-              <td><?php echo $tdatapasien->alamat_suami ?></td>
-            </tr>
-            <tr>
-              <th>Kontak</th>
-              <td><?php echo $tdatapasien->no_telp_pasien ?></td>
-            </tr>
-            <tr>
-              <th>Email</th>
-              <td><?php echo $tdatapasien->email ?></td>
-            </tr>
-            <tr>
-              <th>Medsos</th>
-              <td><?php echo $tdatapasien->medsos ?></td>
-            </tr>
-            <?php } ?>
-        </table>
               </div>
-           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Histori Kunjungan -->
-      <div class="content">
-        <div class="row">
-          <div id="table" class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <div class="row">
-                  <div class="col-12">
-                    <h2 class="card-title"><center> Histori Kunjungan </center></h4>
-                  </div>
+              <div class="card-body">
+                <!-- foto -->
+                <?php foreach ($gDataPasien->result() as $tdatapasien) {
+                      if ($tdatapasien->image == '0') { ?>
+                      <div class="col-md-12">
+                      <center><img src="<?php echo base_url('assets/img/user.png');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+                      <br>
+                <?php } else { ?>
+                     <div class="col-md-12">
+                      <center><img src="<?php echo base_url('upload/'.$tdatapasien->image.'');?>" style=" width: 150px; height: 150px; border-radius: 50%;"></center>
+                      <br>
+                    <?php } ?>
+                    </div> 
+                <?php } ?>
+               
+                <!-- foto -->
+                <div class="table-responsive">
+                  <table id="DetailPasien" class="table table-striped table-hover">
+                    <?php foreach ($gDataPasien->result() as $tdatapasien) {?>
+                      <tr>
+                        <th>No. RM</th>
+                        <td><?php echo $tdatapasien->no_registrasi ?></td>
+                      </tr>
+                      <tr>
+                        <th>No. Kartu Keluarga</th>
+                        <td><?php echo $tdatapasien->no_kk ?></td>
+                      </tr>
+                      <tr>
+                        <th>NIK</th>
+                        <td><?php echo $tdatapasien->nik ?></td>
+                      </tr>
+                      <tr>
+                        <th>Nama</th>
+                        <td><?php echo $tdatapasien->nama_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Tgl. Lahir</th>
+                        <td><?php echo $tdatapasien->tgl_lahir ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pendidikan</th>
+                        <td><?php echo $tdatapasien->pendidikan_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Agama</th>
+                        <td><?php echo $tdatapasien->agama_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pekerjaan</th>
+                        <td><?php echo $tdatapasien->pekerjaan_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Alamat KTP</th>
+                        <td><?php echo $tdatapasien->alamat_ktp_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Domisili</th>
+                        <td><?php echo $tdatapasien->alamat_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Ayah Kandung</th>
+                        <td><?php echo $tdatapasien->nama_ayah_kandung ?></td>
+                      </tr>
+                      <tr>
+                        <th>Suami</th>
+                        <td><?php echo $tdatapasien->nama_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Tgl. Lahir Suami</th>
+                        <td><?php echo $tdatapasien->tgl_lahir_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pendidikan Suami</th>
+                        <td><?php echo $tdatapasien->pendidikan_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Agama Suami</th>
+                        <td><?php echo $tdatapasien->agama_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Pekerjaan Suami</th>
+                        <td><?php echo $tdatapasien->pekerjaan_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Alamat KTP Suami</th>
+                        <td><?php echo $tdatapasien->alamat_ktp_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Domisili Suami</th>
+                        <td><?php echo $tdatapasien->alamat_pj ?></td>
+                      </tr>
+                      <tr>
+                        <th>Kontak</th>
+                        <td><?php echo $tdatapasien->no_telp_pasien ?></td>
+                      </tr>
+                      <tr>
+                        <th>Email</th>
+                        <td><?php echo $tdatapasien->email ?></td>
+                      </tr>
+                      <tr>
+                        <th>Medsos</th>
+                        <td><?php echo $tdatapasien->medsos ?></td>
+                      </tr>
+                      <?php } ?>
+                              
+                  </table>
                 </div>
-  
-        <div class="card-body">
-        <div class="table-responsive">
-        <table  class="table table-striped table-hover" id="dataTables-example">        
-            <tr>
-              <th> Waktu Kunjungan </th>
-              <th> Jenis Pelayanan </th>
-            </tr>
-
-            <?php foreach ($gDataHistory->result() as $tdatahistory) {?>
-            <tr>
-               <td><?php echo $tdatahistory->tgl_antrian?></td>
-                <td><?php echo $tdatahistory->nama_pelayanan?></td>
-            </tr>
-            <?php } ?>
-        </table>
+              </div>
             </div>
-          </div>           
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- End Table -->
+          </div>
+              <!-- End Detail Pasien-->
 
-  <!--   Core JS Files   -->
+      <!-- Histori Kunjungan-->
+
+          <div class="col-md-6 table-histori">
+            <div class="card">
+                <h4 class="card-title"> <center>Histori Kunjungan </center></h4>
+                <div class="card-body">             
+                <div class="table-responsive" style="max-height: 940px;">
+                  <table id="tableHistori" class="table table-striped table-hover">
+                    <div class="scroll" style="hight=100%; overflow=auto;">
+                    
+                      <th>Waktu Kunjungan</th>
+                      <th>Jenis Pelayanan</th>
+                    
+                      <?php foreach ($gDataHistory->result() as $tdatahistory) {?>
+                        <tr>
+                           <td><?php echo $tdatahistory->tgl_antrian?></td>
+                            <td><?php echo $tdatahistory->nama_pelayanan?></td>
+                        </tr>
+                      <?php } ?>
+                  </table>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    <!-- End Histori Kunjungan-->
+         
+
+<!--   Core JS Files   -->
   <script src="<?php echo base_url('assets/js/core/jquery.min.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/core/popper.min.js'); ?>"></script>
   <script src="<?php echo base_url('assets/js/core/bootstrap.min.js'); ?>"></script>
