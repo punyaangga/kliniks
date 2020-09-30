@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <head>
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/favicon.png');?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Klinik Nur Khadijah | Detail Pasien
@@ -232,7 +232,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       <?php foreach ($gDataHistory->result() as $tdatahistory) {?>
                         <tr>
                            <td><?php echo $tdatahistory->tgl_antrian?></td>
-                            <td><?php echo $tdatahistory->nama_pelayanan?></td>
+                           <!-- <td><?php echo $tdatahistory->nama_pelayanan?></td> -->
+                          <td ><a href="<?php echo base_url('Antrian/getDataAntrian/'.$tdatahistory->id.'/'.str_replace(' ', '', $tdatahistory->nama_pelayanan).'');?>" target="_blank" style="color:black; text-decoration:none;"> <?php echo $tdatahistory->nama_pelayanan?></a></td>
                         </tr>
                       <?php } ?>
                   </table>

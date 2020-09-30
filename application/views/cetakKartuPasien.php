@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Klinik Utama Nur Khadijah | Cetak Kartu Pasien</title>
-    <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+    <link rel="icon" type="image/png" href="<?php echo base_url('assets/img/favicon.png');?>">
     <link href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>" rel="stylesheet">
     <script src="<?php echo base_url('assets/js/core/jquery.min.js');?>"></script>
     <script src="<?php echo base_url('assets/js/core/bootstrap.min.js');?>"></script>
