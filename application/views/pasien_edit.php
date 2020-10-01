@@ -408,7 +408,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-12 formTambahan">
 		                      <div class="form-group">
 		                        <label>Catatan Bidan</label>
-		                        <textarea class="form-control" value="<?php echo $tdatapasien->catatan_bidan;?>" name="catatan_bidan"></textarea>
+		                        <textarea class="form-control" name="catatan_bidan"><?php echo $tdatapasien->catatan_bidan;?></textarea>
 		                      </div>
 		                    </div>
 		                    <?php } ?>

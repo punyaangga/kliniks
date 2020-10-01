@@ -37,17 +37,15 @@
     </style>
 
 </head>
-<body>
+<body onload="cetak();">
 <!-- modal notif -->
-<div id="myModal" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                Data Berhasil Disimpan <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            </div>
-        </div>
-    </div>
-</div>
+<?php 
+$par=$this->uri->segment(4);
+if (is_null($par)) {
+    echo " ";
+} else { ?>
+<div class="pesan d-print-none" ><center>Data Berhasil Disimpan</center></div>
+<?php } ?>
 <!-- end modal notif -->
 
 <center>

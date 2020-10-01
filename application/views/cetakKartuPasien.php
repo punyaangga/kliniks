@@ -48,7 +48,7 @@
     </style>
 
 </head>
-<body>
+<body onload="cetak();">
 <!-- modal notif -->
 <?php 
 $par=$this->uri->segment(4);
