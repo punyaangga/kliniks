@@ -158,10 +158,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                        <label>Kode Antrian</label>
 		                        <?php
 		                          foreach ($kdAntrian->result() as $kd ) {
-		                            $getKd = $kd->kode_antrian;
-		                            $pecahKd = substr($getKd, 2);
-		                            $angka = $pecahKd+1;
-		                            $kode = "A-".$angka;
+		                            $getId = $kd->id;
+		                            $angka = $getId+1;
+		                            $date=str_replace('-','', gmdate("Y-m-d ", time()+60*60*7)) ;
+		                            $kode = "A-".$date.$angka;
+
 		                        ?>
 		                        <input type="text" name="idAntrian" value="<?php echo $kd->id;?>" hidden>
 		                        <input type="text" name="kode_antrian" class="form-control" placeholder="Kode Antrian" value="<?php echo $kode;?>"readonly>

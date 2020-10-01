@@ -281,7 +281,7 @@
 					</li> -->
 
 
-					<li>
+					<!-- <li>
 						<a data-toggle="collapse" href="#menuTim" >
 							<i class="fas fa-user-friends"></i>
 							<p>
@@ -291,32 +291,32 @@
 						<div class="collapse " id="menuTim">
 							<ul class="nav">
 								<li id="li-user">
-									<a href="<?php echo base_url('user/'); ?>">
-									<!-- <a href="<?php //echo base_url('user/'); ?>"> -->
+									<a href="<?php //echo base_url('user/'); ?>">
+									 <a href="<?php //echo base_url('user/'); ?>"> 
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>User</p>
 									</a>
 								</li>
 								<li id="li-department">
-									<a href="<?php echo base_url('department/'); ?>">
+									<a href="<?php //echo base_url('department/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Department</p>
 									</a>
 								</li>
 								<li id="li-karyawan">
-									<a href="<?php echo base_url('karyawan/'); ?>">
+									<a href="<?php //echo base_url('karyawan/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Karyawan</p>
 									</a>
 								</li>
 								<li id="li-role">
-									<a href="<?php echo base_url('role/'); ?>">
+									<a href="<?php //echo base_url('role/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Role</p>
 									</a>
 								</li>
 								<li id="li-permission">
-									<a href="<?php echo base_url('permission/'); ?>">
+									<a href="<?php //echo base_url('permission/'); ?>">
 										<i class="now-ui-icons arrows-1_minimal-right"></i>
 										<p>Permission</p>
 									</a>
@@ -324,7 +324,7 @@
 							</ul>
 							<hr>
 						</div>
-					</li>
+					</li> -->
 					<li id="li-logout">
             <a href="<?php echo base_url('dashboard/logout/'); ?>">
               <i class="fas fa-power-off"></i>
