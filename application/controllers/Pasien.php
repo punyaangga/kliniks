@@ -95,7 +95,8 @@ class Pasien extends CI_Controller {
             
             //untuk simpan ke table detail_pemeriksaan kehamilan
              
-            $dataDpk = array('id_antrian'=>$kodeAntrian,
+            $dataDpk = array('created_at'=>$dateNow,
+                'id_antrian'=>$kodeAntrian,
                 'id_pasien'=>$this->input->post('namaPasien'),
                 'tgl_lahir'=>$this->input->post('tglLahir'),
                 'nik'=>$this->input->post('nik'),
@@ -145,7 +146,8 @@ class Pasien extends CI_Controller {
                               'tgl_antrian'=>$dateNow,
                               'kode_antrian'=>$this->input->post('kode_antrian'));
                     //untuk simpan ke db detail_pemeriksaan kehamilan
-                    $dataDpk = array('id_antrian'=>$kodeAntrian,
+                    $dataDpk = array('created_at'=>$dateNow,
+                        'id_antrian'=>$kodeAntrian,
                         'id_pasien'=>$this->input->post('namaPasien'),
                         'tgl_lahir'=>$this->input->post('tglLahir'),
                         'nik'=>$this->input->post('nik'),
@@ -202,7 +204,8 @@ class Pasien extends CI_Controller {
                            'kode_antrian'=>$this->input->post('kode_antrian'));
                 
                 //untuk simpan ke table persalinan
-                $dataPs = array('id_antrian'=>$kodeAntrian,
+                $dataPs = array('created_at'=>$dateNow,
+                    'id_antrian'=>$kodeAntrian,
                     'id_pasien'=>$this->input->post('namaPasien'),
                     'umur'=>$this->input->post('umur'),
                     'alamat'=>$this->input->post('alamat'),
@@ -244,7 +247,9 @@ class Pasien extends CI_Controller {
                                   'tgl_antrian'=>$dateNow,
                                   'kode_antrian'=>$this->input->post('kode_antrian'));
                         //untuk simpan ke table persalinan
-                        $dataPs = array('id_antrian'=>$kodeAntrian,
+                        $dataPs = array(
+                            'created_at'=>$dateNow,
+                            'id_antrian'=>$kodeAntrian,
                             'id_pasien'=>$this->input->post('namaPasien'),
                             'umur'=>$this->input->post('umur'),
                             'alamat'=>$this->input->post('alamat'),
@@ -413,7 +418,8 @@ class Pasien extends CI_Controller {
                            'kode_antrian'=>$this->input->post('kode_antrian'));
                 
                 //untuk simpan ke table detail_pemeriksaan_umum
-                $dataUmum = array('id_antrian'=>$kodeAntrian,
+                $dataUmum = array('created_at'=>$dateNow,
+                      'id_antrian'=>$kodeAntrian,
                       'jenis_kelamin'=>$this->input->post('jenisKelaminUmum'),
                       'id_penyakit'=>$this->input->post('idPenyakitUmum'),
                       'id_rentang_umur'=>$this->input->post('idRentangUmurUmum'),
@@ -445,7 +451,8 @@ class Pasien extends CI_Controller {
                                   'tgl_antrian'=>$dateNow,
                                   'kode_antrian'=>$this->input->post('kode_antrian'));
                          //untuk simpan ke table detail_pemeriksaan_umum
-                          $dataUmum = array('id_antrian'=>$kodeAntrian,
+                          $dataUmum = array('created_at'=>$dateNow,
+                                'id_antrian'=>$kodeAntrian,
                                 'jenis_kelamin'=>$this->input->post('jenisKelaminUmum'),
                                 'id_penyakit'=>$this->input->post('idPenyakitUmum'),
                                 'id_rentang_umur'=>$this->input->post('idRentangUmurUmum'),
@@ -482,7 +489,8 @@ class Pasien extends CI_Controller {
                                'kode_antrian'=>$this->input->post('kode_antrian'));
                     
                     //untuk simpan ke table detail_pemeriksaan_ispa
-                    $dataIs=array('id_antrian'=>$kodeAntrian,
+                    $dataIs=array('created_at'=>$dateNow,
+                      'id_antrian'=>$kodeAntrian,
                       'nama_anak'=>$this->input->post('namaAnakIspa'),
                       'jenis_kelamin'=>$this->input->post('jkIspa'),
                       'umur_tahun'=>$this->input->post('umurTahun'),
@@ -516,7 +524,8 @@ class Pasien extends CI_Controller {
                                       'tgl_antrian'=>$dateNow,
                                       'kode_antrian'=>$this->input->post('kode_antrian'));
                              //untuk simpan ke table detail_pemeriksaan_ispa
-                             $dataIs=array('id_antrian'=>$kodeAntrian,
+                             $dataIs=array('created_at'=>$dateNow,
+                                'id_antrian'=>$kodeAntrian,
                                 'nama_anak'=>$this->input->post('namaAnakIspa'),
                                 'jenis_kelamin'=>$this->input->post('jkIspa'),
                                 'umur_tahun'=>$this->input->post('umurTahun'),
