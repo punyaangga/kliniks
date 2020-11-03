@@ -33,19 +33,25 @@
         .last-td-align-end td:last-child {
             text-align: end;
         }
+        .pesan{
+          display: none;
+          border: 1px solid #18ce0f;
+          width: 200px;
+          margin: auto;
+          background-color: #18ce0f;
+          color: white;
+          text-align: center;
+        }
+
 
     </style>
 
 </head>
-<body onload="cetak();">
+<body>
 <!-- modal notif -->
-<?php 
-$par=$this->uri->segment(4);
-if (is_null($par)) {
-    echo " ";
-} else { ?>
+
 <div class="pesan d-print-none" ><center>Data Berhasil Disimpan</center></div>
-<?php } ?>
+
 <!-- end modal notif -->
 
 <center>
@@ -85,6 +91,11 @@ if (is_null($par)) {
     function cetak() {
         return window.print();
     }
+     //untuk pesan
+      // angka 500 dibawah ini artinya pesan akan muncul dalam 0,5 detik setelah document ready
+      $(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
+      // angka 3000 dibawah ini artinya pesan akan hilang dalam 3 detik setelah muncul
+      setTimeout(function(){$(".pesan").fadeOut('slow');}, 3000);
 </script>
 
 </body>

@@ -617,7 +617,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>Hb0</label>
-		                        <select name="hb0" class="form-control">
+		                        <select name="hb0" class="form-control" id="hb0">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -626,7 +626,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>BCG</label>
-		                        <select name="bcg" class="form-control">
+		                        <select name="bcg" class="form-control" id="bcg">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -635,7 +635,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Polio 1</label>
-		                        <select name="polio1" class="form-control">
+		                        <select name="polio1" class="form-control" id="polio1">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -644,7 +644,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Polio 2</label>
-		                        <select name="polio2" class="form-control">
+		                        <select name="polio2" class="form-control" id="polio2">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -653,7 +653,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Polio 3</label>
-		                        <select name="polio3" class="form-control">
+		                        <select name="polio3" class="form-control" id="polio3">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -662,7 +662,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Polio 4</label>
-		                        <select name="polio4" class="form-control">
+		                        <select name="polio4" class="form-control" id="polio4">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -671,7 +671,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Pentabio 1</label>
-		                        <select name="pentabio1" class="form-control">
+		                        <select name="pentabio1" class="form-control" id="pentabio1">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -680,7 +680,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Pentabio 2</label>
-		                        <select name="pentabio2" class="form-control">
+		                        <select name="pentabio2" class="form-control" id="pentabio2">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -689,7 +689,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Pentabio 3</label>
-		                        <select name="pentabio3" class="form-control">
+		                        <select name="pentabio3" class="form-control" id="pentabio3">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -698,7 +698,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Campak</label>
-		                        <select name="campak" class="form-control">
+		                        <select name="campak" class="form-control" id="campak">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -707,7 +707,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>TT</label>
-		                        <select name="tt" class="form-control">
+		                        <select name="tt" class="form-control" id="tt">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -716,7 +716,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Pentabio Ulang</label>
-		                        <select name="pentabioUlang" class="form-control">
+		                        <select name="pentabioUlang" class="form-control" id="pentabioUlang">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -725,7 +725,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-3">
 		                      <div class="form-group">
 		                        <label>Campak Ulang</label>
-		                        <select name="campakUlang" class="form-control">
+		                        <select name="campakUlang" class="form-control" id="campakUlang">
 		                          <option value="0" selected>Tidak</option>
 		                          <option value="1">Ya</option>
 		                        </select>
@@ -819,7 +819,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                    <div class="col-md-6">
 	                      <div class="form-group">
 	                        <label>Jenis Kelamin</label>
-	                        <select name="jenisKelamin" class="form-control">
+	                        <select name="jenisKelamin" class="form-control" id="jkPersalinan">
 	                          <option value="Laki-Laki" selected>Laki-laki</option>
 	                          <option value="Perempuan" >Perempuan</option>
 	                        </select>
@@ -828,7 +828,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                    <div class="col-md-6">
 	                      <div class="form-group">
 	                        <label>IMD</label>
-	                        <select name="imd" class="form-control">
+	                        <select name="imd" class="form-control" id="imd">
 	                          <option value="1" selected>Ya</option>
 	                          <option value="0">Tidak</option>
 	                        </select>
@@ -928,7 +928,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                      <div class="form-group">
 			                        <label>KIA</label>
 			                        <!-- <input type="text" name="buku_kia" class="form-control" placeholder="Buku KIA"> -->
-			                        <select name="bukuKia" class="form-control">
+			                        <select name="bukuKia" class="form-control" id="kia">
 			                          <option value="lama">Lama</option>
 			                          <option value="baru">Baru</option>
 			                        </select>
@@ -979,7 +979,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                    <div class="col-md-6">
 			                      <div class="form-group">
 			                        <label>K1</label>
-			                        <select name="k1" class="form-control">
+			                        <select name="k1" class="form-control" id="k1">
 			                          <option value="1" selected>Ya</option>
 			                          <option value="0">Tidak</option>
 			                        </select>
@@ -988,7 +988,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                    <div class="col-md-6">
 			                      <div class="form-group">
 			                        <label>K4</label>
-			                        <select name="k4" class="form-control">
+			                        <select name="k4" class="form-control" id="k4">
 			                          <option value="1" selected>Ya</option>
 			                          <option value="0">Tidak</option>
 			                        </select>
@@ -1027,7 +1027,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                    <div class="col-md-6">
 			                      <div class="form-group">
 			                        <label>Keterangan Hamil</label>
-			                        <select name="baruLama" class="form-control">
+			                        <select name="baruLama" class="form-control" id="keteranganHamil">
 			                          <option value="BARU" selected>Baru</option>
 			                          <option value="LAMA">Lama</option>
 			                        </select>
@@ -1126,7 +1126,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        $('#alatKontra').select2({'theme': 'bootstrap4'});
        $('#fourT').select2({'theme': 'bootstrap4'});
        $('#macTindakan').select2({'theme': 'bootstrap4'});
-       
+       $('#kia').select2({'theme': 'bootstrap4'});
+       $('#k1').select2({'theme': 'bootstrap4'});
+       $('#k4').select2({'theme': 'bootstrap4'});
+       $('#keteranganHamil').select2({'theme': 'bootstrap4'});
+       $('#hb0').select2({'theme': 'bootstrap4'});
+       $('#bcg').select2({'theme': 'bootstrap4'});
+       $('#polio1').select2({'theme': 'bootstrap4'});
+       $('#polio2').select2({'theme': 'bootstrap4'});
+       $('#polio3').select2({'theme': 'bootstrap4'});
+       $('#polio4').select2({'theme': 'bootstrap4'});
+       $('#pentabio1').select2({'theme': 'bootstrap4'});
+       $('#pentabio2').select2({'theme': 'bootstrap4'});
+       $('#pentabio3').select2({'theme': 'bootstrap4'});
+       $('#campak').select2({'theme': 'bootstrap4'});
+       $('#tt').select2({'theme': 'bootstrap4'});
+       $('#pentabioUlang').select2({'theme': 'bootstrap4'});
+       $('#campakUlang').select2({'theme': 'bootstrap4'});
+       $('#imd').select2({'theme': 'bootstrap4'});
+       $('#jkPersalinan').select2({'theme': 'bootstrap4'});
+
        $('#pasien').select2({'theme': 'bootstrap4'});
        $('#dokter').select2({'theme': 'bootstrap4'});
    });
