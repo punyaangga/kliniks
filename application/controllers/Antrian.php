@@ -41,21 +41,6 @@ class Antrian extends CI_Controller {
 
 		
     }
-    public function hapusDataAntrian()
-	{
-		$id = $this->uri->segment(3);
-		$proses = $this->Antrian_model->hapusDataAntrian($id);
-		if (!$proses) {
-				echo "<script>alert('Data Berhasil Di Hapus');history.go(-1);</script>";
-				
-		} else {
-			echo "Data Gagal dihapus";
-			echo "<br>";
-			echo "<a href='".base_url('index.php/Antrian')."'>Tampil data Dokter</a>";
-		}
-	}
-	
-
     public function getDataAntrian(){
     	$id=$this->uri->segment(3);
     	$data['query'] = $this->Antrian_model->getDataAntrian($id);

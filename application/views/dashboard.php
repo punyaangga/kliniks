@@ -1630,10 +1630,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <div class="col-3">
                     
                   </div>
-                  <div class="col-3 form-group">
+ <!--                  <div class="col-3 form-group">
                     <label><b>Filter Hari:</b></label>
                     <input type="date" name="filterDate" class="form-control">
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="card-body">
@@ -1667,107 +1667,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
         </div>
-
-        <!-- Pop up tambah kunjungan angga -->
-        <div class="modal fade" id="tambahKunjungan" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="tambahKunjunganLabel">Tambah Kunjungan</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                <form method="post" action="<?php echo base_url('Dashboard/simpanAntrian');?>">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Jenis Pelayanan</label>
-                        <br>
-                        <select class="form-control" id="jp" name="jenisPelayanan" class="form-control" style="width:100%;" required>
-                                <option> </option>
-                                <?php foreach ($pelayanan as $pel) : ?>
-                                    <option value="<?= $pel['id']; ?>"><?= $pel['nama_pelayanan']; ?></option>
-                                <?php endforeach; ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Pasien</label>
-                        <select name="namaPasien" id="pasien" class="form-control" style="width:100%;">
-                          <?php 
-                            foreach ($pasien->result() as $np) {
-                          ?>
-                          <option value="<?php echo $np->id;?>"> <?php echo $np->no_registrasi." | ".$np->nama_pasien;?> </option>
-                          <?php
-                          }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Dokter</label>
-                        <select name="namaDokter" id="dokter" class="form-control" style="width:100%;">
-                          <?php
-                            foreach ($dokter->result() as $nd) {
-                          ?>
-                          <option value="<?php echo $nd->id;?>"><?php echo $nd->nama_dokter;?></option>
-                          <?php
-                            }
-                          ?>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>No. Antrian</label>
-                        <textarea id="noPelayanan" name="noAntrian" class="form-control" style="height:30px; padding-top: 5px; padding-left: 20px;" readonly> </textarea>
-                        
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Tanggal Kunjungan</label>
-                        <input type="text" name="tgl_antrian" class="form-control" placeholder="Tanggal Antrian" value="<?php echo gmdate("Y-m-d H:i:s", time()+60*60*7);?>" required readonly>
-                      </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label>Kode Antrian</label>
-                        <?php
-                          foreach ($kdAntrian->result() as $kd ) {
-                            $getKd = $kd->kode_antrian;
-                            $pecahKd = substr($getKd, 2);
-                            $angka = $pecahKd+1;
-                            $kode = "A-".$angka;
-                        ?>
-                        <input type="text" name="kode_antrian" class="form-control" placeholder="Kode Antrian" value="<?php echo $kode;?>"readonly>
-                        <?php } ?>
-                      </div>
-                    </div>
-                   <!--  <div class="col-md-12">
-                      <label>Catatan</label>
-                      <textarea class="form-control"></textarea>
-                    </div> -->
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Batal</button>
-                   
-                    <button class="btn btn-sm btn-success"><i class="fa fa-plus"></i> Tambah</button>
-                  </div>
-                
-                </form>
-                 <!-- <button class="btn btn-success d-print-none m-4" onclick="cetak()">Cetak struk</button> -->
-              </div>
-             
-            </div>
-          </div>
-        </div>
-        <!-- end pop up tambah kunjungan -->
-
       </div>
     </div>
   </div>

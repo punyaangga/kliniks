@@ -144,7 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>No. Antrian</label>
-		                        <textarea id="noPelayanan" name="noAntrian" class="form-control" style="height:30px; padding-top: 5px; padding-left: 20px;" readonly> </textarea>
+		                        <textarea id="noPelayanan" name="noAntrian" class="form-control" style="height:30px; padding-top: 5px; padding-left: 20px;" placeholder="1" readonly> </textarea>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-6">

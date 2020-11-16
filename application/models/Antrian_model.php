@@ -11,19 +11,9 @@ class Antrian_model extends CI_Model {
                                             JOIN pasiens AS p ON a.id_pasien = p.id 
                                             JOIN jenis_pelayanans AS j ON a.id_jenis_pelayanan = j.id ORDER BY a.tgl_antrian DESC ');
         
-        //script untuk menampilkan kunjungan hari ini saja
-        // $kunjunganPasien = $this->db->query("SELECT SUBSTRING(a.tgl_antrian,1,10) ,a.*, b.`nama_dokter`, c.`nama_pasien`, d.`nama_pelayanan` 
-        //     FROM `antrians` a LEFT JOIN `dokters` b ON a.`id_dokter` = b.`id` 
-        //     LEFT JOIN `pasiens` c ON a.`id_pasien` = c.`id` 
-        //     LEFT JOIN `jenis_pelayanans` d ON a.`id_jenis_pelayanan` = d.`id` 
-        //     where SUBSTRING(a.tgl_antrian,1,10)='$dateNow'");
         return $kunjunganPasien;
     }   
-     public function hapusDataAntrian($id)
-    {
-        $this->db->where('id', $id);
-        $query = $this->db->delete('antrians');
-    }
+    
     
     //fungsi untuk halaman Form Edit Kunjungan
     public function getDataAntrian($id)
@@ -50,7 +40,6 @@ class Antrian_model extends CI_Model {
         $getMt = $this->db->get('macam_tindakan_imunisasi');
         return $getMt;
     }
-
 
     public function getPemeriksaanKehamilan($idAntrian){
         $getPk = $this->db->query("SELECT * FROM detail_pemeriksaan_kehamilan where id_antrian='$idAntrian'");
