@@ -5,9 +5,7 @@ Cara Pakai
 2. Install Xampp versi v3.2.1
 3. Clone repo kliniks ke htdocs
 4. Import db yang bernama klinik_dua.sql ke mysql dengan nama db klinik_dua
-5. untuk login dapat menggunakan akun :
-username : admin
-password : admin
+5. untuk login dapat menggunakan akun : username : admin password : admin
 
 
 ###################
