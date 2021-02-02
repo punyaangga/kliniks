@@ -81,7 +81,7 @@ if (is_null($par)) {
                  <td style="font-size:17px">
                     <?php
                         //waktu sekarang
-                        $tglSekarang = date('yy-m-d');
+                        $tglSekarang =date('D, d-m-Y');
                         $waktuSekarang = explode('-', $tglSekarang);
                         //tgl lahir pasien
                         $tglPasien= $ckp->tgl_lahir;
@@ -89,7 +89,7 @@ if (is_null($par)) {
                         //hitung umur
                         $getHari = $waktuSekarang[2] - $waktuPasien[2];
                         $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+                        $getTahun = $waktuSekarang[2] - $waktuPasien [0];
                         //hasil umur
                         $umurPasien=abs($getTahun)." Tahun ";
                         echo ": ".$umurPasien; 

@@ -168,31 +168,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <td><?php echo $tdatapasien->nama_ayah_kandung ?></td>
                       </tr>
                       <tr>
-                        <th>Suami</th>
+                        <th>Penanggung Jawab</th>
                         <td><?php echo $tdatapasien->nama_pj ?></td>
                       </tr>
                       <tr>
-                        <th>Tgl. Lahir Suami</th>
+                        <th>Tgl. Lahir Penanggung Jawab</th>
                         <td><?php echo $tdatapasien->tgl_lahir_pj ?></td>
                       </tr>
                       <tr>
-                        <th>Pendidikan Suami</th>
+                        <th>Pendidikan Penanggung Jawab</th>
                         <td><?php echo $tdatapasien->pendidikan_pj ?></td>
                       </tr>
                       <tr>
-                        <th>Agama Suami</th>
+                        <th>Agama Penanggung Jawab</th>
                         <td><?php echo $tdatapasien->agama_pj ?></td>
                       </tr>
                       <tr>
-                        <th>Pekerjaan Suami</th>
+                        <th>Pekerjaan Penanggung Jawab</th>
                         <td><?php echo $tdatapasien->pekerjaan_pj ?></td>
                       </tr>
                       <tr>
-                        <th>Alamat KTP Suami</th>
+                        <th>Alamat KTP Penanggung Jawab</th>
                         <td><?php echo $tdatapasien->alamat_ktp_pj ?></td>
                       </tr>
                       <tr>
-                        <th>Domisili Suami</th>
+                        <th>Domisili Penanggung Jawab</th>
                         <td><?php echo $tdatapasien->alamat_pj ?></td>
                       </tr>
                       <tr>

@@ -147,13 +147,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                     <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>NO. Kartu Keluarga</label>
-		                        <input type="number" name="nokk" class="form-control" placeholder="Masukan Nomor KK">
+		                        
+		                        <input type="text" name="nokk" pattern="^\d{16,16}$" title="No KK Terdiri Dari 16 Digit Angka" class="form-control" placeholder="Masukan Nomor KK">
+		                       <!--  <input type="number" name="nokk" class="form-control" placeholder="Masukan Nomor KK"> -->
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
 		                      <div class="form-group">
 		                        <label>NIK</label>
-		                        <input type="number" name="nik" class="form-control" placeholder="NIK" required>
+		                        <input type="text" pattern="^\d{16,16}$" title="NIK Tidak Boleh Kosong dan Terdiri Dari 16 Digit Angka" name="nik" class="form-control" placeholder="NIK" required>
+		                        <!-- <input type="number" name="nik" class="form-control" placeholder="NIK" required> -->
 		                      </div>
 		                    </div>
 		                    <div class="col-md-12">
@@ -442,6 +445,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        $('#golDarah').select2({'theme': 'bootstrap4'});
    });
    // js untuk pencarian inputan select
+
+
+ 
+
 
    // js untuk copy text 
 	function copytextbox() {

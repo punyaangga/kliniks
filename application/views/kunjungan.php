@@ -144,7 +144,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                    <div class="col-md-6">
 		                      <div class="form-group">
 		                        <label>No. Antrian</label>
-		                        <textarea id="noPelayanan" name="noAntrian" class="form-control" style="height:30px; padding-top: 5px; padding-left: 20px;" readonly> </textarea>
+		                        <textarea id="noPelayanan" name="noAntrian" class="form-control" style="height:30px; padding-top: 5px; padding-left: 20px;" placeholder="1" readonly> </textarea>
 		                      </div>
 		                    </div>
 		                    <div class="col-md-6">
@@ -196,15 +196,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                        <label>Umur</label>
 		                        <?php
 		                        //waktu sekarang
-		                        $tglSekarang = date('yy-m-d');
+		                        $tglSekarang = date('d-m-Y');;
 		                        $waktuSekarang = explode('-', $tglSekarang);
 		                        //tgl lahir pasien
 		                        $tglPasien= $tp->tgl_lahir;
 		                        $waktuPasien = explode('-',$tglPasien);
 		                        //hitung umur
-		                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+		                        $getHari = $waktuSekarang[0] - $waktuPasien[2];
 		                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-		                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+		                        $getTahun = $waktuSekarang[2] - $waktuPasien [0];
 		                        //hasil umur
 		                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs($getHari)." Hari"; 
 		                        ?>
@@ -406,15 +406,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		                        <label>Umur (tahun)</label>
 		                        <?php
 		                        //waktu sekarang
-		                        $tglSekarang = date('yy-m-d');
+	                            $tglSekarang = date('d-m-Y');;
 		                        $waktuSekarang = explode('-', $tglSekarang);
 		                        //tgl lahir pasien
 		                        $tglPasien= $tp->tgl_lahir;
 		                        $waktuPasien = explode('-',$tglPasien);
-		                        //hitung umur
-		                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+ 		                        //hitung umur
+		                        $getHari = $waktuSekarang[0] - $waktuPasien[2];
 		                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-		                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+		                        $getTahun = $waktuSekarang[2] - $waktuPasien [0];
 		                        //hasil umur
 		                        $umurPasienTahun=abs($getTahun); 
 		                        $umurPasienBulan=abs($getBulan);
@@ -764,15 +764,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	                        <label>Umur</label>
 	                        <?php
 	                        // waktu sekarang
-	                        $tglSekarang = date('yy-m-d');
-	                        $waktuSekarang = explode('-', $tglSekarang);
+	                        $tglSekarang = date('d-m-Y');;
+                    	    $waktuSekarang = explode('-', $tglSekarang);
 	                        //tgl lahir pasien
 	                        $tglPasien= $tp->tgl_lahir;
 	                        $waktuPasien = explode('-',$tglPasien);
 	                        //hitung umur
-	                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+	                        $getHari = $waktuSekarang[0] - $waktuPasien[2];
 	                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-	                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+	                        $getTahun = $waktuSekarang[2] - $waktuPasien [0];
 	                        //hasil umur
 	                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs("$getHari")." Hari"; 
 	                        ?>
@@ -895,15 +895,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			                        <label>Umur</label>
 			                        <?php
 			                        	//waktu sekarang
-				                        $tglSekarang = date('yy-m-d');
+				                        $tglSekarang = date('d-m-Y');;
 				                        $waktuSekarang = explode('-', $tglSekarang);
 				                        //tgl lahir pasien
 				                        $tglPasien= $tp->tgl_lahir;
 				                        $waktuPasien = explode('-',$tglPasien);
 				                        //hitung umur
-				                        $getHari = $waktuSekarang[2] - $waktuPasien[2];
+				                        $getHari = $waktuSekarang[0] - $waktuPasien[2];
 				                        $getBulan = $waktuSekarang[1] - $waktuPasien [1];
-				                        $getTahun = $waktuSekarang[0] - $waktuPasien [0];
+				                        $getTahun = $waktuSekarang[2] - $waktuPasien [0];
+
 				                        //hasil umur
 				                        $umurPasien=abs($getTahun)." Tahun ".abs($getBulan)." Bulan ".abs($getHari)." Hari"; 
 				                        
